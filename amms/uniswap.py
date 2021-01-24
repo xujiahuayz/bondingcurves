@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+from enum import Enum
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -8,9 +8,12 @@ l = logging.getLogger("uniswap")
 
 MUST_SUPPLY_EQUAL_VALUES = Exception("must supply equal values")
 
+DIVIDER = "----"
+
 # todo: add exchange rate & liquidity when instantiating the class
 # this would enable us to debug existing Uniswap pools
 
+Token = Enum('Token', 'x_1 x_2')
 
 class Amm:
     # x_1 - coin 1 qty.
@@ -23,13 +26,20 @@ class Amm:
     # Withdrawing / depositing affects the liquidity.
     # Liquidity determined the slippage.
     # value of x_1 and x_2 does not need to be the same. In fact, this sets the initial exchange rate.
+    # ------
+    # @param x_1 - qty of coin 1 to deposit
+    # @param x_2 - qty of coin 2 to deposit
     def __init__(self, x_1: float, x_2: float):
         self.x_1 = x_1
         self.x_2 = x_2
         self.invariant = x_1 * x_2
 
         l.info(
-            f"created pool. x_1 = {x_1}, x_2 = {x_2}. invariant {self.invariant}. ex. rate x_1/x_2 = {x_2/x_1}"
+            f"CREATED POOL.\n"
+            f"x_1, x_2: {self.x_1:.8f}, {self.x_2:.8f}.\n"
+            f"invariant {self.invariant}.\n"
+            f"ex. rate x_1/x_2 = {self.x_2/self.x_1}.\n"
+            f"{DIVIDER}\n\n"
         )
 
     # Depositing occurs for two primary reasons.
@@ -39,45 +49,38 @@ class Amm:
     # To deposit, you will pay the cost to move your coins and register the deposit.
     # To withdraw, you will need to pay, too.
     # To deposit, you must supply equal $ value of x_1 and x_2
-    def deposit(self, x_1: float = 0):
-        # * this function can be simplified at an expense of readability
-        # * a single parameter that takes the values supplied to both x_1 and x_2 can suffice
-
-        # if (x_1 - x_2) >= 1e-8:
-        #     raise MUST_SUPPLY_EQUAL_VALUES
-        if x_1 == 0:
+    # -----
+    # @param x_i     - enum of the coin you are depositing
+    # @param x_i_qty - qty of of the token you are depositing
+    # qty of x_2 is automatically computed to match the $ value of x_1
+    def add_liquidity(self, x_i: Token, x_i_qty: float):
+        if x_i_qty <= 0:
             return
 
-        self.x_1 += x_1
+        prev_x_1, prev_x_2 = self.x_1, self.x_2
+        prev_invariant = self.invariant
 
-        x_2 = self.invariant/self.x_1
+        if x_i == Token.x_1:
+            self.x_1 += x_i_qty
+            # deposit amt of x_j is self.invariant/self.x_i - self.x_j
+            self.x_2 = self.invariant/self.x_1
+        else:
+            self.x_2 += x_i_qty
+            self.x_1 = self.invariant/self.x_2
 
-        self.x_2 += x_2
-
-        new_invariant = self.x_1 * self.x_2
-
-        l.info(
-            f"liquidity added. x_1 += {x_1}, x_2 += ${x_2}. old invariant: ${self.invariant:.8f}. new invariant: ${new_invariant:.8f}"
-        )
-
-        self.invariant = new_invariant
-
-    def withdraw(self, x_1: float = 0, x_2: float = 0):
-        if (x_1 - x_2) >= 1e-8:
-            raise MUST_SUPPLY_EQUAL_VALUES
-        if x_1 == 0:
-            return
-
-        self.x_1 -= x_1
-        self.x_2 -= x_2
-
-        new_invariant = self.x_1 * self.x_2
+        self.invariant = self.x_1 * self.x_2
 
         l.info(
-            f"liquidity removed. x_1 -= ${x_1}, x_2 -= ${x_2}. old invariant: ${self.invariant:.8f}. new invariant: ${new_invariant:.8f}"
+            f"ADDED LIQUIDITY.\n"
+            f"Δx_1, Δx_2: +{(self.x_1 - prev_x_1):.8f}, +{(self.x_2 - prev_x_2):.8f}.\n"
+            f"x_1, x_2: {self.x_1:.8f}, {self.x_2:.8f}.\n"
+            f"prev. invariant: ${prev_invariant:.8f}.\n"
+            f"invariant: ${self.invariant:.8f}.\n"
+            f"{DIVIDER}\n\n"
         )
 
-        self.invarinat = new_invariant
+    def remove_liquidity(self, x_i: Token, x_i_qty: float):
+        pass
 
     # my x_1 gets sent into the pool, I get back x_2
     # x_1 \in R^+ and x_1 > 0
@@ -132,12 +135,4 @@ class Amm:
 
 
 if __name__ == "__main__":
-    # example #1
-    x_1, x_2 = 5, 10  # depositing 5 coins #1 and 10 coins #2
-    uni = Amm(x_1, x_2)
-    uni.swap_x_1_for_x_2(2)
-    uni.swap_x_2_for_x_1(2)
-    uni.swap_x_2_for_x_1(5)
-    uni.deposit(10, 10)
-    uni.swap_x_2_for_x_1(1)
-    uni.swap_x_1_for_x_2(4)
+    pass
