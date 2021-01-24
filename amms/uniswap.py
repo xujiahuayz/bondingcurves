@@ -13,8 +13,8 @@ MUST_SUPPLY_EQUAL_VALUES = Exception("must supply equal values")
 
 
 class Amm:
-    # x_1 - coin 1 $ value.
-    # x_2 - coin 2 $ value.
+    # x_1 - coin 1 qty.
+    # x_2 - coin 2 qty.
     # This is the initial deposit.
     # The initial deposit sets the exchange rate.
     # The exchange rate (ex. rate) can vary throughout the lifetime of the pool.
@@ -22,13 +22,14 @@ class Amm:
     # Withdrawing / depositing does not affect the ex. rate.
     # Withdrawing / depositing affects the liquidity.
     # Liquidity determined the slippage.
+    # value of x_1 and x_2 does not need to be the same. In fact, this sets the initial exchange rate.
     def __init__(self, x_1: float, x_2: float):
         self.x_1 = x_1
         self.x_2 = x_2
         self.invariant = x_1 * x_2
 
         l.info(
-            f"created pool. x_1 = ${x_1}, x_2 = ${x_2}. invariant ${self.invariant}. ex. rate x_1/x_2 = ${x_2/x_1}"
+            f"created pool. x_1 = {x_1}, x_2 = {x_2}. invariant {self.invariant}. ex. rate x_1/x_2 = {x_2/x_1}"
         )
 
     # Depositing occurs for two primary reasons.
@@ -38,15 +39,19 @@ class Amm:
     # To deposit, you will pay the cost to move your coins and register the deposit.
     # To withdraw, you will need to pay, too.
     # To deposit, you must supply equal $ value of x_1 and x_2
-    def deposit(self, x_1: float = 0, x_2: float = 0):
+    def deposit(self, x_1: float = 0):
         # * this function can be simplified at an expense of readability
         # * a single parameter that takes the values supplied to both x_1 and x_2 can suffice
-        if (x_1 - x_2) >= 1e-8:
-            raise MUST_SUPPLY_EQUAL_VALUES
+
+        # if (x_1 - x_2) >= 1e-8:
+        #     raise MUST_SUPPLY_EQUAL_VALUES
         if x_1 == 0:
             return
 
         self.x_1 += x_1
+
+        x_2 = self.invariant/self.x_1
+
         self.x_2 += x_2
 
         new_invariant = self.x_1 * self.x_2
