@@ -19,6 +19,8 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
     address public token0;
     address public token1;
 
+    // Naz: single storage slot because uint112 + uint112 + uint32 takes up the space of
+    // uint256. And uint256 is a 32 byte chunk, whjich is the size of a single storage slot
     uint112 private reserve0;           // uses single storage slot, accessible via getReserves
     uint112 private reserve1;           // uses single storage slot, accessible via getReserves
     uint32  private blockTimestampLast; // uses single storage slot, accessible via getReserves
@@ -108,13 +110,18 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
 
     // this low-level function should be called from a contract which performs important safety checks
     function mint(address to) external lock returns (uint liquidity) {
+        // this pulls the latest reserves, before the liquidity event
         (uint112 _reserve0, uint112 _reserve1,) = getReserves(); // gas savings
+        // this is the new liquidity that has just arrived
         uint balance0 = IERC20(token0).balanceOf(address(this));
         uint balance1 = IERC20(token1).balanceOf(address(this));
+        // delta
         uint amount0 = balance0.sub(_reserve0);
         uint amount1 = balance1.sub(_reserve1);
 
+        // ? what is this
         bool feeOn = _mintFee(_reserve0, _reserve1);
+        // ? and what is this
         uint _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
         if (_totalSupply == 0) {
             liquidity = Math.sqrt(amount0.mul(amount1)).sub(MINIMUM_LIQUIDITY);
