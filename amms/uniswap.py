@@ -10,10 +10,8 @@ MUST_SUPPLY_EQUAL_VALUES = Exception("must supply equal values")
 
 DIVIDER = "----"
 
-# todo: add exchange rate & liquidity when instantiating the class
-# this would enable us to debug existing Uniswap pools
+Token = Enum("Token", "x_1 x_2")
 
-Token = Enum('Token', 'x_1 x_2')
 
 class Amm:
     # x_1 - coin 1 qty.
@@ -63,10 +61,10 @@ class Amm:
         if x_i == Token.x_1:
             self.x_1 += x_i_qty
             # deposit amt of x_j is self.invariant/self.x_i - self.x_j
-            self.x_2 = self.invariant/self.x_1
+            self.x_2 = self.invariant / self.x_1
         else:
             self.x_2 += x_i_qty
-            self.x_1 = self.invariant/self.x_2
+            self.x_1 = self.invariant / self.x_2
 
         self.invariant = self.x_1 * self.x_2
 
@@ -80,7 +78,10 @@ class Amm:
         )
 
     def remove_liquidity(self, x_i: Token, x_i_qty: float):
-        pass
+        if x_i_qty <= 0:
+            return
+
+        # everyone gets lp tokens. what happens with those?
 
     # my x_1 gets sent into the pool, I get back x_2
     # x_1 \in R^+ and x_1 > 0
