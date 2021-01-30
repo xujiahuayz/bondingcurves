@@ -81,8 +81,6 @@ class Amm:
         if x_i_qty <= 0:
             return
 
-        # everyone gets lp tokens. what happens with those?
-
     # my x_1 gets sent into the pool, I get back x_2
     # x_1 \in R^+ and x_1 > 0
     def swap_x_1_for_x_2(self, x_1: float = 0):
