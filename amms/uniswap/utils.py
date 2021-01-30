@@ -63,6 +63,12 @@ class LogHelper:
 
 # x_i_qty is the user sent delta
 def quote(x_i_qty: float, x_i_reserve: float, x_j_reserve: float):
-    x_js_for_one_i = x_j_reserve / x_i_reserve  # this is your ex rate: x_i / x_j
-    x_j_qty = x_i_qty * x_js_for_one_i
+    x_j_per_x_i = x_j_reserve / x_i_reserve  # this is your ex rate: x_i / x_j
+    x_j_qty = x_i_qty * x_j_per_x_i
     return x_j_qty
+
+
+def get_amount_out(x_i: Token, x_i_reserve: float, x_j_reserve: float):
+    x_i_with_fee = x_i.qty * 997
+    x_j_out = (x_i_with_fee * x_j_reserve) / (x_i_with_fee + 1000 * x_i_reserve)
+    return x_j_out

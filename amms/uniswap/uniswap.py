@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Any
 
 # workspace modules
-from amms.uniswap.utils import Token, LogHelper as l, quote
+from amms.uniswap.utils import Token, LogHelper as l, get_amount_out, quote
 
 MUST_SUPPLY_EQUAL_VALUES = Exception("must supply equal values")
 
@@ -59,11 +59,14 @@ class Amm:
             prev_invariant,
         )
 
+    def remove_liquidity(self, x_i: Token):
+        prev_x_1, prev_x_2, prev_invariant = self.x_1, self.x_2, self.invariant
+
     def trade(self, x_i: Token):
         prev_x_1, prev_x_2, prev_invariant = self.x_1, self.x_2, self.invariant
 
-        x_j = quote(
-            x_i.qty,
+        x_j = get_amount_out(
+            x_i,
             self._get(x_i.name),
             self._get(x_i.complement),
         )
