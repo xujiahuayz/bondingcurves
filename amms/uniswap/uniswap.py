@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # external jazz
-from enum import Enum
 from typing import Any
+from enum import Enum
+import numpy as np
 
 # workspace modules
 from amms.uniswap.utils import Token, LogHelper as l, get_amount_out, quote
 
 MUST_SUPPLY_EQUAL_VALUES = Exception("must supply equal values")
+MINIMUM_LIQUIDITY = 1000
 
 
 class Amm:
@@ -35,7 +37,10 @@ class Amm:
         self.prev_x_1 = -1
         self.prev_x_2 = -1
         self.prev_invariant = -1
-        self.lp = 0
+
+        # plays a crucial role when you remove the liquidity
+        self.liquidity = []
+        self.total_supply_liquidity = 0
 
         # if the pool did not exist, it gets created.
         # x_1 qty of token 1 and x_2 qty of token 2
@@ -46,15 +51,43 @@ class Amm:
     def add_liquidity(self, x_i: Token):
         self._update_prev()
 
+        # mint the lp fee
+        self._mint_fee()
+        if self.total_supply_liquidity == -1:
+            # in Uniswap these lp tokens are sent to 0x0 address
+            # so on every pool create, 1000 lp tokens get sent there
+            self.total_supply_liquidity = MINIMUM_LIQUIDITY
+
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)
         x_j = quote(x_i.qty, self._get(x_i.name), self._get(x_i.complement))
+
+        # these are the lp  tokens sent to the liquidity provider that called this func
+        liquidity = np.min(
+            [
+                x_i.qty * (self.total_supply_liquidity / self._get(x_i.name)),
+                x_j * (self.total_supply_liquidity / self._get(x_i.complement)),
+            ]
+        )
+        self.total_supply_liquidity += liquidity
+        self.liquidity.append(liquidity)
+
         self._set(x_i.complement, self._get(x_i.complement) + x_j)
         self.invariant = self.x_1 * self.x_2
 
         l.added_liquidity(x_i, x_j, self)
 
-    def remove_liquidity(self, x_i: Token):
-        self._update_prev()
+    def remove_liquidity(self, x_i: Token, remove_ix: float):
+        if not remove_ix <= len(self.liquidity):
+            return
+
+        # ? when would this ever happen
+        self._mint_fee()
+
+        remove_this_liquidity = self.liquidity[remove_ix]
+        send_back_x_1 = self.x_1 * (remove_this_liquidity / self.total_supply_liquidity)
+        send_back_x_2 = self.x_2 * (remove_this_liquidity / self.total_supply_liquidity)
+        self.total_supply_liquidity -= remove_this_liquidity
+        del self.liquidity[remove_ix]
 
     def trade(self, x_i: Token):
         self._update_prev()
@@ -82,6 +115,23 @@ class Amm:
             self.x_2,
             self.invariant,
         )
+
+    def _mint_fee(self):
+        if self.prev_invariant == -1:
+            return
+
+        root_k = np.sqrt(self.invariant)
+        prev_root_k = np.sqrt(self.prev_invariant)
+
+        if root_k <= prev_root_k:
+            return
+
+        liquidity = (self.total_supply_liquidity * (root_k - prev_root_k)) / (
+            5 * root_k + prev_root_k
+        )
+
+        # this gets sent to feeTo in Uniswap
+        self.total_supply_liquidity += liquidity
 
 
 if __name__ == "__main__":
