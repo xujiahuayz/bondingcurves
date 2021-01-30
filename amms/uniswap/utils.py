@@ -32,11 +32,11 @@ class LogHelper:
 
     @staticmethod
     def trade_executed(
-        x_i: Token, x_j_qty, x_1, prev_x_1, x_2, prev_x_2, invariant, prev_invariant
+        x_i: Token, x_j: float, x_1, prev_x_1, x_2, prev_x_2, invariant, prev_invariant
     ):
         l.info(
             "\nEXECUTED TRADE.\n"
-            f"swapped {x_i.qty} {x_i.name} for {x_j_qty} {x_i.complement}\n"
+            f"swapped {x_i.qty} {x_i.name} for {x_j} {x_i.complement}\n"
             f"prev ex.rate x_1/x_2 = {prev_x_2/prev_x_1:.8f}.\n"
             f"prev x_1, prev x_2: {prev_x_1:.8f}, {prev_x_2:.8f}\n"
             f"prev invarinat {prev_invariant}\n"
@@ -47,9 +47,12 @@ class LogHelper:
         )
 
     @staticmethod
-    def added_liquidity(x_1, prev_x_1, x_2, prev_x_2, invariant, prev_invariant):
+    def added_liquidity(
+        x_i: Token, x_j: float, x_1, prev_x_1, x_2, prev_x_2, invariant, prev_invariant
+    ):
         l.info(
             f"\nADDED LIQUIDITY.\n"
+            f"added {x_i.qty} {x_i.name} and {x_j} {x_i.complement}\n"
             f"Δx_1, Δx_2: +{(x_1 - prev_x_1):.8f}, +{(x_2 - prev_x_2):.8f}.\n"
             f"x_1, x_2: {x_1:.8f}, {x_2:.8f}.\n"
             f"prev. invariant: {prev_invariant:.8f}.\n"

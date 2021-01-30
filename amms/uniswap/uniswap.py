@@ -49,7 +49,14 @@ class Amm:
         self.invariant = self.x_1 * self.x_2
 
         l.added_liquidity(
-            self.x_1, prev_x_1, self.x_2, prev_x_2, self.invariant, prev_invariant
+            x_i,
+            x_j,
+            self.x_1,
+            prev_x_1,
+            self.x_2,
+            prev_x_2,
+            self.invariant,
+            prev_invariant,
         )
 
     def trade(self, x_i: Token):
