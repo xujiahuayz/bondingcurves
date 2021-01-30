@@ -110,30 +110,35 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
 
     // this low-level function should be called from a contract which performs important safety checks
     function mint(address to) external lock returns (uint liquidity) {
-        // this pulls the latest reserves, before the liquidity event
+        // Naz: x_1 and x_2 BEFORE the add liquidity
         (uint112 _reserve0, uint112 _reserve1,) = getReserves(); // gas savings
-        // this is the new liquidity that has just arrived
+        // Naz: x_1 and x_2 NOW after the add liquidity
         uint balance0 = IERC20(token0).balanceOf(address(this));
         uint balance1 = IERC20(token1).balanceOf(address(this));
-        // delta
+        // Naz: amount0 and amount1 is what was sent. (Delta)
+        // => amount0, amount1 > 0
         uint amount0 = balance0.sub(_reserve0);
         uint amount1 = balance1.sub(_reserve1);
 
-        // ? what is this
+        // Naz: mints the fee on the previous event. reserve0 and reserve1 are
+        // reserves BEFORE the add liquidity
         bool feeOn = _mintFee(_reserve0, _reserve1);
-        // ? and what is this
         uint _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
+
         if (_totalSupply == 0) {
             liquidity = Math.sqrt(amount0.mul(amount1)).sub(MINIMUM_LIQUIDITY);
            _mint(address(0), MINIMUM_LIQUIDITY); // permanently lock the first MINIMUM_LIQUIDITY tokens
         } else {
             liquidity = Math.min(amount0.mul(_totalSupply) / _reserve0, amount1.mul(_totalSupply) / _reserve1);
         }
+
         require(liquidity > 0, 'UniswapV2: INSUFFICIENT_LIQUIDITY_MINTED');
         _mint(to, liquidity);
 
         _update(balance0, balance1, _reserve0, _reserve1);
+
         if (feeOn) kLast = uint(reserve0).mul(reserve1); // reserve0 and reserve1 are up-to-date
+
         emit Mint(msg.sender, amount0, amount1);
     }
 
