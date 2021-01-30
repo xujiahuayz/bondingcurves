@@ -193,12 +193,11 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         address _token1 = token1; // gas savings
         uint256 balance0 = IERC20(_token0).balanceOf(address(this));
         uint256 balance1 = IERC20(_token1).balanceOf(address(this));
-        uint256 liquidity = balanceOf[address(this)]; // naz: this is what Uniswap has inside of this contract
-        // naz: whereas total supply signifies all the supply
+        // Naz: this is the liquidity pool tokens in this contract
+        uint256 liquidity = balanceOf[address(this)];
 
-        // naz: only mints the fee if liquidity grew.
-        // naz: ? i would assume that is never the case in the burn function
         bool feeOn = _mintFee(_reserve0, _reserve1);
+        // Naz: total amount of liquidity pool tokens
         uint256 _totalSupply = totalSupply; // gas savings, must be defined here since totalSupply can update in _mintFee
         amount0 = liquidity.mul(balance0) / _totalSupply; // using balances ensures pro-rata distribution
         amount1 = liquidity.mul(balance1) / _totalSupply; // using balances ensures pro-rata distribution

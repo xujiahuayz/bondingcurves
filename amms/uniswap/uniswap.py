@@ -32,66 +32,56 @@ class Amm:
         self.x_1 = x_1.qty
         self.x_2 = x_2.qty
         self.invariant = self.x_1 * self.x_2
+        self.prev_x_1 = -1
+        self.prev_x_2 = -1
+        self.prev_invariant = -1
         self.lp = 0
 
         # if the pool did not exist, it gets created.
         # x_1 qty of token 1 and x_2 qty of token 2
         # gets transfered from the pool cretor into the pool (called a pair in uniswap contracts)
 
-        l.pool_created(self.x_1, self.x_2, self.invariant)
+        l.pool_created(self)
 
     def add_liquidity(self, x_i: Token):
-        prev_x_1, prev_x_2, prev_invariant = self.x_1, self.x_2, self.invariant
+        self._update_prev()
 
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)
         x_j = quote(x_i.qty, self._get(x_i.name), self._get(x_i.complement))
         self._set(x_i.complement, self._get(x_i.complement) + x_j)
         self.invariant = self.x_1 * self.x_2
 
-        l.added_liquidity(
-            x_i,
-            x_j,
-            self.x_1,
-            prev_x_1,
-            self.x_2,
-            prev_x_2,
-            self.invariant,
-            prev_invariant,
-        )
+        l.added_liquidity(x_i, x_j, self)
 
     def remove_liquidity(self, x_i: Token):
-        prev_x_1, prev_x_2, prev_invariant = self.x_1, self.x_2, self.invariant
+        self._update_prev()
 
     def trade(self, x_i: Token):
-        prev_x_1, prev_x_2, prev_invariant = self.x_1, self.x_2, self.invariant
+        self._update_prev()
 
+        # applies the 30 bps fee and accounts for the x_i in the updated reserves
         x_j = get_amount_out(
             x_i,
             self._get(x_i.name),
             self._get(x_i.complement),
         )
-
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)
         self._set(x_i.complement, self._get(x_i.complement) - x_j)
 
-        l.trade_executed(
-            x_i,
-            x_j,
-            self.x_1,
-            prev_x_1,
-            self.x_2,
-            prev_x_2,
-            self.invariant,
-            prev_invariant,
-        )
-
-        return x_j
+        l.trade_executed(x_i, x_j, self)
 
     def _get(self, name: str):
         return self.__getattribute__(name)
 
     def _set(self, name: str, value: Any):
         self.__setattr__(name, value)
+
+    def _update_prev(self):
+        self.prev_x_1, self.prev_x_2, self.prev_invariant = (
+            self.x_1,
+            self.x_2,
+            self.invariant,
+        )
 
 
 if __name__ == "__main__":
