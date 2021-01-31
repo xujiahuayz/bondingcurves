@@ -263,6 +263,11 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
         (uint reserveA, uint reserveB) = UniswapV2Library.getReserves(factory, tokenA, tokenB);
         if (reserveA == 0 && reserveB == 0) {
             (amountA, amountB) = (amountADesired, amountBDesired);
+        // Naz: traders might have impacted the ex. rate in the meantime
+        // Naz: so the liquidity you will add is either one of the following:
+        // Naz: (i) exactly the amount of token A and computed amount of token B
+        // Naz: (ii) exactly the amount of token B and computed amount of token A
+        // Naz: (iii) both exactly
         } else {
             uint amountBOptimal = UniswapV2Library.quote(amountADesired, reserveA, reserveB);
             if (amountBOptimal <= amountBDesired) {
@@ -270,6 +275,7 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
                 (amountA, amountB) = (amountADesired, amountBOptimal);
             } else {
                 uint amountAOptimal = UniswapV2Library.quote(amountBDesired, reserveB, reserveA);
+                // Naz: assert costs you gas!
                 assert(amountAOptimal <= amountADesired);
                 require(amountAOptimal >= amountAMin, 'UniswapV2Router: INSUFFICIENT_A_AMOUNT');
                 (amountA, amountB) = (amountAOptimal, amountBDesired);

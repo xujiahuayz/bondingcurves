@@ -36,9 +36,6 @@ class LogHelper:
         l.info(
             "\nEXECUTED TRADE.\n"
             f"swapped {x_i.qty} {x_i.name} for {x_j} {x_i.complement}\n"
-            f"prev ex.rate x_1/x_2 = {o.prev_x_2/o.prev_x_1:.8f}.\n"
-            f"prev x_1, prev x_2: {o.prev_x_1:.8f}, {o.prev_x_2:.8f}\n"
-            f"prev invarinat {o.prev_invariant}\n"
             f"ex. rate x_1/x_2 = {o.x_2/o.x_1:.8f}.\n"
             f"x_1, x_2: {o.x_1:.8f}, {o.x_2:.8f}.\n"
             f"invariant {o.invariant}.\n"
@@ -46,21 +43,23 @@ class LogHelper:
         )
 
     @staticmethod
+    def liquidity_event():
+      # todo: implement
+      pass
+
+    @staticmethod
     def added_liquidity(x_i: Token, x_j: float, o: Any):
         l.info(
             f"\nADDED LIQUIDITY.\n"
             f"added {x_i.qty} {x_i.name} and {x_j} {x_i.complement}\n"
-            f"Δx_1, Δx_2: +{(o.x_1 - o.prev_x_1):.8f}, +{(o.x_2 - o.prev_x_2):.8f}.\n"
             f"x_1, x_2: {o.x_1:.8f}, {o.x_2:.8f}.\n"
-            f"prev. invariant: {o.prev_invariant:.8f}.\n"
-            f"invariant: {o.invariant:.8f}.\n"
             f"{DIVIDER}\n"
         )
 
 
 # x_i_qty is the user sent delta
 def quote(x_i_qty: float, x_i_reserve: float, x_j_reserve: float):
-    x_j_per_x_i = x_j_reserve / x_i_reserve  # this is your ex rate: x_i / x_j
+    x_j_per_x_i = x_j_reserve / x_i_reserve  # this is your ex. rate: x_i / x_j
     x_j_qty = x_i_qty * x_j_per_x_i
     return x_j_qty
 
