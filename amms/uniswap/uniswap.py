@@ -39,6 +39,7 @@ class Amm:
         # plays a crucial role when you remove the liquidity
         self.liquidity = []
         self.total_supply_liquidity = -1
+        self.x1s = []
 
         # if the pool did not exist, it gets created.
         # x_1 qty of token 1 and x_2 qty of token 2
@@ -91,6 +92,8 @@ class Amm:
         self._set(x_i.complement, self._get(x_i.complement) + x_j) # self.x_j += x_j
         self.invariant = self.x_1 * self.x_2
 
+        self.x1s.append(x_i.qty)
+
         l.liquidity_event(self.liquidity[-1])
         l.added_liquidity(x_i, x_j, self)
         l.log.info(self)
@@ -120,6 +123,7 @@ class Amm:
         self.invariant = self.x_1 * self.x_2
 
         del self.liquidity[remove_ix]
+        del self.x1s[remove_ix]
 
         l.removed_liquidity(x_1, x_2, remove_this_liquidity)
         l.log.info(self)
@@ -143,12 +147,10 @@ class Amm:
     # pct_move is for x_1 / x_2
     def _impermanent_loss(self, lp_ix: float, pct_move: float):
       if lp_ix >= len(self.liquidity):
-        l.log.warn("invalid lp ix")
-        return
+        return Exception('lp ix')
 
-      if not -1 <= pct_move <= 1:
-        l.log.warn('invalid pct price move. pct_move in [-1, 1]')
-        return
+      if not -1 <= pct_move <= 5:
+        return Exception('invalid pct price move. pct_move in [-1, 1]')
 
       lp_tokens = self.liquidity[lp_ix]
       # todo: add the mint fee like in the remove liqiuidity
@@ -166,17 +168,18 @@ class Amm:
 
       pool_share = (lp_tokens / self.total_supply_liquidity)
 
-      nlx1, nlx2, lx1, lx2 = self.x_1 * pool_share, self.x_2 * pool_share, x_1 * pool_share, x_2 * pool_share
+      nlx1, _, lx1, _ = self.x_1 * pool_share, self.x_2 * pool_share, x_1 * pool_share, x_2 * pool_share
       lx1nlx1 = lx1 / nlx1
+
+      print(lx1)
 
       # stands for no loss x_i and loss (i.e. with permanent loss)
       return {
-        "nlx1": nlx1,
-        "nlx2": nlx2,
-        "lx1": lx1,
-        "lx2": lx2,
+        "nlx1": nlx1 / 1e18,
+        "lx1": lx1 /1e18,
+        "lx1-nlx1": (lx1-nlx1) / 1e18,
         "lx1/nlx1": lx1nlx1,
-        "pct_loss": 1 - lx1nlx1
+        "tv_loss": 2 - self.x1s[lp_ix] / lx1
       }
 
     def _get(self, name: str):
@@ -210,16 +213,18 @@ class Amm:
         self.total_supply_liquidity += liquidity
 
     def _plot_impermanent_loss(self, lp_ix: float):
-      x = np.arange(-0.95, 0.95, 0.01);
+      x = np.arange(0, 3.01, 0.01);
       y = []
 
       for _x in x:
         o = self._impermanent_loss(lp_ix, _x)
         # ! when price goes down, we can withdraw more coins than what we have deposited?
         l.log.info(o)
-        y.append(o['pct_loss'])
+        y.append(o['tv_loss'])
 
-      plt.plot(x, y)
+      plt.plot([_x * 100 for _x in x], [_y * 100 for _y in y])
+      plt.xlabel('% of the original exchange rate')
+      plt.ylabel('% tvl change')
       plt.show()
 
     def __repr__(self):
@@ -237,11 +242,13 @@ class Amm:
 if __name__ == "__main__":
     # example from Uniswap docs from the article
     # https://uniswap.org/docs/v2/advanced-topics/understanding-returns/#example-from-the-article
-    x_1 = Token(1, 900e18)
-    x_2 = Token(2, 90000e18)
+    x_1 = Token(1, 1e18)
+    x_2 = Token(2, 100e18)
     amm = Amm(x_1, x_2)
 
+    amm.add_liquidity(Token(1, 899e18))
     amm.add_liquidity(Token(1, 100e18))
     # amm.remove_liquidity(0)
 
-    amm._plot_impermanent_loss(0)
+    # print(amm._impermanent_loss(1, 0.5))
+    amm._plot_impermanent_loss(1)
