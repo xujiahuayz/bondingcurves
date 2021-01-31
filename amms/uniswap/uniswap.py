@@ -96,13 +96,25 @@ class Amm:
         if not remove_ix <= len(self.liquidity):
             return
 
+        # in uniswap, liquidity first gets sent to the pair
+        # then everything else is done
+
         # ? when would this ever happen
         self._mint_fee()
 
         remove_this_liquidity = self.liquidity[remove_ix]
-        send_back_x_1 = self.x_1 * (remove_this_liquidity / self.total_supply_liquidity)
-        send_back_x_2 = self.x_2 * (remove_this_liquidity / self.total_supply_liquidity)
+        x_1 = self.x_1 * (remove_this_liquidity / self.total_supply_liquidity)
+        x_2 = self.x_2 * (remove_this_liquidity / self.total_supply_liquidity)
+        
+        # this is the _burn simulation
         self.total_supply_liquidity -= remove_this_liquidity
+
+        # now we would send back the x_1 and x_2 to the liquidity remover
+        self.prev_invariant = self.invariant
+        self.x_1 -= x_1
+        self.x_2 -= x_2
+        self.invariant = self.x_1 * self.x_2
+
         del self.liquidity[remove_ix]
 
     def trade(self, x_i: Token):
