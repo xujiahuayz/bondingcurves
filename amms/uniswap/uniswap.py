@@ -155,7 +155,7 @@ class Amm:
       # which in turn changes how much x_1 and x_2 you get back
       # x_1 / x_2 must change such that it equals the new price
       # and invariant product is constant
-      curr_exchange_rate = self.x_1 / self.x_2
+      curr_exchange_rate = self.x_2 / self.x_1
       new_price = (1 + pct_move) * curr_exchange_rate
 
       # x_1 tokens = np.sqrt(constant product / new ex. rate)
