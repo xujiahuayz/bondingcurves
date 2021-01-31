@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # external jazz
+import matplotlib.pyplot as plt
 from typing import Any
 import numpy as np
 import json
@@ -140,7 +141,7 @@ class Amm:
         l.log.info(self)
 
     # pct_move is for x_1 / x_2
-    def impermanent_loss(self, lp_ix: float, pct_move: float):
+    def _impermanent_loss(self, lp_ix: float, pct_move: float):
       if lp_ix >= len(self.liquidity):
         l.log.warn("invalid lp ix")
         return
@@ -165,15 +166,13 @@ class Amm:
 
       pool_share = (lp_tokens / self.total_supply_liquidity)
 
-      no_impermanent_x_1 = self.x_1 * pool_share
-      no_impermanent_x_2 = self.x_2 * pool_share
-      impermanent_x_1 = x_1 * pool_share
-      impermanent_x_2 = x_2 * pool_share
-
-      l.log.warning(f'no_impermanent x_1 {no_impermanent_x_1 / 1e18}')
-      l.log.warning(f'no_impermanent x_2 {no_impermanent_x_2 / 1e18}')
-      l.log.warning(f'impermanent x_1 {impermanent_x_1 / 1e18}')
-      l.log.warning(f'impermanent x_2 {impermanent_x_2 / 1e18}')
+      # stands for no loss x_i and loss (i.e. with permanent loss)
+      return {
+        "nlx1": self.x_1 * pool_share,
+        "nlx2": self.x_2 * pool_share,
+        "lx1": x_1 * pool_share,
+        "lx2": x_2 * pool_share
+      }
 
     def _get(self, name: str):
         return self.__getattribute__(name)
@@ -205,6 +204,18 @@ class Amm:
         # this gets sent to feeTo in Uniswap
         self.total_supply_liquidity += liquidity
 
+    def _plot_impermanent_loss(self, lp_ix: float):
+      x = np.arange(-1, 1, 0.05);
+      y = []
+
+      for _x in x:
+        o = self._impermanent_loss(lp_ix, _x)
+        loss_to_hodl = (1 - o['lx1'] / o['nlx1'])
+        y.append(loss_to_hodl)
+
+      plt.plot(x, y)
+      plt.show()
+
     def __repr__(self):
       return json.dumps(
         {
@@ -226,4 +237,5 @@ if __name__ == "__main__":
 
     amm.add_liquidity(Token(1, 100e18))
     # amm.remove_liquidity(0)
-    amm.impermanent_loss(0, 0.5)
+
+    amm._plot_impermanent_loss(0)
