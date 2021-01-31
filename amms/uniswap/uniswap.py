@@ -161,19 +161,22 @@ class Amm:
 
       # x_1 tokens = np.sqrt(constant product / new ex. rate)
       # x_2 tokens = np.sqrt(const product * new ex.rate)
-      x_1 = np.sqrt(self.invariant / new_price)
+      x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) * (x1 / x2) -> sqrt(x1 ** 2)
       x_2 = np.sqrt(self.invariant * new_price)
 
       pool_share = (lp_tokens / self.total_supply_liquidity)
 
+      nlx1, nlx2, lx1, lx2 = self.x_1 * pool_share, self.x_2 * pool_share, x_1 * pool_share, x_2 * pool_share
+      lx1nlx1 = lx1 / nlx1
+
       # stands for no loss x_i and loss (i.e. with permanent loss)
       return {
-        "nlx1": self.x_1 * pool_share,
-        "nlx2": self.x_2 * pool_share,
-        "lx1": x_1 * pool_share,
-        "lx2": x_2 * pool_share,
-        "pct_loss": 1 - (x_1 * pool_share) / (self.x_1 * pool_share),
-        "lx1/nlx1": (x_1 * pool_share) / (self.x_1 * pool_share)
+        "nlx1": nlx1,
+        "nlx2": nlx2,
+        "lx1": lx1,
+        "lx2": lx2,
+        "lx1/nlx1": lx1nlx1,
+        "pct_loss": 1 - lx1nlx1
       }
 
     def _get(self, name: str):
@@ -214,6 +217,7 @@ class Amm:
         o = self._impermanent_loss(lp_ix, _x)
         # ! when price goes down, we can withdraw more coins than what we have deposited?
         l.log.info(o)
+        y.append(o['pct_loss'])
 
       plt.plot(x, y)
       plt.show()
