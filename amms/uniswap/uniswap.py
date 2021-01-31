@@ -182,9 +182,8 @@ class Amm:
       ) + "\n"
 
 if __name__ == "__main__":
-    x_1 = Token(1, 9999)
-    x_2 = Token(2, 990000)
+    x_1 = Token(1, 99e18)
+    x_2 = Token(2, 9900e18)
     amm = Amm(x_1, x_2)
 
-    amm.add_liquidity(Token(1, 1))
-    amm.remove_liquidity(0)
+    amm.add_liquidity(Token(1, 1e18))
