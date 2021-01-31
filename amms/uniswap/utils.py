@@ -1,7 +1,7 @@
 from typing import Any
 from amms.logger import l
 
-DIVIDER = "----"
+DIVIDER = "-------------------------------------"
 
 
 class Token:
@@ -21,11 +21,13 @@ class Token:
 
 
 class LogHelper:
+    log = l
+
     @staticmethod
     def pool_created(o: Any):
         l.info(
             f"\nCREATED POOL.\n"
-            f"x_1, x_2: {o.x_1:.8f}, {o.x_2:.8f}.\n"
+            f"x_1, x_2: {o.x_1:.4f}, {o.x_2:.4f}.\n"
             f"invariant {o.invariant}.\n"
             f"ex. rate x_1/x_2 = {o.x_2/o.x_1}.\n"
             f"{DIVIDER}\n"
@@ -36,25 +38,36 @@ class LogHelper:
         l.info(
             "\nEXECUTED TRADE.\n"
             f"swapped {x_i.qty} {x_i.name} for {x_j} {x_i.complement}\n"
-            f"ex. rate x_1/x_2 = {o.x_2/o.x_1:.8f}.\n"
-            f"x_1, x_2: {o.x_1:.8f}, {o.x_2:.8f}.\n"
+            f"ex. rate x_1/x_2 = {o.x_2/o.x_1:.4f}.\n"
+            f"x_1, x_2: {o.x_1:.4f}, {o.x_2:.4f}.\n"
             f"invariant {o.invariant}.\n"
             f"{DIVIDER}\n"
         )
 
     @staticmethod
-    def liquidity_event():
-      # todo: implement
-      pass
+    def liquidity_event(liquidity: float):
+      l.info(
+        f"\nLP TOKENS MINTED\n"
+        f"minted {liquidity:.4f}\n"
+        f"{DIVIDER}\n"
+      )
 
     @staticmethod
     def added_liquidity(x_i: Token, x_j: float, o: Any):
         l.info(
             f"\nADDED LIQUIDITY.\n"
             f"added {x_i.qty} {x_i.name} and {x_j} {x_i.complement}\n"
-            f"x_1, x_2: {o.x_1:.8f}, {o.x_2:.8f}.\n"
+            f"x_1, x_2: {o.x_1:.4f}, {o.x_2:.4f}.\n"
             f"{DIVIDER}\n"
         )
+    
+    @staticmethod
+    def removed_liquidity(x_1: float, x_2: float, lp_tokens: float):
+      l.info(
+        f"\nREMOVED LIQUIDITY\n"
+        f"removed {x_1} x_1 and {x_2} x_2 for {lp_tokens} lp tokens\n"
+        f"{DIVIDER}\n"
+      )
 
 
 # x_i_qty is the user sent delta

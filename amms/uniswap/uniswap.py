@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # external jazz
 from typing import Any
-from enum import Enum
 import numpy as np
+import json
 
 # workspace modules
 from amms.uniswap.utils import Token, LogHelper as l, get_amount_out, quote
@@ -37,7 +37,7 @@ class Amm:
 
         # plays a crucial role when you remove the liquidity
         self.liquidity = []
-        self.total_supply_liquidity = 0
+        self.total_supply_liquidity = -1
 
         # if the pool did not exist, it gets created.
         # x_1 qty of token 1 and x_2 qty of token 2
@@ -48,6 +48,7 @@ class Amm:
     # DOES NOT IMPACT THE EX. RATE, CHANGES THE INVARIANT
     def add_liquidity(self, x_i: Token):
         self._update_prev()
+        l.log.info(self)
 
         _liquidity = 0
         # compute the quote using EXISTING reserves
@@ -89,12 +90,14 @@ class Amm:
         self._set(x_i.complement, self._get(x_i.complement) + x_j)
         self.invariant = self.x_1 * self.x_2
 
-        l.liquidity_event()
+        l.liquidity_event(self.liquidity[-1])
         l.added_liquidity(x_i, x_j, self)
+        l.log.info(self)
 
-    def remove_liquidity(self, x_i: Token, remove_ix: float):
+    def remove_liquidity(self, remove_ix: float):
         if not remove_ix <= len(self.liquidity):
             return
+        l.log.info(self)
 
         # in uniswap, liquidity first gets sent to the pair
         # then everything else is done
@@ -117,8 +120,12 @@ class Amm:
 
         del self.liquidity[remove_ix]
 
+        l.removed_liquidity(x_1, x_2, remove_this_liquidity)
+        l.log.info(self)
+
     def trade(self, x_i: Token):
         self._update_prev()
+        l.log.info(self)
 
         # applies the 30 bps fee and accounts for the x_i in the updated reserves
         x_j = get_amount_out(
@@ -130,6 +137,7 @@ class Amm:
         self._set(x_i.complement, self._get(x_i.complement) - x_j)
 
         l.trade_executed(x_i, x_j, self)
+        l.log.info(self)
 
     def _get(self, name: str):
         return self.__getattribute__(name)
@@ -161,13 +169,22 @@ class Amm:
         # this gets sent to feeTo in Uniswap
         self.total_supply_liquidity += liquidity
 
+    def __repr__(self):
+      return json.dumps(
+        {
+          'x_1': self.x_1,
+          'x_2': self.x_2,
+          'invariant': self.invariant,
+          'lps': self.liquidity,
+          'total_supply_liquidity': self.total_supply_liquidity
+        },
+        indent=4
+      ) + "\n"
 
 if __name__ == "__main__":
-    x_1 = Token(1, 100)
-    x_2 = Token(2, 50)
+    x_1 = Token(1, 9999)
+    x_2 = Token(2, 990000)
     amm = Amm(x_1, x_2)
 
-    amm.add_liquidity(Token(2, 30))
-    amm.trade(Token(1, 55))
-    amm.trade(Token(1, 23))
-    amm.trade(Token(1, 100))
+    amm.add_liquidity(Token(1, 1))
+    amm.remove_liquidity(0)
