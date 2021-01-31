@@ -171,7 +171,9 @@ class Amm:
         "nlx1": self.x_1 * pool_share,
         "nlx2": self.x_2 * pool_share,
         "lx1": x_1 * pool_share,
-        "lx2": x_2 * pool_share
+        "lx2": x_2 * pool_share,
+        "pct_loss": 1 - (x_1 * pool_share) / (self.x_1 * pool_share),
+        "lx1/nlx1": (x_1 * pool_share) / (self.x_1 * pool_share)
       }
 
     def _get(self, name: str):
@@ -205,13 +207,13 @@ class Amm:
         self.total_supply_liquidity += liquidity
 
     def _plot_impermanent_loss(self, lp_ix: float):
-      x = np.arange(-1, 1, 0.05);
+      x = np.arange(-0.95, 0.95, 0.01);
       y = []
 
       for _x in x:
         o = self._impermanent_loss(lp_ix, _x)
-        loss_to_hodl = (1 - o['lx1'] / o['nlx1'])
-        y.append(loss_to_hodl)
+        # ! when price goes down, we can withdraw more coins than what we have deposited?
+        l.log.info(o)
 
       plt.plot(x, y)
       plt.show()
