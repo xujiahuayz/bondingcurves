@@ -108,7 +108,7 @@ class Amm:
         remove_this_liquidity = self.liquidity[remove_ix]
         x_1 = self.x_1 * (remove_this_liquidity / self.total_supply_liquidity)
         x_2 = self.x_2 * (remove_this_liquidity / self.total_supply_liquidity)
-        
+
         # this is the _burn simulation
         self.total_supply_liquidity -= remove_this_liquidity
 
@@ -138,6 +138,42 @@ class Amm:
 
         l.trade_executed(x_i, x_j, self)
         l.log.info(self)
+
+    # pct_move is for x_1 / x_2
+    def impermanent_loss(self, lp_ix: float, pct_move: float):
+      if lp_ix >= len(self.liquidity):
+        l.log.warn("invalid lp ix")
+        return
+
+      if not -1 <= pct_move <= 1:
+        l.log.warn('invalid pct price move. pct_move in [-1, 1]')
+        return
+
+      lp_tokens = self.liquidity[lp_ix]
+      # todo: add the mint fee like in the remove liqiuidity
+      # pct_move causes arb trades, which change x_1 and x_2
+      # which in turn changes how much x_1 and x_2 you get back
+      # x_1 / x_2 must change such that it equals the new price
+      # and invariant product is constant
+      curr_exchange_rate = self.x_1 / self.x_2
+      new_price = (1 + pct_move) * curr_exchange_rate
+
+      # x_1 tokens = np.sqrt(constant product / new ex. rate)
+      # x_2 tokens = np.sqrt(const product * new ex.rate)
+      x_1 = np.sqrt(self.invariant / new_price)
+      x_2 = np.sqrt(self.invariant * new_price)
+
+      pool_share = (lp_tokens / self.total_supply_liquidity)
+
+      no_impermanent_x_1 = self.x_1 * pool_share
+      no_impermanent_x_2 = self.x_2 * pool_share
+      impermanent_x_1 = x_1 * pool_share
+      impermanent_x_2 = x_2 * pool_share
+
+      l.log.warning(f'no_impermanent x_1 {no_impermanent_x_1 / 1e18}')
+      l.log.warning(f'no_impermanent x_2 {no_impermanent_x_2 / 1e18}')
+      l.log.warning(f'impermanent x_1 {impermanent_x_1 / 1e18}')
+      l.log.warning(f'impermanent x_2 {impermanent_x_2 / 1e18}')
 
     def _get(self, name: str):
         return self.__getattribute__(name)
@@ -182,9 +218,12 @@ class Amm:
       ) + "\n"
 
 if __name__ == "__main__":
-    x_1 = Token(1, 100e6)
-    x_2 = Token(2, 10000e6)
+    # example from Uniswap docs from the article
+    # https://uniswap.org/docs/v2/advanced-topics/understanding-returns/#example-from-the-article
+    x_1 = Token(1, 900e18)
+    x_2 = Token(2, 90000e18)
     amm = Amm(x_1, x_2)
 
-    amm.add_liquidity(Token(1, 1e6))
-    amm.remove_liquidity(0)
+    amm.add_liquidity(Token(1, 100e18))
+    # amm.remove_liquidity(0)
+    amm.impermanent_loss(0, 0.5)
