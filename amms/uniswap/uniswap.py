@@ -86,8 +86,8 @@ class Amm:
         self.liquidity.append(_liquidity)
 
         self.prev_invariant = self.x_1 * self.x_2 # kLast
-        self._set(x_i.name, self._get(x_i.name) + x_i.qty)
-        self._set(x_i.complement, self._get(x_i.complement) + x_j)
+        self._set(x_i.name, self._get(x_i.name) + x_i.qty) # self.x_i += x_i
+        self._set(x_i.complement, self._get(x_i.complement) + x_j) # self.x_j += x_j
         self.invariant = self.x_1 * self.x_2
 
         l.liquidity_event(self.liquidity[-1])
@@ -182,8 +182,9 @@ class Amm:
       ) + "\n"
 
 if __name__ == "__main__":
-    x_1 = Token(1, 99e18)
-    x_2 = Token(2, 9900e18)
+    x_1 = Token(1, 100e6)
+    x_2 = Token(2, 10000e6)
     amm = Amm(x_1, x_2)
 
-    amm.add_liquidity(Token(1, 1e18))
+    amm.add_liquidity(Token(1, 1e6))
+    amm.remove_liquidity(0)
