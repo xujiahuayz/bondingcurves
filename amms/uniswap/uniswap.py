@@ -61,7 +61,8 @@ class Amm:
         # see _addLiquidity in Uniswap
         x_j = quote(x_i.qty, reserve_x_i, reserve_x_j) # x_i * (reserve_x_j / reserve_x_i)
 
-        self._mint_fee()
+        # uniswap protocol fees. 0.3% on every trade, uniswap would collect 0.05% off of that if enabled
+        # self._mint_fee()
         if self.total_supply_liquidity == -1:
             # Will underflow if that sqrt < MINIMUM_LIQUIDITY. Is this a hack?
             _liquidity = np.sqrt(x_i.qty * x_j) - MINIMUM_LIQUIDITY
@@ -106,8 +107,7 @@ class Amm:
         # in uniswap, liquidity first gets sent to the pair
         # then everything else is done
 
-        # ? when would this ever happen
-        self._mint_fee()
+        # self._mint_fee()
 
         remove_this_liquidity = self.liquidity[remove_ix]
         x_1 = self.x_1 * (remove_this_liquidity / self.total_supply_liquidity)
@@ -145,42 +145,48 @@ class Amm:
         l.log.info(self)
 
     # pct_move is for x_1 / x_2
-    def _impermanent_loss(self, lp_ix: float, pct_move: float):
-      if lp_ix >= len(self.liquidity):
-        return Exception('lp ix')
-
+    def _impermanent_loss(self, pct_move: float):
       if not -1 <= pct_move <= 5:
-        return Exception('invalid pct price move. pct_move in [-1, 1]')
+        return Exception('invalid pct price move. pct_move in [-1, 5]')
 
-      lp_tokens = self.liquidity[lp_ix]
+      # lp_tokens = self.liquidity[lp_ix]
       # todo: add the mint fee like in the remove liqiuidity
       # pct_move causes arb trades, which change x_1 and x_2
       # which in turn changes how much x_1 and x_2 you get back
       # x_1 / x_2 must change such that it equals the new price
       # and invariant product is constant
-      curr_exchange_rate = self.x_2 / self.x_1
+
+      # 1.2 
+      curr_exchange_rate = self.x_2 / self.x_1 
+
+      # pct = -0.5, x_2 / x_1 = 0.6
       new_price = (1 + pct_move) * curr_exchange_rate
 
       # x_1 tokens = np.sqrt(constant product / new ex. rate)
       # x_2 tokens = np.sqrt(const product * new ex.rate)
-      x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) * (x1 / x2) -> sqrt(x1 ** 2)
-      x_2 = np.sqrt(self.invariant * new_price)
+      x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
+      # x_2 = np.sqrt(self.invariant * new_price)
 
-      pool_share = (lp_tokens / self.total_supply_liquidity)
+      value_ifkept = (self.x_1 + self.x_2 / new_price) 
+      
+      value_removable = 2 * x_1
+      
+      imperm_loss = 1 - value_removable / value_ifkept 
 
-      nlx1, _, lx1, _ = self.x_1 * pool_share, self.x_2 * pool_share, x_1 * pool_share, x_2 * pool_share
-      lx1nlx1 = lx1 / nlx1
+      #  check if: new_price == x_2/x_1
 
-      print(lx1)
+      # pool_share = lp_tokens / np.sum(self.liquidity)
 
-      # stands for no loss x_i and loss (i.e. with permanent loss)
-      return {
-        "nlx1": nlx1 / 1e18,
-        "lx1": lx1 /1e18,
-        "lx1-nlx1": (lx1-nlx1) / 1e18,
-        "lx1/nlx1": lx1nlx1,
-        "tv_loss": 2 - self.x1s[lp_ix] / lx1
-      }
+      # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share
+      # Case 1: 10_000 DAI intial & 100 ETH, 12_247 DAI & 81.64 ETH if ETH price goes up by 50%
+      # Case 2: 10_000 DAI initial, 7_071 DAI & 141.42 ETH if the price goes down by 50% (i think)
+
+      # Case 1 10_000 DAI + (100 ETH -> 15_000) = 25_000 DAI vs 24_495
+      # Case 2 10_000 DAI + (100 ETH -> 5_000 ) = 15_000 DAI vs 14_140
+
+      # ”impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1”
+
+      return imperm_loss
 
     def _get(self, name: str):
         return self.__getattribute__(name)
@@ -195,36 +201,35 @@ class Amm:
             self.invariant,
         )
 
-    def _mint_fee(self):
-        if self.prev_invariant == -1:
-            return
+    # def _mint_fee(self):
+    #     if self.prev_invariant == -1:
+    #         return
 
-        root_k = np.sqrt(self.invariant)
-        prev_root_k = np.sqrt(self.prev_invariant)
+    #     root_k = np.sqrt(self.invariant)
+    #     prev_root_k = np.sqrt(self.prev_invariant)
 
-        if root_k <= prev_root_k:
-            return
+    #     if root_k <= prev_root_k:
+    #         return
 
-        liquidity = (self.total_supply_liquidity * (root_k - prev_root_k)) / (
-            5 * root_k + prev_root_k
-        )
+    #     liquidity = (self.total_supply_liquidity * (root_k - prev_root_k)) / (
+    #         5 * root_k + prev_root_k
+    #     )
 
-        # this gets sent to feeTo in Uniswap
-        self.total_supply_liquidity += liquidity
+    #     # this gets sent to feeTo in Uniswap
+    #     self.total_supply_liquidity += liquidity
 
-    def _plot_impermanent_loss(self, lp_ix: float):
-      x = np.arange(0, 3.01, 0.01);
+    def _plot_impermanent_loss(self):
+      x = np.arange(-0.95, 3.01, 0.01)
       y = []
 
-      for _x in x:
-        o = self._impermanent_loss(lp_ix, _x)
+      for pct_change in x:
+        loss = self._impermanent_loss(pct_change)
         # ! when price goes down, we can withdraw more coins than what we have deposited?
-        l.log.info(o)
-        y.append(o['tv_loss'])
+        y.append(loss)
 
       plt.plot([_x * 100 for _x in x], [_y * 100 for _y in y])
       plt.xlabel('% of the original exchange rate')
-      plt.ylabel('% tvl change')
+      plt.ylabel('impermanent loss %')
       plt.show()
 
     def __repr__(self):
@@ -242,13 +247,14 @@ class Amm:
 if __name__ == "__main__":
     # example from Uniswap docs from the article
     # https://uniswap.org/docs/v2/advanced-topics/understanding-returns/#example-from-the-article
-    x_1 = Token(1, 1e18)
-    x_2 = Token(2, 100e18)
+    x_1 = Token(1, 100000e18) # DAI
+    x_2 = Token(2, 1000e18) # ETH
     amm = Amm(x_1, x_2)
 
-    amm.add_liquidity(Token(1, 899e18))
-    amm.add_liquidity(Token(1, 100e18))
-    # amm.remove_liquidity(0)
+    # x_1 = Token(1, 81700e18)
+    # x_2 = Token(2, 1e+44/81700e18)
+    # amm = Amm(x_1, x_2)
 
-    # print(amm._impermanent_loss(1, 0.5))
-    amm._plot_impermanent_loss(1)
+    # print(amm)
+
+    amm._plot_impermanent_loss()
