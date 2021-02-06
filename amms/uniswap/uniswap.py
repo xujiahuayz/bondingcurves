@@ -1,9 +1,16 @@
 #!/usr/bin/env python
-# external jazz
 import matplotlib.pyplot as plt
 from typing import Any
 import numpy as np
 import json
+import sys
+import os
+
+module_path = os.path.dirname(os.path.dirname(os.path.abspath(".")))
+
+# to make it work out of the box in interactive shells
+if module_path not in sys.path:
+  sys.path.insert(0, module_path)
 
 # workspace modules
 from amms.uniswap.utils import Token, LogHelper as l, get_amount_out, quote
@@ -144,38 +151,18 @@ class Amm:
         l.trade_executed(x_i, x_j, self)
         l.log.info(self)
 
-    # pct_move is for x_1 / x_2
+    # pct_move is for x_2 / x_1
     def _impermanent_loss(self, pct_move: float):
       if not -1 <= pct_move <= 5:
         return Exception('invalid pct price move. pct_move in [-1, 5]')
 
-      # lp_tokens = self.liquidity[lp_ix]
-      # todo: add the mint fee like in the remove liqiuidity
-      # pct_move causes arb trades, which change x_1 and x_2
-      # which in turn changes how much x_1 and x_2 you get back
-      # x_1 / x_2 must change such that it equals the new price
-      # and invariant product is constant
-
-      # 1.2 
       curr_exchange_rate = self.x_2 / self.x_1 
-
-      # pct = -0.5, x_2 / x_1 = 0.6
       new_price = (1 + pct_move) * curr_exchange_rate
-
-      # x_1 tokens = np.sqrt(constant product / new ex. rate)
-      # x_2 tokens = np.sqrt(const product * new ex.rate)
       x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
-      # x_2 = np.sqrt(self.invariant * new_price)
-
       value_ifkept = (self.x_1 + self.x_2 / new_price) 
-      
       value_removable = 2 * x_1
-      
+
       imperm_loss = 1 - value_removable / value_ifkept 
-
-      #  check if: new_price == x_2/x_1
-
-      # pool_share = lp_tokens / np.sum(self.liquidity)
 
       # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share
       # Case 1: 10_000 DAI intial & 100 ETH, 12_247 DAI & 81.64 ETH if ETH price goes up by 50%
