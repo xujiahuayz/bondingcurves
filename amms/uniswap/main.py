@@ -161,7 +161,6 @@ class Amm:
       x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
       value_ifkept = (self.x_1 + self.x_2 / new_price) 
       value_removable = 2 * x_1
-
       imperm_loss = 1 - value_removable / value_ifkept 
 
       # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share

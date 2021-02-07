@@ -10,8 +10,6 @@ import numpy as np
 fig = plt.figure()
 ax = fig.gca(projection="3d")
 
-# Make data.
-
 
 # for equal weights
 def plot_constant_product():

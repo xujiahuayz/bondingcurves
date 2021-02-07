@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
-from typing import Any
 import numpy as np
-import json
 import sys
 import os
 
