@@ -12,11 +12,32 @@ module_path = os.path.dirname(os.path.dirname(os.path.abspath(".")))
 if module_path not in sys.path:
     sys.path.insert(0, module_path)
 
-# Impermanent loss - what you lose due to price movements whilst staying
-# in the liquidity pool. In the case of Uniswap, imagine you go into the
-# pool with x_1 and x_2. This implies an exchange rate x_2 / x_1.
-# Now this exchange rate changes, denote new exchange rate \mu. What is the
-# loss?
 
-# If you were to hold, you would get x_1 + x_2 / \mu
-# Arbers, moved the price, new reserves is x_1_new = sqrt(invariant / \mu)
+# https://baller.netlify.app/assets
+def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float]):
+    if not len(asset_weights) == len(asset_price_changes):
+        raise Exception("must be of equal size")
+
+    if not sum(asset_weights) == 1:
+        raise Exception("invalid asset weights")
+
+    value_of_pool = 1
+    value_of_hodl = 0
+
+    for i in range(len(asset_weights)):
+        pct_change = 1 + asset_price_changes[i]
+
+        value_of_hodl += pct_change * asset_weights[i]
+        value_of_pool *= pct_change ** (asset_weights[i])
+
+    loss = value_of_pool / value_of_hodl - 1
+
+    return round(-loss * 100, 4)
+
+
+if __name__ == "__main__":
+    l = impermanent_loss(
+        [0.5, 0.34, 0.16],
+        [4.0, 1.5, 4.0]
+    )
+    print(l)

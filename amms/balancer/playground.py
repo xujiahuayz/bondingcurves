@@ -18,18 +18,15 @@ def plot_constant_product():
     v = 1_000
     X = np.arange(1, 11, 1)
     Y = np.arange(1, 11, 1)
-    X, Y = np.meshgrid(X, Y)
-    # R = np.sqrt(X ** 2 + Y ** 2)
-    # Z = np.sin(R)
+    X, Y = np.meshgrid(X ** (1/3), Y ** (1/3))
+    # V = B_1^{1/3} * B_2^{1/3} * B_3^{1/3}
     Z = v / (X * Y)
-
-    print(Z)
 
     # Plot the surface.
     surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 
     # Customize the z axis.
-    ax.set_zlim(0, 222)
+    ax.set_zlim(222, 1_000)
     ax.zaxis.set_major_locator(LinearLocator(10))
     ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
 
