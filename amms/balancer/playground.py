@@ -10,26 +10,22 @@ import numpy as np
 fig = plt.figure()
 ax = fig.gca(projection="3d")
 
-# Make data.
-
 
 # for equal weights
 def plot_constant_product():
     v = 1_000
-    X = np.arange(1, 11, 1)
-    Y = np.arange(1, 11, 1)
+    X = np.arange(0.5, 100.5, 0.5)
+    Y = np.arange(0.5, 100.5, 0.5)
     X, Y = np.meshgrid(X, Y)
     # R = np.sqrt(X ** 2 + Y ** 2)
     # Z = np.sin(R)
-    Z = v / (X * Y)
-
-    print(Z)
+    Z = v / (X ** (1/3) * Y ** (1/3))
 
     # Plot the surface.
     surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 
     # Customize the z axis.
-    ax.set_zlim(0, 222)
+    ax.set_zlim(1, 200)
     ax.zaxis.set_major_locator(LinearLocator(10))
     ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
 
