@@ -10,7 +10,7 @@ module_path = os.path.dirname(os.path.dirname(os.path.abspath(".")))
 
 # to make it work out of the box in interactive shells
 if module_path not in sys.path:
-  sys.path.insert(0, module_path)
+    sys.path.insert(0, module_path)
 
 # workspace modules
 from amms.uniswap.utils import Token, LogHelper as l, get_amount_out, quote
@@ -35,9 +35,9 @@ class Amm:
     # @param x_2 - qty of coin 2 to deposit
     def __init__(self, x_1: Token, x_2: Token):
         if x_1.name != "x_1":
-            return Exception("must be 1")
+            raise Exception("must be 1")
         if x_2.name != "x_2":
-            return Exception("must be 2")
+            raise Exception("must be 2")
 
         self.x_1 = x_1.qty
         self.x_2 = x_2.qty
@@ -66,7 +66,9 @@ class Amm:
 
         # we assume no front-running moves. otherwise this bit would be different
         # see _addLiquidity in Uniswap
-        x_j = quote(x_i.qty, reserve_x_i, reserve_x_j) # x_i * (reserve_x_j / reserve_x_i)
+        x_j = quote(
+            x_i.qty, reserve_x_i, reserve_x_j
+        )  # x_i * (reserve_x_j / reserve_x_i)
 
         # uniswap protocol fees. 0.3% on every trade, uniswap would collect 0.05% off of that if enabled
         # self._mint_fee()
@@ -76,28 +78,28 @@ class Amm:
 
             # safemath protected in Uniswap
             if _liquidity < 0:
-              _liquidity = 0
+                _liquidity = 0
 
             # in Uniswap these lp tokens are sent to 0x0 address
             # so on every pool create, 1000 lp tokens get sent there
             self.total_supply_liquidity = MINIMUM_LIQUIDITY
         else:
-          # these are the lp  tokens sent to the liquidity provider that called this func
-          # 'liquidity exchange rate'
-          _liquidity = np.min(
-              [
-                  x_i.qty * (self.total_supply_liquidity / reserve_x_i),
-                  x_j * (self.total_supply_liquidity / reserve_x_j),
-              ]
-          )
+            # these are the lp  tokens sent to the liquidity provider that called this func
+            # 'liquidity exchange rate'
+            _liquidity = np.min(
+                [
+                    x_i.qty * (self.total_supply_liquidity / reserve_x_i),
+                    x_j * (self.total_supply_liquidity / reserve_x_j),
+                ]
+            )
 
         self.total_supply_liquidity += _liquidity
         # this is the simulation of sending the lp tokens to the liquidity provider
         self.liquidity.append(_liquidity)
 
-        self.prev_invariant = self.x_1 * self.x_2 # kLast
-        self._set(x_i.name, self._get(x_i.name) + x_i.qty) # self.x_i += x_i
-        self._set(x_i.complement, self._get(x_i.complement) + x_j) # self.x_j += x_j
+        self.prev_invariant = self.x_1 * self.x_2  # kLast
+        self._set(x_i.name, self._get(x_i.name) + x_i.qty)  # self.x_i += x_i
+        self._set(x_i.complement, self._get(x_i.complement) + x_j)  # self.x_j += x_j
         self.invariant = self.x_1 * self.x_2
 
         self.x1s.append(x_i.qty)
@@ -106,7 +108,7 @@ class Amm:
         l.added_liquidity(x_i, x_j, self)
         l.log.info(self)
 
-    def remove_liquidity(self, remove_ix: float):
+    def remove_liquidity(self, remove_ix: int):
         if not remove_ix <= len(self.liquidity):
             return
         l.log.info(self)
@@ -140,11 +142,7 @@ class Amm:
         l.log.info(self)
 
         # applies the 30 bps fee and accounts for the x_i in the updated reserves
-        x_j = get_amount_out(
-            x_i,
-            self._get(x_i.name),
-            self._get(x_i.complement),
-        )
+        x_j = get_amount_out(x_i, self._get(x_i.name), self._get(x_i.complement),)
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)
         self._set(x_i.complement, self._get(x_i.complement) - x_j)
 
@@ -153,26 +151,28 @@ class Amm:
 
     # pct_move is for x_2 / x_1
     def _impermanent_loss(self, pct_move: float):
-      if not -1 <= pct_move <= 5:
-        return Exception('invalid pct price move. pct_move in [-1, 5]')
+        if not -1 <= pct_move <= 5.01:
+            raise Exception("invalid pct price move. pct_move in [-1, 5]")
 
-      curr_exchange_rate = self.x_2 / self.x_1 
-      new_price = (1 + pct_move) * curr_exchange_rate
-      x_1 = np.sqrt(self.invariant / new_price) # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
-      value_ifkept = (self.x_1 + self.x_2 / new_price) 
-      value_removable = 2 * x_1
-      imperm_loss = 1 - value_removable / value_ifkept 
+        curr_exchange_rate = self.x_2 / self.x_1
+        new_price = (1 + pct_move) * curr_exchange_rate
+        x_1 = np.sqrt(
+            self.invariant / new_price
+        )  # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
+        value_ifkept = self.x_1 + self.x_2 / new_price
+        value_removable = 2 * x_1
+        imperm_loss = 1 - value_removable / value_ifkept
 
-      # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share
-      # Case 1: 10_000 DAI intial & 100 ETH, 12_247 DAI & 81.64 ETH if ETH price goes up by 50%
-      # Case 2: 10_000 DAI initial, 7_071 DAI & 141.42 ETH if the price goes down by 50% (i think)
+        # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share
+        # Case 1: 10_000 DAI intial & 100 ETH, 12_247 DAI & 81.64 ETH if ETH price goes up by 50%
+        # Case 2: 10_000 DAI initial, 7_071 DAI & 141.42 ETH if the price goes down by 50% (i think)
 
-      # Case 1 10_000 DAI + (100 ETH -> 15_000) = 25_000 DAI vs 24_495
-      # Case 2 10_000 DAI + (100 ETH -> 5_000 ) = 15_000 DAI vs 14_140
+        # Case 1 10_000 DAI + (100 ETH -> 15_000) = 25_000 DAI vs 24_495
+        # Case 2 10_000 DAI + (100 ETH -> 5_000 ) = 15_000 DAI vs 14_140
 
-      # ”impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1”
+        # ”impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1”
 
-      return imperm_loss
+        return imperm_loss
 
     def _get(self, name: str):
         return self.__getattribute__(name)
@@ -187,55 +187,42 @@ class Amm:
             self.invariant,
         )
 
-    # def _mint_fee(self):
-    #     if self.prev_invariant == -1:
-    #         return
-
-    #     root_k = np.sqrt(self.invariant)
-    #     prev_root_k = np.sqrt(self.prev_invariant)
-
-    #     if root_k <= prev_root_k:
-    #         return
-
-    #     liquidity = (self.total_supply_liquidity * (root_k - prev_root_k)) / (
-    #         5 * root_k + prev_root_k
-    #     )
-
-    #     # this gets sent to feeTo in Uniswap
-    #     self.total_supply_liquidity += liquidity
-
     def _plot_impermanent_loss(self):
-      x = np.arange(-0.95, 3.01, 0.01)
-      y = []
+        x = np.arange(-0.99, 5.01, 0.01)
+        y = []
 
-      for pct_change in x:
-        loss = self._impermanent_loss(pct_change)
-        # ! when price goes down, we can withdraw more coins than what we have deposited?
-        y.append(loss)
+        for pct_change in x:
+            loss = self._impermanent_loss(pct_change)
+            # ! when price goes down, we can withdraw more coins than what we have deposited?
+            y.append(loss)
 
-      plt.plot([_x * 100 for _x in x], [_y * 100 for _y in y])
-      plt.xlabel('% of the original exchange rate')
-      plt.ylabel('impermanent loss %')
-      plt.show()
+        plt.plot([_x * 100 for _x in x], [_y * -100 for _y in y])
+        plt.xlabel("% of the original exchange rate")
+        plt.ylabel("impermanent loss %")
+        plt.show()
 
     def __repr__(self):
-      return json.dumps(
-        {
-          'x_1': self.x_1,
-          'x_2': self.x_2,
-          'invariant': self.invariant,
-          'lps': self.liquidity,
-          'total_supply_liquidity': self.total_supply_liquidity
-        },
-        indent=4
-      ) + "\n"
+        return (
+            json.dumps(
+                {
+                    "x_1": self.x_1,
+                    "x_2": self.x_2,
+                    "invariant": self.invariant,
+                    "lps": self.liquidity,
+                    "total_supply_liquidity": self.total_supply_liquidity,
+                },
+                indent=4,
+            )
+            + "\n"
+        )
+
 
 if __name__ == "__main__":
     # example from Uniswap docs from the article
     # https://uniswap.org/docs/v2/advanced-topics/understanding-returns/#example-from-the-article
-    x_1 = Token(1, 100000e18) # DAI
-    x_2 = Token(2, 1000e18) # ETH
-    amm = Amm(x_1, x_2)
+    _x_1 = Token(1, 100000e18)  # DAI
+    _x_2 = Token(2, 1000e18)  # ETH
+    amm = Amm(_x_1, _x_2)
 
     # x_1 = Token(1, 81700e18)
     # x_2 = Token(2, 1e+44/81700e18)
@@ -244,3 +231,22 @@ if __name__ == "__main__":
     # print(amm)
 
     amm._plot_impermanent_loss()
+
+
+# may or may not need this
+# def _mint_fee(self):
+#     if self.prev_invariant == -1:
+#         return
+
+#     root_k = np.sqrt(self.invariant)
+#     prev_root_k = np.sqrt(self.prev_invariant)
+
+#     if root_k <= prev_root_k:
+#         return
+
+#     liquidity = (self.total_supply_liquidity * (root_k - prev_root_k)) / (
+#         5 * root_k + prev_root_k
+#     )
+
+#     # this gets sent to feeTo in Uniswap
+#     self.total_supply_liquidity += liquidity
