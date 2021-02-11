@@ -156,12 +156,14 @@ class Amm:
 
         curr_exchange_rate = self.x_2 / self.x_1
         new_price = (1 + pct_move) * curr_exchange_rate
-        x_1 = np.sqrt(
-            self.invariant / new_price
-        )  # (x1 * x2) / (x2 / x1) -> sqrt(x1 ** x2)
-        value_ifkept = self.x_1 + self.x_2 / new_price
-        value_removable = 2 * x_1
-        imperm_loss = 1 - value_removable / value_ifkept
+
+        x_1 = np.sqrt(self.invariant / new_price)
+        x_2 = np.sqrt(self.invariant * new_price)
+
+        value_if_held = self.x_1 + self.x_2 / new_price
+        value_removable = x_1 + x_2 / new_price
+
+        imperm_loss = 1 - value_removable / value_if_held
 
         # provision_initial_x_1, provision_removable_x_1 = self.x_1 * pool_share, x_1 * pool_share
         # Case 1: 10_000 DAI intial & 100 ETH, 12_247 DAI & 81.64 ETH if ETH price goes up by 50%
@@ -196,7 +198,17 @@ class Amm:
             # ! when price goes down, we can withdraw more coins than what we have deposited?
             y.append(loss)
 
-        plt.plot([_x * 100 for _x in x], [_y * -100 for _y in y])
+        domain = [_x * 100 for _x in x]
+
+        plt.plot(domain, [_y * -100 for _y in y], linewidth=3)
+        plt.plot(
+            domain,
+            [self._impermanent_loss(1) * -100] * len(domain),
+            linewidth=2,
+            color="red",
+        )
+        loss = int((self._impermanent_loss(1) * -100) * 10_000) / 10_000
+        plt.annotate(f"IL={loss}%", (130.0, -5.0), size=15)
         plt.xlabel("% of the original exchange rate")
         plt.ylabel("impermanent loss %")
         plt.show()
