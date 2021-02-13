@@ -102,6 +102,37 @@ def plot_divergence_loss(
     return plt
 
 
+def plot_comparison_divergence_loss(
+    asset_weights: list[Tuple[float, float]], pct_changes: list[Tuple[float, float]]
+):
+    labels = []
+    colors = ["black", "red", "green", "blue"]
+
+    for i, asset_weight in enumerate(asset_weights):
+        y = []
+        x = []
+
+        for pct_change in pct_changes:
+            loss = divergence_loss(asset_weight, pct_change)
+            # ! when price goes down, we can withdraw more coins than what we have deposited?
+            y.append(loss)
+            x.append(pct_change[1])
+
+        domain = [_x * 100 for _x in x]
+        labels.append(f"{int(asset_weight[0] * 100)}%-{int(asset_weight[1] * 100)}%")
+
+        plt.plot(domain, y, linewidth=(4 - i), color=colors[i])
+
+    plt.title("Divergence loss comparison for varying pool assets' weights")
+    plt.xlabel(r"% change in ratio $\frac{x_2}{x_1}$")
+    plt.ylabel(
+        r"divergence loss % := $\left( \frac{hold \ value}{pool \ value} - 1\right)$ * 100"
+    )
+
+    plt.legend(labels=labels)
+    plt.show()
+
+
 def plot_3d_divergence_loss_2_assets(
     asset_weights: list[float],
     pct_changes_asset_1: list[float],
@@ -159,14 +190,23 @@ def plot_3d_divergence_loss_2_assets(
 
 
 if __name__ == "__main__":
-    pct_changes_asset_1 = np.arange(-1, 5.1, 0.1)
-    pct_changes_asset_2 = np.arange(-1, 5.1, 0.1)
+    # pct_changes_asset_1 = np.arange(-1, 5.1, 0.1)
+    # pct_changes_asset_2 = np.arange(-1, 5.1, 0.1)
+    # plot_3d_divergence_loss_2_assets(
+    #     [0.5, 0.5], pct_changes_asset_1, pct_changes_asset_2
+    # )
 
-    plot_3d_divergence_loss_2_assets(
-        [0.5, 0.5], pct_changes_asset_1, pct_changes_asset_2
-    )
-# l = divergence_loss([0.5, 0.5], [0.0, 1.0])
-# x2/x1 = 1; x2/x1 = 0.5
-# 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
-# print(l)  # 5.7191
+    # pct_changes_asset_1 = np.arange(-1, 5.1, 0.1)
+    # pct_changes_asset_2 = np.arange(-1, 5.1, 0.1)
+    # plot_3d_divergence_loss_2_assets(
+    #     [0.98, 0.02], pct_changes_asset_1, pct_changes_asset_2
+    # )
+
+    # l = divergence_loss([0.5, 0.5], [0.0, 1.0])
+    # x2/x1 = 1; x2/x1 = 0.5
+    # 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
+    # print(l)  # 5.7191
+
+    pct_changes = [[0, i] for i in np.arange(-0.9999, 5.0001, 0.0001)]
+    _ = plot_divergence_loss([0.5, 0.5], pct_changes)
 
