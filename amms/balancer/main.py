@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from typing import Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
@@ -12,7 +13,7 @@ if module_path not in sys.path:
 
 
 # https://baller.netlify.app/assets
-def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float]):
+def divergence_loss(asset_weights: list[float], asset_price_changes: list[float]):
     if not len(asset_weights) == len(asset_price_changes):
         raise Exception("must be of equal size")
 
@@ -77,8 +78,29 @@ def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float
     return round(loss * 100, 4)
 
 
-if __name__ == "__main__":
-    l = impermanent_loss([0.5, 0.5], [0.0, 1.0])
-    # x2/x1 = 1; x2/x1 = 0.5
-    # 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
-    # print(l)  # 5.7191
+def plot_divergence_loss(
+    asset_weights: list[float], pct_changes: list[Tuple[float, float]]
+):
+    y = []
+    x = []
+
+    for pct_change in pct_changes:
+        loss = divergence_loss(asset_weights, pct_change)
+        # ! when price goes down, we can withdraw more coins than what we have deposited?
+        y.append(loss)
+        x.append(pct_change[1])
+
+    domain = [_x * 100 for _x in x]
+
+    plt.plot(domain, y, linewidth=2)
+    plt.title("Balancer divergence loss")
+    plt.xlabel("% change in ratio x_2 / x_1")
+    plt.ylabel("divergence loss % = hold value / pool value - 1")
+    return plt
+
+
+# if __name__ == "__main__":
+# l = divergence_loss([0.5, 0.5], [0.0, 1.0])
+# x2/x1 = 1; x2/x1 = 0.5
+# 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
+# print(l)  # 5.7191
