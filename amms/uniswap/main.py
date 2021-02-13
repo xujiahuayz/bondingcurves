@@ -150,7 +150,7 @@ class Amm:
         l.log.info(self)
 
     # pct_move is for x_2 / x_1
-    def _impermanent_loss(self, pct_move: float):
+    def _divergence_loss(self, pct_move: float):
         if not -1 <= pct_move <= 5.01:
             raise Exception("invalid pct price move. pct_move in [-1, 5]")
 
@@ -172,7 +172,7 @@ class Amm:
         # Case 1 10_000 DAI + (100 ETH -> 15_000) = 25_000 DAI vs 24_495
         # Case 2 10_000 DAI + (100 ETH -> 5_000 ) = 15_000 DAI vs 14_140
 
-        # ”impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1”
+        # ”divergence_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1”
 
         return imperm_loss
 
@@ -189,29 +189,30 @@ class Amm:
             self.invariant,
         )
 
-    def _plot_impermanent_loss(self):
-        x = np.arange(-0.99, 5.01, 0.01)
+    def _plot_divergence_loss(self):
+        x = np.arange(-0.9999, 5.0001, 0.0001)
         y = []
 
         for pct_change in x:
-            loss = self._impermanent_loss(pct_change)
+            loss = self._divergence_loss(pct_change)
             # ! when price goes down, we can withdraw more coins than what we have deposited?
             y.append(loss)
 
         domain = [_x * 100 for _x in x]
 
-        plt.plot(domain, [_y * -100 for _y in y], linewidth=3)
-        plt.plot(
-            domain,
-            [self._impermanent_loss(1) * -100] * len(domain),
-            linewidth=2,
-            color="red",
-        )
-        loss = int((self._impermanent_loss(1) * -100) * 10_000) / 10_000
-        plt.annotate(f"IL={loss}%", (130.0, -5.0), size=15)
-        plt.xlabel("% of the original exchange rate")
-        plt.ylabel("impermanent loss %")
-        plt.show()
+        plt.plot(domain, [_y * -100 for _y in y], linewidth=2)
+        # plt.plot(
+        #     domain,
+        #     [self._divergence_loss(1) * -100] * len(domain),
+        #     linewidth=2,
+        #     color="red",
+        # )
+        # loss = int((self._divergence_loss(1) * -100) * 10_000) / 10_000
+        # plt.annotate(f"IL={loss}%", (130.0, -5.0), size=15)
+        plt.title("Uniswap divergence loss")
+        plt.xlabel("% change in ratio x_2 / x_1")
+        plt.ylabel("divergence loss % = hold value / pool value - 1")
+        return plt
 
     def __repr__(self):
         return (
@@ -242,7 +243,7 @@ if __name__ == "__main__":
 
     # print(amm)
 
-    amm._plot_impermanent_loss()
+    amm._plot_divergence_loss()
 
 
 # may or may not need this
