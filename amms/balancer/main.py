@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-from typing import Tuple
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import matplotlib.pyplot as plt
+from matplotlib import cm
+from typing import Tuple
 import numpy as np
 import sys
 import os
@@ -73,7 +75,8 @@ def divergence_loss(asset_weights: list[float], asset_price_changes: list[float]
         # x  =  (pct_change_1^w_1)
 
     # https://medium.com/balancer-protocol/calculating-value-impermanent-loss-and-slippage-for-balancer-pools-4371a21f1a86
-    loss = value_of_pool / value_of_hodl - 1
+    avoid_divide_by_zero = 0.0001
+    loss = value_of_pool / (value_of_hodl + avoid_divide_by_zero) - 1
 
     return round(loss * 100, 4)
 
@@ -99,8 +102,71 @@ def plot_divergence_loss(
     return plt
 
 
-# if __name__ == "__main__":
+def plot_3d_divergence_loss_2_assets(
+    asset_weights: list[float],
+    pct_changes_asset_1: list[float],
+    pct_changes_asset_2: list[float],
+):
+    if not len(pct_changes_asset_1) == len(pct_changes_asset_2):
+        raise Exception("invalid pct change lengths")
+
+    if not sum(asset_weights) == 1.0:
+        raise Exception("asset weights sum not 1")
+
+    X, Y = [], []
+
+    for i in range(len(pct_changes_asset_1)):
+        pct_change_asset_1 = 1 + pct_changes_asset_1[i]
+        pct_change_asset_2 = 1 + pct_changes_asset_2[i]
+
+        if not pct_change_asset_1 >= 0:
+            raise Exception("invalid pct change (-ve)")
+
+        if not pct_change_asset_2 >= 0:
+            raise Exception("invalid pct change (-ve)")
+
+        X.append(pct_change_asset_1)
+        Y.append(pct_change_asset_2)
+
+    X, Y = np.meshgrid(X, Y)
+
+    dimensions = X.shape
+
+    if not dimensions[0] == dimensions[1]:
+        # never
+        raise Exception("invalid dimensions")
+
+    if dimensions[0] * dimensions[1] > 1e6:
+        raise Exception("your computer will probably die")
+
+    Z = np.eye(dimensions[0])
+
+    for i in range(dimensions[0]):
+        for j in range(dimensions[1]):
+            Z[i][j] = divergence_loss(asset_weights, [X[i][j], Y[i][j]])
+
+    fig = plt.figure()
+    ax = fig.gca(projection="3d")
+    surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm_r, linewidth=0, antialiased=False)
+
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
+
+    # Add a color bar which maps values to colors.
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+
+    plt.show()
+
+
+if __name__ == "__main__":
+    pct_changes_asset_1 = np.arange(-1, 5.1, 0.1)
+    pct_changes_asset_2 = np.arange(-1, 5.1, 0.1)
+
+    plot_3d_divergence_loss_2_assets(
+        [0.5, 0.5], pct_changes_asset_1, pct_changes_asset_2
+    )
 # l = divergence_loss([0.5, 0.5], [0.0, 1.0])
 # x2/x1 = 1; x2/x1 = 0.5
 # 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
 # print(l)  # 5.7191
+

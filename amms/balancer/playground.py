@@ -16,7 +16,7 @@ def plot_constant_product():
     v = 1_000
     X = np.arange(1, 11, 1)
     Y = np.arange(1, 11, 1)
-    X, Y = np.meshgrid(X ** (1/3), Y ** (1/3))
+    X, Y = np.meshgrid(X ** (1 / 3), Y ** (1 / 3))
     # V = B_1^{1/3} * B_2^{1/3} * B_3^{1/3}
     Z = v / (X * Y)
 
