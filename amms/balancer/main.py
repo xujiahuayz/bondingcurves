@@ -28,12 +28,12 @@ def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float
     # p_1, p_2, p_3 all denominated in  USD value per one token unit
     # value of hold at t' = q_1 * p_1' + ... + q_n * p_n'
     # =  w_i / p_i * p_1 * (1 + price_change_1) * ... = w_1 * (1 + price_change_1)
-    # q_i = w_i / p_i 
+    # q_i = w_i / p_i
     # p_1 --> p_1' = p_1 * (1 + price_change_1)
-    # (q_1' * p_1') : (q_2' * p_2) = w_1 : w_2 == > q_1' = w_1 * (q_2' * p_2) / (p_1' * w_2) 
-    # q_1^(w_1) * q_2^(w_2) =  q_1'^(w_1) * q_2'^(w_2) = [w_1 * ((q_2' * p_2) / (p_1' * w_2))] ^ (w_1) * q_2'^(w_2) 
-    # q_1^(w_1) * q_2^(w_2) = [w_1 * q_2' * p_2 / ( p_1' * w_2) ] ^ (w_1) * q_2'^(w_2) 
-    # ---- 
+    # (q_1' * p_1') : (q_2' * p_2) = w_1 : w_2 == > q_1' = w_1 * (q_2' * p_2) / (p_1' * w_2)
+    # q_1^(w_1) * q_2^(w_2) =  q_1'^(w_1) * q_2'^(w_2) = [w_1 * ((q_2' * p_2) / (p_1' * w_2))] ^ (w_1) * q_2'^(w_2)
+    # q_1^(w_1) * q_2^(w_2) = [w_1 * q_2' * p_2 / ( p_1' * w_2) ] ^ (w_1) * q_2'^(w_2)
+    # ----
     # q_1' -->  (q_1^(w_1)) ^ (1/w_1)
     for i in range(len(asset_weights)):
         pct_change = 1 + asset_price_changes[i]
@@ -45,10 +45,12 @@ def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float
         # pool_value' = (p1' * q_1')/ w_1
         # p1' = (1 + asset_price_change) * p1
         # (p1' * q_1') / (p1 * q_1) = ((1 + asset_price_change) * q1') / q1)
-        # poo_value'/ pool_value  = (pct_change * q_i')/ q_i 
-        # q_1^w_1 * q_2^w_2  = q_1'^w_1 * q_2'^w_2 = q_1'^w_1 * (q_1'*price_change*w_2) ^ w_2 
+        # poo_value'/ pool_value  = (pct_change * q_i')/ q_i
+        # q_1^w_1 * q_2^w_2  = q_1'^w_1 * q_2'^w_2 = q_1'^w_1 * (q_1'*price_change*w_2) ^ w_2
         # q_1'*price_change / q_2' = w_1/w_2
-        value_of_pool *= pct_change ** weight # = pct_change * q_i'/ q_i => q_i' = q_i * (pct_change ** (weight-1))
+        value_of_pool *= (
+            pct_change ** weight
+        )  # = pct_change * q_i'/ q_i => q_i' = q_i * (pct_change ** (weight-1))
         value_of_hodl += pct_change * weight
         # uniswap x * (1.1 ** 0.5) *  y * (1.0 ** 0.5) = k
         # uniswap initial pool value = 1 unit => 0.5 unit worth of q1 and 0.5 unit worth of q2
@@ -56,7 +58,7 @@ def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float
         # how did the pool value change now?
         # when token1 doubles in price, its value must be swapped out of the pool to keep k constant
         # token1 doubles in price => q2' / q1' = 2 * (q2 / q1)
-        # how to express the 
+        # how to express the
 
         # let newPool percentage change := x;
         # originalPoolValue = q_1 * 1 /w_1
@@ -69,18 +71,14 @@ def impermanent_loss(asset_weights: list[float], asset_price_changes: list[float
         # (q_1)^w_1 * (q_2)^w_2 * (q_3)^w_3
         # x  =  (pct_change_1^w_1)
 
-
     # https://medium.com/balancer-protocol/calculating-value-impermanent-loss-and-slippage-for-balancer-pools-4371a21f1a86
     loss = value_of_pool / value_of_hodl - 1
 
-    return round(-loss * 100, 4)
+    return round(loss * 100, 4)
 
 
 if __name__ == "__main__":
-    l = impermanent_loss(
-        [0.5, 0.5],
-        [0.0, 1.0]
-    )
+    l = impermanent_loss([0.5, 0.5], [0.0, 1.0])
     # x2/x1 = 1; x2/x1 = 0.5
     # 2 * sqrt(0.5) / (1.5) - 1 = -0.5719
-    print(l) # 5.7191
+    # print(l)  # 5.7191
