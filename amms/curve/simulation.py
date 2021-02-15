@@ -52,7 +52,8 @@ class Curve:
             for x in xp:
                 D_P = D_P * D // (self.n * x)
             Dprev = D
-            D = (Ann * S + D_P * self.n) * D // ((Ann - 1) * D + (self.n + 1) * D_P)
+            D = (Ann * S + D_P * self.n) * \
+                D // ((Ann - 1) * D + (self.n + 1) * D_P)
 
         return D
 
