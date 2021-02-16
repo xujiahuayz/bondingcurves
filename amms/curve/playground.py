@@ -13,16 +13,14 @@ class curvefi:
 
         self.a_inv = a
 
-        # transform our aInv into StableSwap's A
-        self.A = a * (n ** n)
-
-        D = coin_qty * n
+        # transform our aInv into StableSwap's A (not used in this class)
+        self.A = a / (n ** n)
 
         # sum invariant
-        self.sum_inv = D
+        self.sum_inv = coin_qty * n
 
         # product invariant
-        self.prod_inv = (D / n) ** n
+        self.prod_inv = coin_qty ** n
 
     def poolsum(self):
         return sum(self.reserve)
@@ -35,28 +33,20 @@ class curvefi:
         D = self.sum_inv
         X = self.prod_inv
 
-        # seperate input output assets from the rest of the pool
-        in_out_assets = [self.reserve[i] for i in [inindex, outindex]]
-
-        # rest of the pool sum excluding input output assets
-        restsum = self.poolsum() - sum(in_out_assets)
-
-        # rest of the pool product excluding input output assets
-        restprod = self.poolprod() / prod(in_out_assets)
+        # new pool sum excluding output asset
+        sumexo = self.poolsum() + inamount - self.reserve[outindex]
 
         # new input reserve
         inres = self.reserve[inindex] + inamount
 
-        # pool sum excluding output asset
-        sumexo = restsum + inres
-
-        # pool product excluding output asset
-        prodexo = restprod * inres
+        # new pool product excluding output asset
+        prodexo = self.poolprod() / prod(
+            [self.reserve[i] for i in [inindex, outindex]]
+        ) * inres
 
         outres = (
-            (1 - 1 / a) * D
-            - sumexo
-            + sqrt(((1 - 1 / a) * D - sumexo) ** 2 + 4 * D * X / a / prodexo)
+            (1 - 1 / a) * D - sumexo +
+            sqrt(((1 - 1 / a) * D - sumexo) ** 2 + 4 * D * X / a / prodexo)
         ) / 2
 
         outamount = self.reserve[outindex] - outres
@@ -96,16 +86,19 @@ def plotinout(
         for x in inrange
     ]
 
-    plt.plot(*zip(*reservepair), label=f"a={a}")
-    plt.xlim(0, 700)
+    plt.plot(*zip(*reservepair), label=f"$a={a}$")
+    plt.xlim(0, 1000)
     plt.ylim(0, 700)
 
 
 if __name__ == "__main__":
     oneassetreserve = 300
-    n = 2
+    n = 6
 
-    for a in [0.0001, 1, 10, 9999999]:
+    for a in [1e-12, 1, 10, 1e20]:
         plotinout(oneassetreserve, n, a=a)
+    plt.scatter(oneassetreserve, oneassetreserve, label="inital state")
+    plt.xlabel('$R_1$ quantity')
+    plt.ylabel('$R_2$ quantity')
     plt.legend()
     plt.show()
