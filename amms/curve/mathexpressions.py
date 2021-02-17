@@ -1,10 +1,26 @@
 import sympy as sp
 from sympy.parsing import mathematica as M
 from sympy.parsing import sympy_parser as sparser
-from math import sqrt
+from math import prod
+from cmath import sqrt
+import matplotlib.pyplot as plt
+import numpy as np
 
 
-nazariyvAujourd’hui à 10: 28
+def checkinv(D, xp: list[int], a):
+    proall = prod(xp)
+    sumall = sum(xp)
+    n = len(xp)
+    q = D/n
+    return n*q*((-1 + a)*proall + q ** n) - a*proall*sumall
+
+
+# Ds = np.arange(-6000, 6000, 1000)
+# plt.plot(Ds, [checkinv(w, [500, 1900], 1) for w in Ds])
+# plt.axhline(y=0)
+
+# Ds = np.arange(1970.42, 1970.49, 0.000000001)
+# plt.plot(Ds, [checkinv(w, [500, 1900], 0.1) for w in Ds])
 
 
 def get_D(xp: list[int], Ann):
@@ -31,35 +47,51 @@ def get_D(xp: list[int], Ann):
     return d
 
 
+def get_D_JX(xp: list[int], a):
+    proall = prod(xp)
+    sumall = sum(xp)
+    n = len(xp)
+    sqrtand = 81*a**2*sumall**2 + 48*proall*(a - 1)**3
+    # if sqrtand >= 0:
+    q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
+         ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
+    D = q*n
+    return D.real
+
+
 express2 = """
 (-2 6 ^ (2/3)(-1 + a) proall + 6 ^ (1/3)(proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (2/3))/(6 (proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (1/3))
 """
 
 express3 = """
-(Sqrt[-8 a proall sumall + 
+(Sqrt[-8 a proall sumall +
      2^(1/3) (27 (-1 + a)^2 proall^2 + Sqrt[
         proall^3 (729 (-1 + a)^4 proall + 256 a^3 sumall^3)])^(
-      2/3)] - \[Sqrt](8 a proall sumall - 
+      2/3)] - \[Sqrt](8 a proall sumall -
        2^(1/3) (27 (-1 + a)^2 proall^2 + Sqrt[
           proall^3 (729 (-1 + a)^4 proall + 256 a^3 sumall^3)])^(
         2/3) - (12 Sqrt[3] (-1 + a) proall)/
-       Sqrt[(-8 a proall sumall + 
+       Sqrt[(-8 a proall sumall +
         2^(1/3) (27 (-1 + a)^2 proall^2 + Sqrt[
            proall^3 (729 (-1 + a)^4 proall + 256 a^3 sumall^3)])^(
          2/3))/(27 (-1 + a)^2 proall^2 + Sqrt[
-        proall^3 (729 (-1 + a)^4 proall + 
+        proall^3 (729 (-1 + a)^4 proall +
            256 a^3 sumall^3)])]))/(2 2^(1/3) Sqrt[
     3] (27 (-1 + a)^2 proall^2 + Sqrt[
       proall^3 (729 (-1 + a)^4 proall + 256 a^3 sumall^3)])^(1/6))
 """
 
-
+sumall = 500+900
+proall = 500*900
+a = 0
 # q function when n=2
+
+
 def normalized_qty2(sumall, proall, a):
     sqrtand = 81*a**2*sumall**2 + 48*proall*(a - 1)**3
-    if sqrtand >= 0:
-        q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
-             ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
+    # if sqrtand >= 0:
+    q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
+         ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
     return q
 
 

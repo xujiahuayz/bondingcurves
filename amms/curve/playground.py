@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from math import prod, sqrt
+import cmath
 
 
 class curvefi:
