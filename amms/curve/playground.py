@@ -147,8 +147,8 @@ def plotinout(
 
 
 if __name__ == "__main__":
-    qty1 = 300
-    qty2 = 700
+    qty1 = 500
+    qty2 = 500
     # n = 6
 
     for a in [1e-12, 1, 10, 1e20]:
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
 
-    newpool = curvefi(9000, 11000, a=500)
+    newpool = curvefi(900, 1100, a=500)
     newpool.sum_inv
 
-    newpool.add_liquidity(800, 0)
+    newpool.add_liquidity(1800, 1)

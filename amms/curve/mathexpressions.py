@@ -3,6 +3,34 @@ from sympy.parsing import mathematica as M
 from sympy.parsing import sympy_parser as sparser
 from math import sqrt
 
+
+nazariyvAujourd’hui à 10: 28
+
+
+def get_D(xp: list[int], Ann):
+    S = sum(xp)
+    if S == 0:
+        return 0
+
+    n_coins = len(xp)
+    d_prev = 0.0
+    d = float(S)
+    # Ann = amplification * n_coins
+
+    for i in range(255):
+        d_p = d
+        for x in xp:
+            d_p = d_p * d / (x * n_coins)
+        d_prev = d
+        d = (Ann * S + d_p * n_coins) * d / \
+            ((Ann - 1) * d + (n_coins + 1) * d_p)
+        print("d", d)
+        if abs(d_prev - d) <= 1:
+            break
+
+    return d
+
+
 express2 = """
 (-2 6 ^ (2/3)(-1 + a) proall + 6 ^ (1/3)(proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (2/3))/(6 (proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (1/3))
 """
