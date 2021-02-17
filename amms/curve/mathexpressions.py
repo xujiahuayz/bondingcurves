@@ -28,20 +28,22 @@ express3 = """
 
 # q function when n=2
 def normalized_qty2(sumall, proall, a):
-    q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(81*a**2*sumall**2 + 48*proall*(a - 1)**3)))
-         ** (2/3))/(6*(proall*(9*a*sumall + sqrt(81*a**2*sumall**2 + 48*proall*(a - 1)**3)))**(1/3))
+    sqrtand = 81*a**2*sumall**2 + 48*proall*(a - 1)**3
+    if sqrtand >= 0:
+        q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
+             ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
     return q
 
 
 # q function when n=2
 def normalized_qty3(sumall, proall, a):
     q = (sqrt(
-        -8*a*proall*sumall+2**(1/3)*(27*(-1+a)**2*proall**2+sqrt(proall **
-                                                                 3*(729*(-1+a)**4*proall+256*a**3*sumall**3)))**(2/3)
+        -8*a*proall*sumall+2**(1/3)*(27*(-1+a)**2*proall**2+sqrt(
+            proall ** 3*(729*(-1+a)**4*proall+256*a**3*sumall**3)))**(2/3)
     ) - sqrt(
         8*a*proall*sumall-2**(1/3)*(
-            27*(-1+a)**2*proall**2+sqrt(proall**3 *
-                                        (729*(-1+a)**4*proall+256*a**3*sumall**3))
+            27*(-1+a)**2*proall**2+sqrt(
+                proall ** 3 * (729*(-1+a)**4*proall+256*a**3*sumall**3))
         )**(2/3)-(
             12*sqrt(3)*(-1+a)*proall)/sqrt(
                 (-8*a*proall*sumall + 2**(1/3)*(27*(-1+a)**2*proall**2+sqrt(proall**3*(729*(-1+a)**4*proall+256*a**3*sumall**3)))

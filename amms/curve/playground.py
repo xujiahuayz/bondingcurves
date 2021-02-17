@@ -143,12 +143,12 @@ def plotinout(
 
     plt.plot(*zip(*reservepair), label=f"$a={a}$")
     plt.xlim(0, 1000)
-    plt.ylim(0, 700)
+    plt.ylim(0, 2000)
 
 
 if __name__ == "__main__":
     qty1 = 300
-    qty2 = 400
+    qty2 = 700
     # n = 6
 
     for a in [1e-12, 1, 10, 1e20]:
