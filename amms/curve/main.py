@@ -67,8 +67,7 @@ class Curve(Amm):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
 
-        # new pool sum excluding output asset
-        sum_exo = sum(self.reserves) + qty_in - self.reserves[asset_out_ix]
+
         updated_reserves_in_ix = self.reserves[asset_in_ix] + qty_in
         # new pool product excluding output asset
         prod_exo = (
@@ -76,16 +75,16 @@ class Curve(Amm):
             / (self.reserves[asset_in_ix] * self.reserves[asset_out_ix])
             * updated_reserves_in_ix
         )
+        
+        # new pool sum excluding output asset
+        sum_exo = sum(self.reserves) + qty_in - self.reserves[asset_out_ix]
 
         # + EPSILLON everywhere here to avoid division by zero
+        A = max(self.A, EPSILLON)
+        B = (1 - 1 / A) * C - sum_exo
         updated_reserves_out_ix = (
-            (1 - 1 / (self.A + EPSILLON)) * C
-            - sum_exo
-            + math.sqrt(
-                ((1 - 1 / (self.A + EPSILLON)) * C - sum_exo) ** 2
-                + 4 * C * X / (self.A + EPSILLON) / prod_exo
-            )
-        ) / 2
+            B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo)
+            )) / 2
 
         return updated_reserves_in_ix, updated_reserves_out_ix
 
