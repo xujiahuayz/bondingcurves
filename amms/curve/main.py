@@ -76,14 +76,11 @@ class Curve(Amm):
         )
 
         # + EPSILLON everywhere here to avoid division by zero
+        A = max(self.A, EPSILLON)
+        B = (1 - 1 / A) * C - sum_exo
         updated_reserves_out_ix = (
-            (1 - 1 / (self.A + EPSILLON)) * C
-            - sum_exo
-            + math.sqrt(
-                ((1 - 1 / (self.A + EPSILLON)) * C - sum_exo) ** 2
-                + 4 * C * X / (self.A + EPSILLON) / prod_exo
-            )
-        ) / 2
+            B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo)
+            ) / 2
 
         return updated_reserves_in_ix, updated_reserves_out_ix
 
