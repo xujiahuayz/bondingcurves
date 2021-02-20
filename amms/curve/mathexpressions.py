@@ -53,15 +53,23 @@ def get_D_JX(xp: list[int], a):
     n = len(xp)
     sqrtand = 81*a**2*sumall**2 + 48*proall*(a - 1)**3
     # if sqrtand >= 0:
-    q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
-         ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
-    D = q*n
+    # q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(sqrtand)))
+    #      ** (2/3))/(6*(proall*(9*a*sumall + sqrt(sqrtand)))**(1/3))
+    sqrtand = (proall*(9*a*sumall + sqrt(81*a**2 *
+                                         sumall**2 + 48*proall*(a - 1)**3)))**(1/3)
+    D = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*sqrtand ** 2)/(3*sqrtand)
     return D.real
 
 
 express2 = """
-(-2 6 ^ (2/3)(-1 + a) proall + 6 ^ (1/3)(proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (2/3))/(6 (proall(9 a sumall + Sqrt[48 (-1 + a) ^ 3 proall + 81 a ^ 2 sumall ^ 2])) ^ (1/3))
+(-2 6^(2/3) (-1 + a) proall + 
+ 6^(1/3) (proall (9 a sumall + Sqrt[
+      48 (-1 + a)^3 proall + 81 a^2 sumall^2]))^(
+  2/3))/(3 (proall (9 a sumall + Sqrt[
+     48 (-1 + a)^3 proall + 81 a^2 sumall^2]))^(1/3))
 """
+expr2 = M.mathematica(express2)
+print(expr2)
 
 express3 = """
 (Sqrt[-8 a proall sumall +
