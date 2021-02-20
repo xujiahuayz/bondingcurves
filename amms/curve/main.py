@@ -14,6 +14,34 @@ class Curve(Amm):
         self.A = leverage
         self.n = n
 
+    def _spot_price(self, updated_reserves_in: int, updated_reserves_out: int):
+        """Used for implicit divergence loss computation only. This is a modified
+      version of spot_price, where we do not update the state of the instance.
+
+      Args:
+          updated_reserves_in (int): reserves of in asset with which to compute the
+          spot price
+          updated_reserves_out (int): reserves of out asset with which to compute the
+          spot price
+
+      Returns:
+          [float]: new spot price
+      """
+        C = self._get_sum_invariant()
+        X = (C / self.n) ** self.n
+
+        amplified_prod_inv = self.A * X
+        ccnn = C * ((C / self.n) ** self.n)
+
+        numerator = updated_reserves_in * (
+            amplified_prod_inv * updated_reserves_out + ccnn
+        )
+        denominator = updated_reserves_out * (
+            amplified_prod_inv * updated_reserves_in + ccnn
+        )
+
+        return float(numerator) / denominator
+
     def spot_price(self, asset_in_ix: int, asset_out_ix: int):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
@@ -28,7 +56,7 @@ class Curve(Amm):
             amplified_prod_inv * self.reserves[asset_in_ix] + ccnn
         )
 
-        return numerator / denominator
+        return float(numerator) / denominator
 
     def _compute_trade_qty_out(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         C = self._get_sum_invariant()
@@ -70,6 +98,40 @@ class Curve(Amm):
         )
         p = self.spot_price(asset_in_ix, asset_out_ix)
         return (updated_reserves_in_ix / updated_reserves_out_ix) / p - 1
+
+    # ! notice that the signature here is different to the one in Amm
+    # ! this one is missing pct_change. Rather it is computed implicitly.
+    def divergence_loss(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+        # for different quantities of asset_in_ix, figure out what is the percentage change
+        # then plot divergence loss versus this percentage change
+
+        # todo: this is the same as in Amm. This is not DRY
+        if qty_in < 0:
+            if self.reserves[asset_in_ix] < -qty_in:
+                raise Exception("invalid quantity to deplete")
+
+        # pct_change is the percentage change in the spot price
+
+        pre_trade_spot_price = self._spot_price(
+            self.reserves[asset_in_ix], self.reserves[asset_out_ix]
+        )
+        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
+            qty_in, asset_in_ix, asset_out_ix
+        )
+        post_trade_spot_price = self._spot_price(
+            updated_reserves_in_ix, updated_reserves_out_ix
+        )
+        pct_change = post_trade_spot_price / pre_trade_spot_price - 1
+
+        # now return divergence loss and pct_change
+        value_pool = (
+            updated_reserves_in_ix + updated_reserves_out_ix * post_trade_spot_price
+        )
+
+        return (
+            pct_change,
+            value_pool / self.value_hold(pct_change, asset_in_ix, asset_out_ix) - 1,
+        )
 
     def _get_sum_invariant(self):
         sum_all = sum(self.reserves)
