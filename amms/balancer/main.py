@@ -5,6 +5,16 @@ class Balancer(Amm):
     def __init__(self, reserves: list[int], weights: list[float] = None):
         super().__init__(reserves, weights)
 
+    def conservation_function(self):
+        # todo: validations to be enforced in the inherited class
+        # equatio no: 22 in the paper
+        C = 1
+
+        for i, qty in enumerate(self.reserves):
+            C *= qty ** self.weights[i]
+
+        return C
+
     def spot_price(self, asset_in_ix: int, asset_out_ix: int):
         # todo: validations to be enforced by the inherited class
 
