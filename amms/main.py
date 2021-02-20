@@ -69,7 +69,10 @@ class Amm:
         self._validate_trade(qty_in, asset_in_ix, asset_out_ix)
         raise Exception("must be implemented")
 
-    def value_pool(self):
+    def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
+        self._validate_pct_change(pct_change)
+        self._validate_asset_ix(asset_in_ix)
+        self._validate_asset_ix(asset_out_ix)
         raise Exception("must be implmeented")
 
     def value_hold(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
@@ -79,8 +82,15 @@ class Amm:
         # equation no: 32 and 33 in the paper
         V = self.reserves[asset_in_ix] / self.weights[asset_in_ix]
         V2 = V * self.weights[asset_out_ix]
-        V_held = V + V2 * (1 + pct_change)
+        V_held = V + V2 * pct_change
         return V_held
+
+    def divergence_loss(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
+        return (
+            self.value_pool(pct_change, asset_in_ix, asset_out_ix)
+            / self.value_hold(pct_change, asset_in_ix, asset_out_ix)
+            - 1
+        )
 
     def _validate_asset_ix(self, asset_ix: int):
         if asset_ix < 0 or asset_ix >= len(self.reserves):
