@@ -14,25 +14,14 @@ class curvefi:
 
         self.a_inv = a
 
-        coin_qty = self.normalized_qty()
-
         # sum invariant
-        self.sum_inv = coin_qty * self.n
+        self.sum_inv = self.get_suminv()
 
         # product invariant
-        self.prod_inv = coin_qty ** self.n
+        self.prod_inv = (self.sum_inv/self.n) ** self.n
 
         # Initial pool share set the same as normalized total coin qty
         self.totalshares = self.sum_inv
-
-        # # transform our aInv into StableSwap's A (not used in this class)
-        # self.A = a / (n ** n)
-
-        # # sum invariant
-        # self.sum_inv = coin_qty * n
-
-        # # product invariant
-        # self.prod_inv = coin_qty ** n
 
     def poolsum(self):
         return sum(self.reserve)
@@ -40,40 +29,40 @@ class curvefi:
     def poolprod(self):
         return prod(self.reserve)
 
-    def normalized_qty(self):
+    def get_suminv(self):
+        sumall = self.poolsum()
 
         # Special case with qual size pool, no need to calculate, although results are the same
         if len(set(self.reserve)) == 1:
-            q = self.reserve[0]
+            suminv = sumall
         else:
-            sumall = self.poolsum()
-            proall = self.poolprod()
             n = self.n
+            proall = self.poolprod()
             a = self.a_inv
 
             # Special case with a=0 or 1, no need to calculate, although results are the same
             if a < 1e-10:
-                q = proall ** (1/n)
+                suminv = proall ** (1/n) * n
 
             elif a == 1:
-                q = (proall*sumall/n)**(1/(n+1))
+                suminv = (proall*sumall)**(1/(n+1)) * n**(n/(n+1))
 
             elif n == 2:
-                q = (-2*6**(2/3)*proall*(a - 1) + 6**(1/3)*(proall*(9*a*sumall + sqrt(81*a**2*sumall**2 + 48*proall*(a - 1)**3)))
-                     ** (2/3))/(6*(proall*(9*a*sumall + sqrt(81*a**2*sumall**2 + 48*proall*(a - 1)**3)))**(1/3))
+                sqrtand = (proall*(9*a*sumall + sqrt(81*a**2 *
+                                                     sumall**2 + 48*proall*(a - 1)**3)))**(1/3)
+                suminv_complex = (-2*6**(2/3)*proall*(a - 1) +
+                                  6**(1/3)*sqrtand ** 2)/(3*sqrtand)
+                suminv = suminv_complex.real
             else:
                 raise Exception('Cannot handle unequal asset pool with n>2')
-        return q
+        return suminv
 
     def add_liquidity(self, addamount, addindex: int):
         # update reserve
         self.reserve[addindex] += addamount
 
-        # calculate new normalized qty
-        coin_qty = self.normalized_qty()
-
         # new sum invariant
-        sum_inv_new = coin_qty * self.n
+        sum_inv_new = self.get_suminv()
 
         # newly issued shares are the difference between new and old sum_inv
         newshares = sum_inv_new - self.sum_inv
@@ -82,7 +71,7 @@ class curvefi:
         self.sum_inv = sum_inv_new
 
         # update product invariant
-        self.prod_inv = coin_qty ** self.n
+        self.prod_inv = (sum_inv_new/self.n) ** self.n
 
         return newshares
 
