@@ -13,6 +13,23 @@ class Amm:
             self._validate_weights(weights)
             self.weights = weights
 
+    def spot_price(self, asset_in_ix: int, asset_out_ix: int):
+        """Gives you the current spot price of asset out denominated
+      in asset_in.
+
+      Args:
+          asset_in_ix (int): index of the asset in which to denominate the output asset
+          asset_out_ix (int): index of the output asset
+
+      Raises:
+          Exception: if this function is not implemented by inheriting class
+      """
+        # todo: these validations have to be enforced in the implementing functions
+        # todo: use metaclass
+        self._validate_asset_ix(asset_in_ix)
+        self._validate_asset_ix(asset_out_ix)
+        raise Exception("must be implemented")
+
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         """Simulates a DEX trade
 
