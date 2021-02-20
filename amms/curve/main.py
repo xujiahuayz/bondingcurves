@@ -30,7 +30,7 @@ class Curve(Amm):
 
         return numerator / denominator
 
-    def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+    def _compute_trade_qty_out(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
 
@@ -52,15 +52,24 @@ class Curve(Amm):
             )
         ) / 2
 
-        qty_out = self.reserve[asset_out_ix] - updated_reserves_out_ix
+        return updated_reserves_in_ix, updated_reserves_out_ix
+
+    def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
+            qty_in, asset_in_ix, asset_out_ix
+        )
 
         self.reserve[asset_in_ix] = updated_reserves_in_ix
         self.reserve[asset_out_ix] = updated_reserves_out_ix
 
-        return qty_out
+        return self.reserve[asset_out_ix] - updated_reserves_out_ix
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
-        pass
+        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
+            qty_in, asset_in_ix, asset_out_ix
+        )
+        p = self.spot_price(asset_in_ix, asset_out_ix)
+        return (updated_reserves_in_ix / updated_reserves_out_ix) / p - 1
 
     def _get_sum_invariant(self):
         sum_all = sum(self.reserves)
