@@ -49,6 +49,9 @@ class Balancer(Amm):
             asset_in_ix, asset_out_ix
         ) - 1
 
+    def divergence_loss(self, pct_change: float):
+        pass
+
 
 if __name__ == "__main__":
     balancer = Balancer([1_000, 1_000], [0.5, 0.5])

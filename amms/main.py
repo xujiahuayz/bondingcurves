@@ -1,17 +1,15 @@
 # other dexes to inherit from this class
 class Amm:
-    def __init__(self, reserves: list[int], weights: list[float] = None):
+    def __init__(self, reserves: list[int], weights: list[float]):
         for qty in reserves:
             self._validate_reserves(qty)
 
         self.reserves = reserves
         self.initial_reserves = reserves
 
-        self.weights = None
-        if weights is not None:
-            self._validate_len_of_reserves_and_weights(reserves, weights)
-            self._validate_weights(weights)
-            self.weights = weights
+        self._validate_len_of_reserves_and_weights(reserves, weights)
+        self._validate_weights(weights)
+        self.weights = weights
 
     def spot_price(self, asset_in_ix: int, asset_out_ix: int):
         """Gives you the current spot price of asset out denominated
@@ -51,6 +49,39 @@ class Amm:
     def conservation_function(self):
         raise Exception("must be implemented")
 
+    def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+        """Computes slippage due to protocol's design (invariant). Unlike the trade
+      function, this function will not update the state. It merely simulates
+      what would have happened if qty_in was traded in the protocol.
+
+      Args:
+          qty_in (int): qty of asset_in_ix to deplete (if negatie) or add to
+          (if positive) to the pool.
+          asset_in_ix (int): index of the asset we are adding to the pool
+          (if qty_in is positive) or that we are removing (if qty_in is negative)
+          asset_out_ix (int): index of the asset we are getting out of the pool
+          (if qty_in is positive) or that we are putting in to pay for what we are
+          getting out (qty_in is negatie, we are getting this much out of the pool) 
+
+      Raises:
+          Exception: [description]
+      """
+        self._validate_trade(qty_in, asset_in_ix, asset_out_ix)
+        raise Exception("must be implemented")
+
+    def value_pool(self):
+        raise Exception("must be implmeented")
+
+    def value_hold(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
+        self._validate_pct_change(pct_change)
+        self._validate_asset_ix(asset_in_ix)
+        self._validate_asset_ix(asset_out_ix)
+        # equation no: 32 and 33 in the paper
+        V = self.reserves[asset_in_ix] / self.weights[asset_in_ix]
+        V2 = V * self.weights[asset_out_ix]
+        V_held = V + V2 * (1 + pct_change)
+        return V_held
+
     def _validate_asset_ix(self, asset_ix: int):
         if asset_ix < 0 or asset_ix >= len(self.reserves):
             raise Exception("invalid asset ix")
@@ -62,6 +93,11 @@ class Amm:
         if qty_in < 0:
             if self.reserves[asset_in_ix] < -qty_in:
                 raise Exception("you cannot remove this much from the liquidity pool")
+
+    @staticmethod
+    def _validate_pct_change(pct_change: float):
+        if pct_change < -1:
+            raise Exception("pct. change cannot be less than -100% (-1)")
 
     @staticmethod
     def _validate_len_of_reserves_and_weights(
