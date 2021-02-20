@@ -67,7 +67,6 @@ class Curve(Amm):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
 
-
         updated_reserves_in_ix = self.reserves[asset_in_ix] + qty_in
         # new pool product excluding output asset
         prod_exo = (
@@ -75,7 +74,7 @@ class Curve(Amm):
             / (self.reserves[asset_in_ix] * self.reserves[asset_out_ix])
             * updated_reserves_in_ix
         )
-        
+
         # new pool sum excluding output asset
         sum_exo = sum(self.reserves) + qty_in - self.reserves[asset_out_ix]
 
@@ -83,8 +82,8 @@ class Curve(Amm):
         A = max(self.A, EPSILLON)
         B = (1 - 1 / A) * C - sum_exo
         updated_reserves_out_ix = (
-            B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo)
-            )) / 2
+            B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo))
+        ) / 2
 
         return updated_reserves_in_ix, updated_reserves_out_ix
 
@@ -143,15 +142,20 @@ class Curve(Amm):
         sum_all = sum(self.reserves)
         product_all = math.prod(self.reserves)
 
-        if self.A < 1e-10:
-            sum_invariant = product_all ** (1 / self.n) * self.n
+        # Special case with qual size pool, no need to calculate, although results are the same
+        if len(set(self.reserves)) == 1:
+            return sum_all
 
-        elif self.A == 1:
-            sum_invariant = (product_all * sum_all) ** (1 / (self.n + 1)) * self.n ** (
+        # Special case with a=0 or 1, no need to calculate, although results are the same
+        if self.A < 1e-10:
+            return product_all ** (1 / self.n) * self.n
+
+        if self.A == 1:
+            return (product_all * sum_all) ** (1 / (self.n + 1)) * self.n ** (
                 self.n / (self.n + 1)
             )
 
-        elif self.n == 2:
+        if self.n == 2:
             sqrtand = (
                 product_all
                 * (
@@ -166,22 +170,20 @@ class Curve(Amm):
                 -2 * 6 ** (2 / 3) * product_all * (self.A - 1)
                 + 6 ** (1 / 3) * sqrtand ** 2
             ) / (3 * sqrtand)
-            sum_invariant = suminv_complex.real
-        else:
-            raise Exception("cannot handle unequal asset pool with n>2")
+            return suminv_complex.real
 
-        return sum_invariant
+        raise Exception("cannot handle unequal asset pool with n>2")
 
 
 if __name__ == "__main__":
     curve = Curve([1_000, 2_000], 0)
 
     # when leverage is zero, we are reducing to constant sum
-    qty_in = np.arange(-950, 1_000, 1_00)
+    _qty_in = np.arange(-950, 2_000, 1_00)
     pct_changes = []
     divergence_loss = []
 
-    for qty in qty_in:
+    for qty in _qty_in:
         (x, y) = curve.divergence_loss(qty, 0, 1)
         pct_changes.append(x)
         divergence_loss.append(y)
