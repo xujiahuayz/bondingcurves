@@ -82,7 +82,7 @@ class Curve(Amm):
         B = (1 - 1 / A) * C - sum_exo
         updated_reserves_out_ix = (
             B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo)
-            ) / 2
+            )) / 2
 
         return updated_reserves_in_ix, updated_reserves_out_ix
 
