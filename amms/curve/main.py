@@ -2,6 +2,9 @@ import math
 
 from bondingcurves.amms.main import Amm
 
+# we are dealing with integer mathematics everywhere, so this is the epsillon
+EPSILLON = 1
+
 
 class Curve(Amm):
     def __init__(self, reserves: list[int], leverage: float):
@@ -63,7 +66,7 @@ class Curve(Amm):
         X = (C / self.n) ** self.n
 
         # new pool sum excluding output asset
-        sum_exo = sum(self.reserves) + qty_in - self.reserve[asset_out_ix]
+        sum_exo = sum(self.reserves) + qty_in - self.reserves[asset_out_ix]
         updated_reserves_in_ix = self.reserves[asset_in_ix] + qty_in
         # new pool product excluding output asset
         prod_exo = (
@@ -72,11 +75,13 @@ class Curve(Amm):
             * updated_reserves_in_ix
         )
 
+        # + EPSILLON everywhere here to avoid division by zero
         updated_reserves_out_ix = (
-            (1 - 1 / self.A) * C
+            (1 - 1 / (self.A + EPSILLON)) * C
             - sum_exo
             + math.sqrt(
-                ((1 - 1 / self.A) * C - sum_exo) ** 2 + 4 * C * X / self.A / prod_exo
+                ((1 - 1 / (self.A + EPSILLON)) * C - sum_exo) ** 2
+                + 4 * C * X / (self.A + EPSILLON) / prod_exo
             )
         ) / 2
 
@@ -165,3 +170,10 @@ class Curve(Amm):
             raise Exception("cannot handle unequal asset pool with n>2")
 
         return sum_invariant
+
+
+if __name__ == "__main__":
+    curve = Curve([1_000, 2_000], 0)
+
+    # when leverage is zero, we are reducing to constant sum
+    print(curve.divergence_loss(100, 0, 1))
