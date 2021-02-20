@@ -1,4 +1,6 @@
+import numpy as np
 import math
+from matplotlib import pyplot as plt
 
 from bondingcurves.amms.main import Amm
 
@@ -176,4 +178,14 @@ if __name__ == "__main__":
     curve = Curve([1_000, 2_000], 0)
 
     # when leverage is zero, we are reducing to constant sum
-    print(curve.divergence_loss(100, 0, 1))
+    qty_in = np.arange(-950, 1_000, 1_00)
+    pct_changes = []
+    divergence_loss = []
+
+    for qty in qty_in:
+        (x, y) = curve.divergence_loss(qty, 0, 1)
+        pct_changes.append(x)
+        divergence_loss.append(y)
+
+    plt.plot(pct_changes, divergence_loss)
+    plt.show()
