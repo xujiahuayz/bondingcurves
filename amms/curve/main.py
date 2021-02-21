@@ -34,33 +34,27 @@ class Curve(Amm):
       """
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
-
         amplified_prod_inv = self.A * X
         ccnn = C * ((C / self.n) ** self.n)
-
         numerator = updated_reserves_in * (
             amplified_prod_inv * updated_reserves_out + ccnn
         )
         denominator = updated_reserves_out * (
             amplified_prod_inv * updated_reserves_in + ccnn
         )
-
         return float(numerator) / denominator
 
     def spot_price(self, asset_in_ix: int, asset_out_ix: int):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
-
         amplified_prod_inv = self.A * X
         ccnn = C * ((C / self.n) ** self.n)
-
         numerator = self.reserves[asset_in_ix] * (
             amplified_prod_inv * self.reserves[asset_out_ix] + ccnn
         )
         denominator = self.reserves[asset_out_ix] * (
             amplified_prod_inv * self.reserves[asset_in_ix] + ccnn
         )
-
         return float(numerator) / denominator
 
     def _compute_trade_qty_out(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
@@ -101,7 +95,7 @@ class Curve(Amm):
         _, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
-        p = self._spot_price(asset_in_ix, asset_out_ix)
+        p = self._spot_price(self.reserves[asset_in_ix], self.reserves[asset_out_ix])
         return (
             qty_in / (self.reserves[asset_out_ix] - updated_reserves_out_ix)
         ) / p - 1
