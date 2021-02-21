@@ -39,7 +39,7 @@ class Analysis:
         slippage_balancer_98_2_1in_0out = []
         slippage_balancer_50_50 = []
         slippage_uniswap = []
-        slippage_curve_A = []
+        slippage_curve_A_0 = []
         slippage_curve_A_400 = []
 
         slippage_domain = [x / X2 for x in self.slippage_domain]
@@ -59,7 +59,7 @@ class Analysis:
             )
             slippage_balancer_50_50.append(self.balancer_50_50.slippage(qty_in, 0, 1))
             slippage_uniswap.append(self.uniswap.slippage(qty_in, 1, 0))
-            slippage_curve_A.append(self.curve_A_0.slippage(qty_in, 1, 0))
+            slippage_curve_A_0.append(self.curve_A_0.slippage(qty_in, 1, 0))
             slippage_curve_A_400.append(self.curve_A_400.slippage(qty_in, 1, 0))
 
         # Balancer 95-5, x1 in x2 out
@@ -126,6 +126,45 @@ class Analysis:
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
         ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
         fig.savefig(os.path.join(FIGS_DIR, "balancer_50_50.pdf"), format="pdf")
+
+        # Uniswap
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, slippage_uniswap)
+        ax.set_xlabel(
+            r"$x_1 / r_1$", size=15,
+        )
+        ax.set_ylabel("slippage", size=15)
+        ax.set_title(r"Uniswap", size=21)
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        fig.savefig(os.path.join(FIGS_DIR, "uniswap.pdf"), format="pdf")
+
+        # Curve, A=0
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, slippage_curve_A_0)
+        ax.set_xlabel(
+            r"$x_1 / r_1$", size=15,
+        )
+        ax.set_ylabel("slippage", size=15)
+        ax.set_title(r"Curve for $\mathcal{A}=0$", size=21)
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        fig.savefig(os.path.join(FIGS_DIR, "curve_A_0.pdf"), format="pdf")
+
+        # Curve, A=400
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, slippage_curve_A_400)
+        ax.set_xlabel(
+            r"$x_1 / r_1$", size=15,
+        )
+        ax.set_ylabel("slippage", size=15)
+        ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        fig.savefig(os.path.join(FIGS_DIR, "curve_A_400.pdf"), format="pdf")
 
     # 3 plots for the divergence loss (divergence loss vs. pct_change)
     # 1 plot for all 3 on the same chart
