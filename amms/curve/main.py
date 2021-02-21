@@ -2,7 +2,7 @@ import numpy as np
 import math
 from matplotlib import pyplot as plt
 
-from bondingcurves.amms.main import Amm
+from amms.main import Amm
 
 # we are dealing with integer mathematics everywhere, so this is the epsillon
 EPSILLON = 1

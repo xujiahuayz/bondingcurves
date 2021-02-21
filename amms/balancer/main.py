@@ -1,4 +1,6 @@
-from bondingcurves.amms.main import Amm
+from amms.main import Amm
+
+EPSILLON = 1
 
 
 class Balancer(Amm):
@@ -45,9 +47,9 @@ class Balancer(Amm):
         updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
-        return (updated_reserves_in_ix / updated_reserves_out_ix) / self.spot_prie(
-            asset_in_ix, asset_out_ix
-        ) - 1
+        spot_price = max(self.spot_price(asset_in_ix, asset_out_ix), EPSILLON)
+        updated_reserves_out_ix = max(updated_reserves_out_ix, EPSILLON)
+        return (updated_reserves_in_ix / updated_reserves_out_ix) / spot_price - 1
 
     def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
         # todo: validations in the inherited class

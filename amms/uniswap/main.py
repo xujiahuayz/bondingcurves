@@ -1,4 +1,4 @@
-from bondingcurves.amms.balancer.main import Balancer
+from amms.balancer.main import Balancer
 
 
 class Uniswap(Balancer):
