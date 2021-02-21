@@ -98,11 +98,13 @@ class Curve(Amm):
         return self.reserve[asset_out_ix] - updated_reserves_out_ix
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
-        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
+        _, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
-        p = self.spot_price(asset_in_ix, asset_out_ix)
-        return (updated_reserves_in_ix / updated_reserves_out_ix) / p - 1
+        p = self._spot_price(asset_in_ix, asset_out_ix)
+        return (
+            qty_in / (self.reserves[asset_out_ix] - updated_reserves_out_ix)
+        ) / p - 1
 
     # ! notice that the signature here is different to the one in Amm
     # ! this one is missing pct_change. Rather it is computed implicitly.
