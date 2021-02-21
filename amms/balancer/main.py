@@ -44,17 +44,14 @@ class Balancer(Amm):
         return pre_trade_reserves_out_ix - self.reserves[asset_out_ix]
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
-        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
+        _, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
         spot_price = self.spot_price(asset_in_ix, asset_out_ix)
 
-        print(f"updated_reserves_in_ix {updated_reserves_in_ix}")
-        print(f"updated_reserves_out_ix {updated_reserves_out_ix}")
-        print(f"1/2 {updated_reserves_in_ix / updated_reserves_out_ix}")
-        print(f"spot_price {spot_price}")
-
-        return (updated_reserves_in_ix / updated_reserves_out_ix) / spot_price - 1
+        return (
+            qty_in / (self.reserves[asset_out_ix] - updated_reserves_out_ix)
+        ) / spot_price - 1
 
     def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
         # todo: validations in the inherited class
