@@ -30,7 +30,7 @@ class Balancer(Amm):
         # equation no: 25 in the paper
         updated_reserves_out_ix = pre_trade_reserves_out_ix * (
             pre_trade_reserves_in_ix / updated_reserves_in_ix
-        ) ** (pre_trade_reserves_in_ix / self.weights[asset_out_ix])
+        ) ** (self.weights[asset_in_ix] / self.weights[asset_out_ix])
         return updated_reserves_in_ix, updated_reserves_out_ix
 
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
@@ -47,8 +47,13 @@ class Balancer(Amm):
         updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
-        spot_price = max(self.spot_price(asset_in_ix, asset_out_ix), EPSILLON)
-        updated_reserves_out_ix = max(updated_reserves_out_ix, EPSILLON)
+        spot_price = self.spot_price(asset_in_ix, asset_out_ix)
+
+        print(f"updated_reserves_in_ix {updated_reserves_in_ix}")
+        print(f"updated_reserves_out_ix {updated_reserves_out_ix}")
+        print(f"1/2 {updated_reserves_in_ix / updated_reserves_out_ix}")
+        print(f"spot_price {spot_price}")
+
         return (updated_reserves_in_ix / updated_reserves_out_ix) / spot_price - 1
 
     def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
