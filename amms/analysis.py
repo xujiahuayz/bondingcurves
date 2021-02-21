@@ -150,7 +150,7 @@ class Analysis:
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
         fig.savefig(os.path.join(FIGS_DIR, "curve_A_1.pdf"), format="pdf")
 
         # Curve, A=400
@@ -163,7 +163,7 @@ class Analysis:
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=2))
         fig.savefig(os.path.join(FIGS_DIR, "curve_A_400.pdf"), format="pdf")
 
     # 3 plots for the divergence loss (divergence loss vs. pct_change)
