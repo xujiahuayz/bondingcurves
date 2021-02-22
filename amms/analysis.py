@@ -221,24 +221,87 @@ class Analysis:
         curve_A_10 = []
         curve_A_100 = []
 
+        balancer_60_40 = []
+        balancer_95_5 = []
+        balancer_98_2 = []
+
+        uniswap = []
+
         domain = np.arange(-1 * X2, 5 * X2, 25 * DP18)
+        _domain = np.arange(-1, 5, 0.025)
 
         for qty in domain:
             curve_A_1.append(self.curve_A_1.divergence_loss(qty, 0, 1))
             curve_A_10.append(self.curve_A_10.divergence_loss(qty, 0, 1))
             curve_A_100.append(self.curve_A_100.divergence_loss(qty, 0, 1))
 
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.set_xlabel("spot price increase", size=15)
+        for pct_change in _domain:
+            balancer_60_40.append(self.balancer_60_40.divergence_loss(pct_change, 1, 0))
+            balancer_95_5.append(self.balancer_95_5.divergence_loss(pct_change, 1, 0))
+            balancer_98_2.append(self.balancer_98_2.divergence_loss(pct_change, 1, 0))
+
+            uniswap.append(self.uniswap.divergence_loss(pct_change, 0, 1))
+
+        fig = plt.figure(figsize=(16, 5))
+
+        ax = fig.add_subplot(131)
+        ax.set_xlabel("spot price change", size=15)
         ax.set_ylabel("divergence loss", size=15)
         ax.set_xlim([-1.0, 24.0])
-        ax.set_ylim([-1.0, 0.0])
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        ax.set_ylim([-1.0, 0.01])
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
         ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
         ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10], linewidth=2)
         ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100], linewidth=2)
         ax.legend(["A=1", "A=10", "A=100"])
+
+        ax = fig.add_subplot(132)
+        ax.set_xlabel("spot price change", size=15)
+        ax.set_ylabel("divergence loss", size=15)
+        ax.set_xlim([-1.0, 3])
+        ax.set_ylim([-1.0, 0.01])
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+        ax.plot(_domain, balancer_60_40, linewidth=2)
+        ax.plot(_domain, balancer_95_5, linewidth=2)
+        ax.plot(_domain, balancer_98_2, linewidth=2)
+        ax.legend(["60%/40%", "95%/5%", "98%/2%"])
+
+        ax = fig.add_subplot(133)
+        ax.set_xlabel("spot price change", size=15)
+        ax.set_ylabel("divergence loss", size=15)
+        ax.set_xlim([-1.0, 3])
+        ax.set_ylim([-1.0, 0.01])
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=0))
+        ax.plot(
+            [x[0] for x in curve_A_1],
+            [x[1] for x in curve_A_1],
+            linewidth=2,
+            label="Curve A=1",
+        )
+        ax.plot(
+            [x[0] for x in curve_A_100],
+            [x[1] for x in curve_A_100],
+            linewidth=2,
+            label="Curve A=100",
+        )
+        ax.plot(_domain, balancer_60_40, linewidth=2, label="Balancer 60%/40%")
+        ax.plot(_domain, balancer_98_2, linewidth=2, label="Balancer 98%/2%")
+        ax.plot(_domain, uniswap, linewidth=2, label="Uniswap")
+        ax.legend()
+        # ax.legend(
+        #     [
+        #         "Curve A=1",
+        #         "Curve A=100",
+        #         "Balancer 60%/40%",
+        #         "Balancer 98%/2%",
+        #         "Uniswap",
+        #     ]
+        # )
+
+        plt.show()
 
 
 if __name__ == "__main__":
