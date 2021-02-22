@@ -221,7 +221,7 @@ class Analysis:
         curve_A_10 = []
         curve_A_100 = []
 
-        domain = np.arange(0.0001 * X2, 3 * X2, 25 * DP18)
+        domain = np.arange(-1 * X2, 5 * X2, 25 * DP18)
 
         for qty in domain:
             curve_A_1.append(self.curve_A_1.divergence_loss(qty, 0, 1))
@@ -230,11 +230,15 @@ class Analysis:
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
-        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
-        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        ax.set_xlabel("spot price increase", size=15)
+        ax.set_ylabel("divergence loss", size=15)
+        ax.set_xlim([-1.0, 24.0])
+        ax.set_ylim([-1.0, 0.0])
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
+        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10], linewidth=2)
+        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100], linewidth=2)
         ax.legend(["A=1", "A=10", "A=100"])
-        plt.show()
 
 
 if __name__ == "__main__":
