@@ -217,9 +217,26 @@ class Analysis:
         )
 
     def plot_divergence_loss(self):
-        pass
+        curve_A_1 = []
+        curve_A_10 = []
+        curve_A_100 = []
+
+        domain = np.arange(0.0001 * X2, 3 * X2, 25 * DP18)
+
+        for qty in domain:
+            curve_A_1.append(self.curve_A_1.divergence_loss(qty, 0, 1))
+            curve_A_10.append(self.curve_A_10.divergence_loss(qty, 0, 1))
+            curve_A_100.append(self.curve_A_100.divergence_loss(qty, 0, 1))
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
+        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        ax.legend(["A=1", "A=10", "A=100"])
+        plt.show()
 
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_slippage()
+    analysis.plot_divergence_loss()
