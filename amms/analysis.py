@@ -11,17 +11,23 @@ CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 FIGS_DIR = os.path.join(CURR_DIR, "figures")
 
 DP18 = 1e18
-X1 = 1_000 * DP18
-X2 = 1_000 * DP18
+X1 = 1_000_000 * DP18
+X2 = 1_000_000 * DP18
 
 
 class Analysis:
     def __init__(self):
         self.balancer_95_5 = Balancer([X1, X2], [0.95, 0.05])
         self.balancer_98_2 = Balancer([X1, X2], [0.98, 0.02])
+        self.balancer_60_40 = Balancer([X1, X2], [0.6, 0.4])
+        self.balancer_80_20 = Balancer([X1, X2], [0.8, 0.2])
         self.balancer_50_50 = Balancer([X1, X2], [0.5, 0.5])
         self.uniswap = Uniswap([X1, X2])
         self.curve_A_1 = Curve([X1, X2], 1)
+        self.curve_A_5 = Curve([X1, X2], 5)
+        self.curve_A_10 = Curve([X1, X2], 10)
+        self.curve_A_20 = Curve([X1, X2], 20)
+        self.curve_A_100 = Curve([X1, X2], 100)
         self.curve_A_400 = Curve([X1, X2], 400)
 
         self.slippage_domain = np.arange(0.01 * X2, 0.27 * X2, 25 * DP18)
@@ -29,28 +35,39 @@ class Analysis:
     def plot_amm_curve(self):
         balancer_95_5 = []
         balancer_98_2 = []
+        balancer_60_40 = []
+        balancer_80_20 = []
         balancer_50_50 = []
         uniswap = []
         curve_A_1 = []
-        curve_A_400 = []
+        curve_A_5 = []
+        curve_A_10 = []
+        curve_A_20 = []
+        curve_A_100 = []
 
-        domain = np.arange(-0.95 * X1, 5 * X1, 10 * DP18)
+        domain = np.arange(-0.5 * X1, 1 * X1, 10 * DP18)
         # trade and look at reserves
 
         for x in domain:
             balancer_95_5.append(self.balancer_95_5._compute_trade_qty_out(x, 0, 1))
             balancer_98_2.append(self.balancer_98_2._compute_trade_qty_out(x, 0, 1))
             balancer_50_50.append(self.balancer_50_50._compute_trade_qty_out(x, 0, 1))
+            balancer_60_40.append(self.balancer_60_40._compute_trade_qty_out(x, 0, 1))
+            balancer_80_20.append(self.balancer_80_20._compute_trade_qty_out(x, 0, 1))
             uniswap.append(self.uniswap._compute_trade_qty_out(x, 0, 1))
             curve_A_1.append(self.curve_A_1._compute_trade_qty_out(x, 0, 1))
-            curve_A_400.append(self.curve_A_400._compute_trade_qty_out(x, 0, 1))
+            curve_A_5.append(self.curve_A_5._compute_trade_qty_out(x, 0, 1))
+            curve_A_10.append(self.curve_A_10._compute_trade_qty_out(x, 0, 1))
+            curve_A_20.append(self.curve_A_20._compute_trade_qty_out(x, 0, 1))
+            curve_A_100.append(self.curve_A_100._compute_trade_qty_out(x, 0, 1))
 
         # Balancer 95-5
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
         ax.set_title("Balancer 95%/5%", size=21)
@@ -63,7 +80,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
         ax.set_title("Balancer 98%/2%", size=21)
@@ -71,12 +89,41 @@ class Analysis:
             os.path.join(FIGS_DIR, "conservation", "balancer_98_2.pdf"), format="pdf"
         )
 
+        # Balancer 60-40
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in balancer_60_40], [x[1] for x in balancer_60_40])
+        ax.set_xlabel(
+            "x",
+            size=15,
+        )
+        ax.set_ylabel("y", size=15)
+        ax.set_title("Balancer 60%/40%", size=21)
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "balancer_60_40.pdf"), format="pdf"
+        )
+
+        # Balancer 80-20
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in balancer_80_20], [x[1] for x in balancer_80_20])
+        ax.set_xlabel(
+            "x",
+            size=15,
+        )
+        ax.set_ylabel("y", size=15)
+        ax.set_title("Balancer 80%/20%", size=21)
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "balancer_80_20.pdf"), format="pdf"
+        )
+
         # Balancer 50-50
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
         ax.set_title("Balancer 50%/50%", size=21)
@@ -89,7 +136,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
         ax.set_title("Uniswap", size=21)
@@ -100,7 +148,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
         ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
@@ -108,17 +157,60 @@ class Analysis:
             os.path.join(FIGS_DIR, "conservation", "curve_A_1.pdf"), format="pdf"
         )
 
-        # Curve A=400
+        # Curve A=5
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_400], [x[1] for x in curve_A_400])
+        ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5])
         ax.set_xlabel(
-            "x", size=15,
+            "x",
+            size=15,
         )
         ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
+        ax.set_title(r"Curve for $\mathcal{A}=5$", size=21)
         fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_400.pdf"), format="pdf"
+            os.path.join(FIGS_DIR, "conservation", "curve_A_5.pdf"), format="pdf"
+        )
+
+        # Curve A=10
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        ax.set_xlabel(
+            "x",
+            size=15,
+        )
+        ax.set_ylabel("y", size=15)
+        ax.set_title(r"Curve for $\mathcal{A}=10$", size=21)
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "curve_A_10.pdf"), format="pdf"
+        )
+
+        # Curve A=20
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in curve_A_20], [x[1] for x in curve_A_20])
+        ax.set_xlabel(
+            "x",
+            size=15,
+        )
+        ax.set_ylabel("y", size=15)
+        ax.set_title(r"Curve for $\mathcal{A}=20$", size=21)
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "curve_A_20.pdf"), format="pdf"
+        )
+
+        # Curve A=100
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        ax.set_xlabel(
+            "x",
+            size=15,
+        )
+        ax.set_ylabel("y", size=15)
+        ax.set_title(r"Curve for $\mathcal{A}=100$", size=21)
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "curve_A_100.pdf"), format="pdf"
         )
 
     def plot_slippage(self):
@@ -156,7 +248,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_balancer_95_5_0in_1out)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
@@ -172,7 +265,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_balancer_95_5_1in_0out)
         ax.set_xlabel(
-            r"$x_2 / r_2$", size=15,
+            r"$x_2 / r_2$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
@@ -188,7 +282,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_balancer_98_2_0in_1out)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
@@ -204,7 +299,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_balancer_98_2_1in_0out)
         ax.set_xlabel(
-            r"$x_2 / r_2$", size=15,
+            r"$x_2 / r_2$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
@@ -220,7 +316,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_balancer_50_50)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Balancer 50%/50% ($w_1/w_2$)", size=21)
@@ -235,7 +332,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_uniswap)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Uniswap", size=21)
@@ -248,7 +346,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_curve_A_1)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
@@ -261,7 +360,8 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.plot(slippage_domain, slippage_curve_A_400)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"$x_1 / r_1$",
+            size=15,
         )
         ax.set_ylabel("slippage", size=15)
         ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
