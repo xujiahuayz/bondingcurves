@@ -30,7 +30,7 @@ class Analysis:
         self.curve_A_100 = Curve([X1, X2], 100)
         self.curve_A_400 = Curve([X1, X2], 400)
 
-        self.slippage_domain = np.arange(0.01 * X2, 0.27 * X2, 25 * DP18)
+        self.slippage_domain = np.arange(0.0001 * X2, 0.27 * X2, 25 * DP18)
 
     def plot_amm_curve(self):
         balancer_95_5 = []
@@ -365,10 +365,15 @@ class Analysis:
         slippage_balancer_95_5_1in_0out = []
         slippage_balancer_98_2_0in_1out = []
         slippage_balancer_98_2_1in_0out = []
+        slippage_balancer_60_40_1in_0out = []
         slippage_balancer_50_50 = []
         slippage_uniswap = []
         slippage_curve_A_1 = []
+        curve_A_5 = []
+        curve_A_10 = []
+        slippage_curve_A_100 = []
         slippage_curve_A_400 = []
+        uniswap = []
 
         slippage_domain = [x / X2 for x in self.slippage_domain]
 
@@ -385,138 +390,281 @@ class Analysis:
             slippage_balancer_98_2_1in_0out.append(
                 self.balancer_98_2.slippage(qty_in, 1, 0)
             )
+            slippage_balancer_60_40_1in_0out.append(
+                self.balancer_60_40.slippage(qty_in, 1, 0)
+            )
             slippage_balancer_50_50.append(self.balancer_50_50.slippage(qty_in, 0, 1))
             slippage_uniswap.append(self.uniswap.slippage(qty_in, 1, 0))
             slippage_curve_A_1.append(self.curve_A_1.slippage(qty_in, 1, 0))
+            curve_A_5.append(self.curve_A_5.slippage(qty_in, 1, 0))
+            slippage_curve_A_100.append(self.curve_A_100.slippage(qty_in, 1, 0))
+            curve_A_10.append(self.curve_A_10.slippage(qty_in, 1, 0))
             slippage_curve_A_400.append(self.curve_A_400.slippage(qty_in, 1, 0))
+            uniswap.append(self.uniswap.slippage(qty_in, 0, 1))
 
-        # Balancer 95-5, x1 in x2 out
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_balancer_95_5_0in_1out)
+        # # Balancer 95-5, x1 in x2 out
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_balancer_95_5_0in_1out)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_95_5_0in_1out.pdf"),
+        #     format="pdf",
+        # )
+
+        # # Balancer 95-5, x2 in x1 out
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_balancer_95_5_1in_0out)
+        # ax.set_xlabel(
+        #     r"$x_2 / r_2$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_95_5_1in_0out.pdf"),
+        #     format="pdf",
+        # )
+
+        # # Balancer 98-2, x1 in x2 out
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_balancer_98_2_0in_1out)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_98_2_0in_1out.pdf"),
+        #     format="pdf",
+        # )
+
+        # # Balancer 98-2, x2 in x1 out
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_balancer_98_2_1in_0out)
+        # ax.set_xlabel(
+        #     r"$x_2 / r_2$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_98_2_1in_0out.pdf"),
+        #     format="pdf",
+        # )
+
+        # # Balancer 50-50
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_balancer_50_50)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Balancer 50%/50% ($w_1/w_2$)", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_50_50.pdf"), format="pdf"
+        # )
+
+        # # Uniswap
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_uniswap)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Uniswap", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # fig.savefig(os.path.join(FIGS_DIR, "slippage", "uniswap.pdf"), format="pdf")
+
+        # # Curve, A=1
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_curve_A_1)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        # fig.savefig(os.path.join(FIGS_DIR, "slippage", "curve_A_1.pdf"), format="pdf")
+
+        # # Curve, A=400
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, slippage_curve_A_400)
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=2))
+        # fig.savefig(os.path.join(FIGS_DIR, "slippage", "curve_A_400.pdf"), format="pdf")
+
+        # flip slippage and make it negative
+        # 1/3 curve
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, [-y for y in slippage_curve_A_1])
+        # ax.plot(slippage_domain, [-y for y in curve_A_5])
+        # ax.plot(slippage_domain, [-y for y in curve_A_10])
+        # ax.plot(slippage_domain, [-y for y in slippage_curve_A_400])
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        # ax.legend(["A=1", "A=5", "A=10", "A=100"])
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "curve_comparisons.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # 2/3 balancer
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_50_50])
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_95_5_1in_0out])
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_xlim([0, 0.05])
+        # ax.set_ylim([-0.05, 0])
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        # ax.legend(
+        #     [
+        #         "50%/50%",
+        #         "60%/40%",
+        #         "95%/5%",
+        #         "98%/2%",
+        #     ]
+        # )
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "balancer_comparisons.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # 3/3 curve=100, balancer60/40, balancer98/2, uniswap
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(slippage_domain, [-y for y in uniswap])
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
+        # ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
+        # ax.plot(slippage_domain, [-y for y in slippage_curve_A_100])
+        # ax.set_xlabel(
+        #     r"$x_1 / r_1$",
+        #     size=15,
+        # )
+        # ax.set_ylabel("slippage", size=15)
+        # ax.set_xlim([0, 0.05])
+        # ax.set_ylim([-0.05, 0])
+        # ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        # ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        # ax.legend(["Uniswap", "Balancer 60%/40%", "Balancer 98%/2%", "Curve A=100"])
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "slippage", "protocol_comparisons.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # all together
+        fig = plt.figure(figsize=(19, 5.5))
+
+        ax = fig.add_subplot(131)
+        ax.plot(slippage_domain, [-y for y in slippage_curve_A_1])
+        ax.plot(slippage_domain, [-y for y in curve_A_5])
+        ax.plot(slippage_domain, [-y for y in curve_A_10])
+        ax.plot(slippage_domain, [-y for y in slippage_curve_A_400])
         ax.set_xlabel(
             r"$x_1 / r_1$",
             size=15,
         )
         ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "balancer_95_5_0in_1out.pdf"),
-            format="pdf",
-        )
-
-        # Balancer 95-5, x2 in x1 out
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_balancer_95_5_1in_0out)
-        ax.set_xlabel(
-            r"$x_2 / r_2$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Balancer 95%/5% ($w_1/w_2$)", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "balancer_95_5_1in_0out.pdf"),
-            format="pdf",
-        )
-
-        # Balancer 98-2, x1 in x2 out
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_balancer_98_2_0in_1out)
-        ax.set_xlabel(
-            r"$x_1 / r_1$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "balancer_98_2_0in_1out.pdf"),
-            format="pdf",
-        )
-
-        # Balancer 98-2, x2 in x1 out
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_balancer_98_2_1in_0out)
-        ax.set_xlabel(
-            r"$x_2 / r_2$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Balancer 98%/2% ($w_1/w_2$)", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "balancer_98_2_1in_0out.pdf"),
-            format="pdf",
-        )
-
-        # Balancer 50-50
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_balancer_50_50)
-        ax.set_xlabel(
-            r"$x_1 / r_1$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Balancer 50%/50% ($w_1/w_2$)", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "balancer_50_50.pdf"), format="pdf"
-        )
-
-        # Uniswap
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_uniswap)
-        ax.set_xlabel(
-            r"$x_1 / r_1$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Uniswap", size=21)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        fig.savefig(os.path.join(FIGS_DIR, "slippage", "uniswap.pdf"), format="pdf")
-
-        # Curve, A=1
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_curve_A_1)
-        ax.set_xlabel(
-            r"$x_1 / r_1$",
-            size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
         ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
-        fig.savefig(os.path.join(FIGS_DIR, "slippage", "curve_A_1.pdf"), format="pdf")
+        ax.legend(["A=1", "A=5", "A=10", "A=100"])
 
-        # Curve, A=400
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot(slippage_domain, slippage_curve_A_400)
+        ax = fig.add_subplot(132)
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_50_50])
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_95_5_1in_0out])
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
         ax.set_xlabel(
             r"$x_1 / r_1$",
             size=15,
         )
         ax.set_ylabel("slippage", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=400$", size=21)
+        ax.set_xlim([0, 0.05])
+        ax.set_ylim([-0.05, 0])
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=2))
-        fig.savefig(os.path.join(FIGS_DIR, "slippage", "curve_A_400.pdf"), format="pdf")
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        ax.legend(
+            [
+                "50%/50%",
+                "60%/40%",
+                "95%/5%",
+                "98%/2%",
+            ]
+        )
+
+        ax = fig.add_subplot(133)
+        ax.plot(slippage_domain, [-y for y in uniswap])
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
+        ax.plot(slippage_domain, [-y for y in slippage_curve_A_100])
+        ax.set_xlabel(
+            r"$x_1 / r_1$",
+            size=15,
+        )
+        ax.set_ylabel("slippage", size=15)
+        ax.set_xlim([0, 0.05])
+        ax.set_ylim([-0.05, 0])
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        ax.legend(["Uniswap", "Balancer 60%/40%", "Balancer 98%/2%", "Curve A=100"])
+        fig.savefig(
+            os.path.join(FIGS_DIR, "slippage", "all_slippage_comparisons.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_amm_curve()
+    analysis.plot_slippage()
