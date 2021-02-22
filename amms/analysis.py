@@ -45,7 +45,7 @@ class Analysis:
         curve_A_20 = []
         curve_A_100 = []
 
-        domain = np.arange(-0.5 * X1, 1 * X1, 10 * DP18)
+        domain = np.arange(-0.99 * X1, 3 * X1, 50 * DP18)
         # trade and look at reserves
 
         for x in domain:
@@ -211,6 +211,30 @@ class Analysis:
         ax.set_title(r"Curve for $\mathcal{A}=100$", size=21)
         fig.savefig(
             os.path.join(FIGS_DIR, "conservation", "curve_A_100.pdf"), format="pdf"
+        )
+
+        # this will be 1/3 for the conservation functions
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
+        ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
+        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        ax.set_xlabel(
+            r"$r_1$",
+            size=21,
+        )
+        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylim([-1e23, 2.5e24])
+        ax.set_xlim([-1e23 / 2, 2.5e24])
+        ax.set_title(r"Curve conservation functions comparison", size=21, pad=20)
+        ax.axvline(ls="--")
+        ax.axhline(ls="--")
+        ax.legend(["A=1", "A=5", "A=10", "A=100"])
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "curve_A_1_5_10_100.pdf"),
+            format="pdf",
+            bbox_inches="tight",
         )
 
     def plot_slippage(self):
