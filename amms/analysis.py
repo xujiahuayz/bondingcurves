@@ -242,7 +242,7 @@ class Analysis:
 
             uniswap.append(self.uniswap.divergence_loss(pct_change, 0, 1))
 
-        fig = plt.figure(figsize=(16, 5))
+        fig = plt.figure(figsize=(20, 5))
 
         ax = fig.add_subplot(131)
         ax.set_xlabel("spot price change", size=15)
@@ -301,7 +301,11 @@ class Analysis:
         #     ]
         # )
 
-        plt.show()
+        fig.savefig(
+            os.path.join(FIGS_DIR, "divergence_loss", "all_comparison.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
 
 if __name__ == "__main__":
