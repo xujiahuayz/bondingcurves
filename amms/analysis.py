@@ -61,161 +61,244 @@ class Analysis:
             curve_A_20.append(self.curve_A_20._compute_trade_qty_out(x, 0, 1))
             curve_A_100.append(self.curve_A_100._compute_trade_qty_out(x, 0, 1))
 
-        # Balancer 95-5
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Balancer 95%/5%", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "balancer_95_5.pdf"), format="pdf"
-        )
+        # # Balancer 95-5
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Balancer 95%/5%", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_95_5.pdf"), format="pdf"
+        # )
 
-        # Balancer 98-2
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Balancer 98%/2%", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "balancer_98_2.pdf"), format="pdf"
-        )
+        # # Balancer 98-2
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Balancer 98%/2%", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_98_2.pdf"), format="pdf"
+        # )
 
-        # Balancer 60-40
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in balancer_60_40], [x[1] for x in balancer_60_40])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Balancer 60%/40%", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "balancer_60_40.pdf"), format="pdf"
-        )
+        # # Balancer 60-40
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in balancer_60_40], [x[1] for x in balancer_60_40])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Balancer 60%/40%", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_60_40.pdf"), format="pdf"
+        # )
 
-        # Balancer 80-20
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in balancer_80_20], [x[1] for x in balancer_80_20])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Balancer 80%/20%", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "balancer_80_20.pdf"), format="pdf"
-        )
+        # # Balancer 80-20
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in balancer_80_20], [x[1] for x in balancer_80_20])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Balancer 80%/20%", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_80_20.pdf"), format="pdf"
+        # )
 
-        # Balancer 50-50
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Balancer 50%/50%", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "balancer_50_50.pdf"), format="pdf"
-        )
+        # # Balancer 50-50
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Balancer 50%/50%", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_50_50.pdf"), format="pdf"
+        # )
 
-        # Uniswap
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title("Uniswap", size=21)
-        fig.savefig(os.path.join(FIGS_DIR, "conservation", "uniswap.pdf"), format="pdf")
+        # # Uniswap
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title("Uniswap", size=21)
+        # fig.savefig(os.path.join(FIGS_DIR, "conservation", "uniswap.pdf"), format="pdf")
 
-        # Curve A=1
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_1.pdf"), format="pdf"
-        )
+        # # Curve A=1
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=1$", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_1.pdf"), format="pdf"
+        # )
 
-        # Curve A=5
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=5$", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_5.pdf"), format="pdf"
-        )
+        # # Curve A=5
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=5$", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_5.pdf"), format="pdf"
+        # )
 
-        # Curve A=10
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=10$", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_10.pdf"), format="pdf"
-        )
+        # # Curve A=10
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=10$", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_10.pdf"), format="pdf"
+        # )
 
-        # Curve A=20
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_20], [x[1] for x in curve_A_20])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=20$", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_20.pdf"), format="pdf"
-        )
+        # # Curve A=20
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_20], [x[1] for x in curve_A_20])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=20$", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_20.pdf"), format="pdf"
+        # )
 
-        # Curve A=100
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
-        ax.set_xlabel(
-            "x",
-            size=15,
-        )
-        ax.set_ylabel("y", size=15)
-        ax.set_title(r"Curve for $\mathcal{A}=100$", size=21)
-        fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_100.pdf"), format="pdf"
-        )
+        # # Curve A=100
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        # ax.set_xlabel(
+        #     "x",
+        #     size=15,
+        # )
+        # ax.set_ylabel("y", size=15)
+        # ax.set_title(r"Curve for $\mathcal{A}=100$", size=21)
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_100.pdf"), format="pdf"
+        # )
 
-        # this will be 1/3 for the conservation functions
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
+        # # this will be 1/3 for the conservation functions
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
+        # ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
+        # ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        # ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        # ax.set_xlabel(
+        #     r"$r_1$",
+        #     size=21,
+        # )
+        # ax.set_ylabel(r"$r_2$", size=21)
+        # ax.set_ylim([-1e23, 2.5e24])
+        # ax.set_xlim([-1e23 / 2, 2.5e24])
+        # ax.set_title(r"Curve conservation functions comparison", size=21, pad=20)
+        # ax.axvline(ls="--")
+        # ax.axhline(ls="--")
+        # ax.legend(["A=1", "A=5", "A=10", "A=100"])
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "curve_A_1_5_10_100.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # # 2/3
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot(
+        #     [x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50], linewidth=2
+        # )
+        # ax.plot(
+        #     [x[0] for x in balancer_60_40], [x[1] for x in balancer_60_40], linewidth=2
+        # )
+        # ax.plot([x[0] for x in balancer_80_20], [x[1] for x in balancer_80_20])
+        # ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
+        # ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
+        # ax.set_xlabel(
+        #     r"$r_1$",
+        #     size=21,
+        # )
+        # ax.set_ylabel(r"$r_2$", size=21)
+        # ax.set_ylim([-1e23, 2e24])
+        # ax.set_xlim([0.45e24, 2e24])
+        # ax.set_title(r"Balancer conservation functions comparison", size=21, pad=20)
+        # ax.axvline(ls="--", x=0.5e24)
+        # ax.axhline(ls="--")
+        # ax.legend(["50%/50%", "60%/40%", "80%/20%", "95%/5%", "98%/2%"])
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "balancer_comparisons.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # # 3/3
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap], linewidth=2)
+        # ax.plot(
+        #     [x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5], linewidth=2
+        # )
+        # ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
+        # ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        # ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        # ax.set_xlabel(
+        #     r"$r_1$",
+        #     size=21,
+        # )
+        # ax.set_ylabel(r"$r_2$", size=21)
+        # ax.set_ylim([-1e23, 2e24])
+        # ax.set_xlim([0.45e24, 2e24])
+        # ax.set_title(r"Protocol conservation functions comparison", size=21, pad=20)
+        # ax.axvline(ls="--", x=0.5e24)
+        # ax.axhline(ls="--")
+        # ax.legend(
+        #     ["Uniswap", "Balancer 95%/5%", "Curve, A=1", "Curve, A=10", "Curve, A=100"]
+        # )
+        # fig.savefig(
+        #     os.path.join(FIGS_DIR, "conservation", "protocol_comparisons.pdf"),
+        #     format="pdf",
+        #     bbox_inches="tight",
+        # )
+
+        # all together
+        fig = plt.figure(figsize=(17, 5.5))
+
+        ax = fig.add_subplot(131)
         ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
         ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
         ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
@@ -225,16 +308,56 @@ class Analysis:
             size=21,
         )
         ax.set_ylabel(r"$r_2$", size=21)
-        ax.set_ylim([-1e23, 2.5e24])
+        ax.set_ylim([-1e23 / 2, 2.5e24])
         ax.set_xlim([-1e23 / 2, 2.5e24])
-        ax.set_title(r"Curve conservation functions comparison", size=21, pad=20)
         ax.axvline(ls="--")
         ax.axhline(ls="--")
         ax.legend(["A=1", "A=5", "A=10", "A=100"])
+
+        ax = fig.add_subplot(132)
+        ax.plot(
+            [x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in balancer_60_40], [x[1] for x in balancer_60_40], linewidth=2
+        )
+        ax.plot([x[0] for x in balancer_80_20], [x[1] for x in balancer_80_20])
+        ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
+        ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
+        ax.set_xlabel(
+            r"$r_1$",
+            size=21,
+        )
+        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylim([-1e23 / 2, 2e24])
+        ax.set_xlim([0.45e24, 2e24])
+        ax.axvline(ls="--", x=0.5e24)
+        ax.axhline(ls="--")
+        ax.legend(["50%/50%", "60%/40%", "80%/20%", "95%/5%", "98%/2%"])
+
+        ax = fig.add_subplot(133)
+        ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap], linewidth=2)
+        ax.plot(
+            [x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5], linewidth=2
+        )
+        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
+        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
+        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
+        ax.set_xlabel(
+            r"$r_1$",
+            size=21,
+        )
+        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylim([-1e23 / 2, 2e24])
+        ax.set_xlim([0.45e24, 2e24])
+        ax.axvline(ls="--", x=0.5e24)
+        ax.axhline(ls="--")
+        ax.legend(
+            ["Uniswap", "Balancer 95%/5%", "Curve, A=1", "Curve, A=10", "Curve, A=100"]
+        )
         fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "curve_A_1_5_10_100.pdf"),
+            os.path.join(FIGS_DIR, "conservation", "3_conservations.pdf"),
             format="pdf",
-            bbox_inches="tight",
         )
 
     def plot_slippage(self):
