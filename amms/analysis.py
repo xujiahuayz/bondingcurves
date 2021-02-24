@@ -251,7 +251,7 @@ class Analysis:
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_ylabel("divergence loss", labelpad=LABELPAD, size=FONTSIZE)
-        ax.set_xlim([-1.1, 3.0])
+        ax.set_xlim([-1.025, 5.025])
         ax.set_ylim([-1.025, 0.025])
         ax.plot(_domain, uniswap, linewidth=2)
         ax.tick_params(axis="x", labelsize=LABELSIZE)
@@ -266,7 +266,7 @@ class Analysis:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
-        ax.set_xlim([-1.1, 3.0])
+        ax.set_xlim([-1.025, 5.025])
         ax.set_ylim([-1.025, 0.025])
         ax.plot(_domain, balancer_50_50, linewidth=2)
         ax.plot(_domain, balancer_95_5, linewidth=2)
@@ -300,4 +300,4 @@ class Analysis:
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_slippage()
+    analysis.plot_divergence_loss()
