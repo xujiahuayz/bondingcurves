@@ -61,25 +61,29 @@ class Analysis:
             curve_A_20.append(self.curve_A_20._compute_trade_qty_out(x, 0, 1))
             curve_A_100.append(self.curve_A_100._compute_trade_qty_out(x, 0, 1))
 
-        # all together
-        fig = plt.figure(figsize=(17, 5.5))
-
-        ax = fig.add_subplot(131)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
         ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1], linewidth=2)
         ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
         ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
         ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
         ax.set_xlabel(
-            r"$r_1$", size=21,
+            r"Pool's token #1 reserve, $r_1$", size=15,
         )
-        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylabel(r"Pool's token #2 reserve, $r_2$", size=15)
         ax.set_ylim([-1e23 / 2, 2.5e24])
         ax.set_xlim([-1e23 / 2, 2.5e24])
-        ax.axvline(ls="--")
-        ax.axhline(ls="--")
+        # ax.axvline(ls="--")
+        # ax.axhline(ls="--")
         ax.legend(["A=1", "A=5", "A=10", "A=100"])
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "conservation_curve.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
-        ax = fig.add_subplot(132)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
         ax.plot(
             [x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50], linewidth=2
         )
@@ -90,36 +94,36 @@ class Analysis:
         ax.plot([x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5])
         ax.plot([x[0] for x in balancer_98_2], [x[1] for x in balancer_98_2])
         ax.set_xlabel(
-            r"$r_1$", size=21,
+            r"Pool's token #1 reserve, $r_1$", size=15,
         )
-        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylabel(r"Pool's token #2 reserve, $r_2$", size=15)
         ax.set_ylim([-1e23 / 2, 2e24])
         ax.set_xlim([0.45e24, 2e24])
-        ax.axvline(ls="--", x=0.5e24)
-        ax.axhline(ls="--")
+        # ax.axvline(ls="--", x=0.5e24)
+        # ax.axhline(ls="--")
         ax.legend(["50%/50%", "60%/40%", "80%/20%", "95%/5%", "98%/2%"])
+        fig.savefig(
+            os.path.join(FIGS_DIR, "conservation", "conservation_balancer.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
-        ax = fig.add_subplot(133)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
         ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap], linewidth=2)
-        ax.plot(
-            [x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5], linewidth=2
-        )
-        ax.plot([x[0] for x in curve_A_1], [x[1] for x in curve_A_1])
-        ax.plot([x[0] for x in curve_A_10], [x[1] for x in curve_A_10])
-        ax.plot([x[0] for x in curve_A_100], [x[1] for x in curve_A_100])
         ax.set_xlabel(
-            r"$r_1$", size=21,
+            r"Pool's token #1 reserve, $r_1$", size=15,
         )
-        ax.set_ylabel(r"$r_2$", size=21)
+        ax.set_ylabel(r"Pool's token #2 reserve, $r_2$", size=15)
         ax.set_ylim([-1e23 / 2, 2e24])
         ax.set_xlim([0.45e24, 2e24])
-        ax.axvline(ls="--", x=0.5e24)
-        ax.axhline(ls="--")
-        ax.legend(
-            ["Uniswap", "Balancer 95%/5%", "Curve, A=1", "Curve, A=10", "Curve, A=100"]
-        )
+        # ax.axvline(ls="--", x=0.5e24)
+        # ax.axhline(ls="--")
+        ax.legend(["Uniswap"])
         fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "3_conservations.pdf"), format="pdf",
+            os.path.join(FIGS_DIR, "conservation", "conservation_uniswap.pdf"),
+            format="pdf",
+            bbox_inches="tight",
         )
 
     def plot_slippage(self):
@@ -319,4 +323,4 @@ class Analysis:
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_slippage()
+    analysis.plot_amm_curve()
