@@ -45,7 +45,7 @@ class Analysis:
         curve_A_20 = []
         curve_A_100 = []
 
-        domain = np.arange(-0.99 * X1, 3 * X1, 50 * DP18)
+        domain = np.arange(-1 * X1, 4.9 * X1, 50 * DP18)
         # trade and look at reserves
 
         for x in domain:
@@ -164,54 +164,71 @@ class Analysis:
             slippage_curve_A_400.append(self.curve_A_400.slippage(qty_in, 1, 0))
             uniswap.append(self.uniswap.slippage(qty_in, 0, 1))
 
-        fig = plt.figure(figsize=(19, 5.5))
-
-        ax = fig.add_subplot(131)
-        ax.plot(slippage_domain, [-y for y in slippage_curve_A_1])
-        ax.plot(slippage_domain, [-y for y in curve_A_5])
-        ax.plot(slippage_domain, [-y for y in curve_A_10])
-        ax.plot(slippage_domain, [-y for y in slippage_curve_A_400])
+        fig = plt.figure()
+        # plt.rcParams['savefig.facecolor'] = "0.8"
+        # plt.rcParams['figure.figsize'] = 4.5, 4.
+        # plt.rcParams['figure.max_open_warning'] = 50
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, [-y for y in slippage_balancer_50_50], linewidth=2)
+        ax.plot(
+            slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out], linewidth=2
+        )
+        ax.plot(
+            slippage_domain, [-y for y in slippage_balancer_95_5_1in_0out], linewidth=2
+        )
+        ax.plot(
+            slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out], linewidth=2
+        )
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"Trade size relative to reserve, $x_1 / r_1$", size=15,
         )
         ax.set_ylabel("slippage", size=15)
-        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
-        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
-        ax.legend(["A=1", "A=5", "A=10", "A=100"])
-
-        ax = fig.add_subplot(132)
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_50_50])
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_95_5_1in_0out])
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
-        ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
-        )
-        ax.set_ylabel("slippage", size=15)
-        ax.set_xlim([0, 0.05])
-        ax.set_ylim([-0.05, 0])
+        ax.set_xlim([-0.001, 0.051])
+        ax.set_ylim([-0.051, 0.001])
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
         ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
         ax.legend(
             ["50%/50%", "60%/40%", "95%/5%", "98%/2%",]
         )
+        fig.savefig(
+            os.path.join(FIGS_DIR, "slippage", "slippage_balancer.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
 
-        ax = fig.add_subplot(133)
-        ax.plot(slippage_domain, [-y for y in uniswap])
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_60_40_1in_0out])
-        ax.plot(slippage_domain, [-y for y in slippage_balancer_98_2_1in_0out])
-        ax.plot(slippage_domain, [-y for y in slippage_curve_A_100])
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, [-y for y in uniswap], linewidth=2)
         ax.set_xlabel(
-            r"$x_1 / r_1$", size=15,
+            r"Trade size relative to reserve, $x_1 / r_1$", size=15,
         )
         ax.set_ylabel("slippage", size=15)
-        ax.set_xlim([0, 0.05])
-        ax.set_ylim([-0.05, 0])
+        ax.set_xlim([-0.001, 0.051])
+        ax.set_ylim([-0.051, 0.001])
         ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
         ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
-        ax.legend(["Uniswap", "Balancer 60%/40%", "Balancer 98%/2%", "Curve A=100"])
+        ax.legend(["Uniswap"])
         fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "all_slippage_comparisons.pdf"),
+            os.path.join(FIGS_DIR, "slippage", "slippage_uniswap.pdf"),
+            format="pdf",
+            bbox_inches="tight",
+        )
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(slippage_domain, [-y for y in slippage_curve_A_1])
+        ax.plot(slippage_domain, [-y for y in curve_A_5])
+        ax.plot(slippage_domain, [-y for y in curve_A_10])
+        ax.plot(slippage_domain, [-y for y in slippage_curve_A_400])
+        ax.set_xlabel(
+            r"Trade size relative to reserve, $x_1 / r_1$", size=15,
+        )
+        ax.set_ylabel("slippage", size=15)
+        ax.xaxis.set_major_formatter(PercentFormatter(xmax=1.0))
+        ax.yaxis.set_major_formatter(PercentFormatter(xmax=1.0, decimals=1))
+        ax.legend(["A=1", "A=5", "A=10", "A=100"])
+        fig.savefig(
+            os.path.join(FIGS_DIR, "slippage", "slippage_curve.pdf"),
             format="pdf",
             bbox_inches="tight",
         )
@@ -302,4 +319,4 @@ class Analysis:
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_divergence_loss()
+    analysis.plot_slippage()
