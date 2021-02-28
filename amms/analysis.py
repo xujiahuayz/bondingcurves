@@ -60,7 +60,9 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.set_xlabel(
-            r"Pool's token 1 reserve, $r_1$", labelpad=LABELPAD, size=FONTSIZE,
+            r"Pool's token 1 reserve, $r_1$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
         )
         # ax.set_ylabel(
         #     r"Pool's token 2 reserve, $r_2$" + "\n" + r"$r_2 = 1000$",
@@ -90,7 +92,9 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.set_xlabel(
-            r"Pool's token 1 reserve, $r_1$", labelpad=LABELPAD, size=FONTSIZE,
+            r"Pool's token 1 reserve, $r_1$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
         )
         # ax.set_ylabel(
         #     r"Pool's token 2 reserve, $r_2$" + "\n" + r"$r_2 = 1000$",
@@ -112,10 +116,14 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.set_xlabel(
-            r"Pool's token 1 reserve, $r_1$", labelpad=LABELPAD, size=FONTSIZE,
+            r"Pool's token 1 reserve, $r_1$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
         )
         ax.set_ylabel(
-            r"Pool's token 2 reserve, $r_2$", labelpad=LABELPAD, size=FONTSIZE,
+            r"Pool's token 2 reserve, $r_2$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
         )
         ax.set_ylim([0, 100])
         ax.set_xlim([0, 100])
@@ -153,13 +161,19 @@ class Analysis:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(
-            slippage_domain, [-y for y in slippage_balancer_50_50], linewidth=2,
+            slippage_domain,
+            [-y for y in slippage_balancer_50_50],
+            linewidth=2,
         )
         ax.plot(
-            slippage_domain, [-y for y in slippage_balancer_95_5_0in_1out], linewidth=2,
+            slippage_domain,
+            [-y for y in slippage_balancer_95_5_0in_1out],
+            linewidth=2,
         )
         ax.plot(
-            slippage_domain, [-y for y in slippage_balancer_5_95_0in_1out], linewidth=2,
+            slippage_domain,
+            [-y for y in slippage_balancer_5_95_0in_1out],
+            linewidth=2,
         )
         ax.set_xlabel(
             r"Trade size relative to the reserve, $x_1 / r_1$",
@@ -180,7 +194,9 @@ class Analysis:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(
-            slippage_domain, [-y for y in slippage_uniswap], linewidth=2,
+            slippage_domain,
+            [-y for y in slippage_uniswap],
+            linewidth=2,
         )
         ax.set_xlabel(
             r"Trade size relative to the reserve, $x_1 / r_1$",
@@ -188,7 +204,9 @@ class Analysis:
             size=FONTSIZE,
         )
         ax.set_ylabel(
-            "slippage", labelpad=LABELPAD, size=FONTSIZE,
+            "slippage",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
         )
         ax.set_ylim([-0.025, 0.026])
         ax.set_xlim([-1.0, 1.01])
@@ -300,4 +318,4 @@ class Analysis:
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_divergence_loss()
+    analysis.plot_slippage()
