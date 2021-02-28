@@ -54,16 +54,6 @@ class Balancer(Amm):
         ) / spot_price - 1
 
     def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
-        # todo: validations in the inherited class
-        exponent = 1.0 / ((self.weights[asset_in_ix] / self.weights[asset_out_ix]) + 1)
-        numerator = self.reserves[asset_in_ix] * ((1 + pct_change) ** exponent)
-        # equation no: 34 in the paper
-        V_prime = numerator / self.weights[asset_in_ix]
+        V = self.reserves[asset_in_ix] / self.weights[asset_in_ix]
+        V_prime = V * (1 + pct_change) ** self.weights[asset_out_ix]
         return V_prime
-
-
-# if __name__ == "__main__":
-#     balancer = Balancer([1_000, 1_000], [0.5, 0.5])
-#     print(balancer)
-#     print(balancer.divergence_loss(-0.5, 0, 1))
-#     print(balancer.divergence_loss(0.5, 0, 1))
