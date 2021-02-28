@@ -95,10 +95,10 @@ class Curve(Amm):
         _, updated_reserves_out_ix = self._compute_trade_qty_out(
             qty_in, asset_in_ix, asset_out_ix
         )
+        x_2 = self.reserves[asset_out_ix] - updated_reserves_out_ix
+        x_1 = qty_in
         p = self._spot_price(self.reserves[asset_in_ix], self.reserves[asset_out_ix])
-        return (
-            qty_in / (self.reserves[asset_out_ix] - updated_reserves_out_ix)
-        ) / p - 1
+        return (x_1 / x_2) / p - 1
 
     # ! notice that the signature here is different to the one in Amm
     # ! this one is missing pct_change. Rather it is computed implicitly.

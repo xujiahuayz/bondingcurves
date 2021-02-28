@@ -45,11 +45,15 @@ class Balancer(Amm):
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         x_1 = qty_in
-        w_1 = self.weights[asset_in_ix]
-        w_2 = self.weights[asset_out_ix]
-        r_1 = self.reserves[asset_in_ix]
-        r_1_prime, _ = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
-        return x_1 / (r_1 * (w_2 / w_1) * (1 - (r_1 / r_1_prime) ** (w_1 / w_2))) - 1
+        _, r_2_prime = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
+        x_2 = self.reserves[asset_out_ix] - r_2_prime
+        # w_1 = self.weights[asset_in_ix]
+        # w_2 = self.weights[asset_out_ix]
+        # r_1 = self.reserves[asset_in_ix]
+        # r_1_prime, _ = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
+        # return x_1 / (r_1 * (w_2 / w_1) * (1 - (r_1 / r_1_prime) ** (w_1 / w_2))) - 1
+        p = self.spot_price(asset_in_ix, asset_out_ix)
+        return (x_1 / x_2) / p - 1
 
     def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
         V = self.reserves[asset_in_ix] / self.weights[asset_in_ix]
