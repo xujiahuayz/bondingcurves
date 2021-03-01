@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from amms.main import Amm
 
 # we are dealing with integer mathematics everywhere, so this is the epsillon
-EPSILLON = 1
+EPSILLON = 1e-5
 
 
 class Curve(Amm):
