@@ -29,16 +29,16 @@ class Dodo:
 
         updated_reserves_in_ix = pre_trade_reserves_in_ix + qty_in
         
-        diff = reserves_regressed_in_ix - updated_reserves_in_ix
+        diff = reserves_regressed_in_ix - updated_reserves_in_ix 
         part_1 = oracle_price*reserves_regressed_out_ix*(1-2*self.liq_param)
         part_2 = (1-self.liq_param)
         
         if updated_reserves_in_ix >= reserves_regressed_in_ix:
-            updated_reserves_out_ix = (diff+part_1+((diff+part_1)**2+4*self.liq_param*part_2*
+            updated_reserves_out_ix = (diff+part_1+(
+                (diff+part_1)**2+4*self.liq_param*part_2*
                                                     (oracle_price*reserves_regressed_out_ix)**2)**(1/2))/(2*oracle_price*part_2)
         else: 
-            updated_reserves_out_ix = reserves_regressed_out_ix+(diff*(1+self.liq_param*(reserves_regressed_in_ix/updated_reserves_in_ix)
-                                                                       -1))/(oracle_price)
+            updated_reserves_out_ix = reserves_regressed_out_ix + (diff*(self.liq_param*diff+updated_reserves_in_ix))/(oracle_price*updated_reserves_in_ix)
         
         return updated_reserves_in_ix, updated_reserves_out_ix
 
