@@ -29,6 +29,9 @@ class Amm:
         raise Exception("must be implemented")
 
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+        raise Exception("must be implemented")
+
+    def _trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         """Simulates a DEX trade
 
         Args:
@@ -44,7 +47,7 @@ class Amm:
             of this asset that you are depleting the pool of.
         """
         self._validate_trade(qty_in, asset_in_ix, asset_out_ix)
-        raise Exception("must be implemented")
+        return self.trade(qty_in, asset_in_ix, asset_out_ix)
 
     def conservation_function(self):
         raise Exception("must be implemented")
