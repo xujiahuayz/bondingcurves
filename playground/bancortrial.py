@@ -12,4 +12,4 @@ linkResBefore = 0.081364151806560923
 weightbnt = 0.5
 weightlink = 0.5
 
-linkResBefore*(1-(BNTSUPPLYAfter/ BNTSUPPLYBefore)**(1/weightbnt))
+linkResBefore * (1 - (BNTSUPPLYAfter / BNTSUPPLYBefore) ** (1 / weightbnt))

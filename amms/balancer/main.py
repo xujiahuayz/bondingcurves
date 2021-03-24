@@ -22,7 +22,9 @@ class Balancer(Amm):
             self.reserves[asset_out_ix] * self.weights[asset_in_ix]
         )
 
-    def _compute_trade_qty_out(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+    def _compute_trade_qty_out(
+        self, qty_in: int, asset_in_ix: int, asset_out_ix: int
+    ):
         pre_trade_reserves_in_ix = self.reserves[asset_in_ix]
         pre_trade_reserves_out_ix = self.reserves[asset_out_ix]
         # equation no: 24 in the paper
@@ -36,16 +38,19 @@ class Balancer(Amm):
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         pre_trade_reserves_out_ix = self.reserves[asset_out_ix]
         # todo: common step & validations to be enforced by the inherited class
-        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
-            qty_in, asset_in_ix, asset_out_ix
-        )
+        (
+            updated_reserves_in_ix,
+            updated_reserves_out_ix,
+        ) = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
         self.reserves[asset_in_ix] = updated_reserves_in_ix
         self.reserves[asset_out_ix] = updated_reserves_out_ix
         return pre_trade_reserves_out_ix - self.reserves[asset_out_ix]
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         x_1 = qty_in
-        _, r_2_prime = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
+        _, r_2_prime = self._compute_trade_qty_out(
+            qty_in, asset_in_ix, asset_out_ix
+        )
         x_2 = self.reserves[asset_out_ix] - r_2_prime
         # w_1 = self.weights[asset_in_ix]
         # w_2 = self.weights[asset_out_ix]
@@ -55,7 +60,9 @@ class Balancer(Amm):
         p = self.spot_price(asset_in_ix, asset_out_ix)
         return (x_1 / x_2) / p - 1
 
-    def value_pool(self, pct_change: float, asset_in_ix: int, asset_out_ix: int):
+    def value_pool(
+        self, pct_change: float, asset_in_ix: int, asset_out_ix: int
+    ):
         V = self.reserves[asset_in_ix] / self.weights[asset_in_ix]
         V_prime = V * (1 + pct_change) ** self.weights[asset_out_ix]
         return V_prime

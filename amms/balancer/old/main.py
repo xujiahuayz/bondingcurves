@@ -15,7 +15,9 @@ if module_path not in sys.path:
 
 
 # https://baller.netlify.app/assets
-def divergence_loss(asset_weights: list[float], asset_price_changes: list[float]):
+def divergence_loss(
+    asset_weights: list[float], asset_price_changes: list[float]
+):
     if not len(asset_weights) == len(asset_price_changes):
         raise Exception("must be of equal size")
 
@@ -103,7 +105,8 @@ def plot_divergence_loss(
 
 
 def plot_comparison_divergence_loss(
-    asset_weights: list[Tuple[float, float]], pct_changes: list[Tuple[float, float]]
+    asset_weights: list[Tuple[float, float]],
+    pct_changes: list[Tuple[float, float]],
 ):
     labels = []
     colors = ["black", "red", "green", "blue"]
@@ -119,7 +122,9 @@ def plot_comparison_divergence_loss(
             x.append(pct_change[1])
 
         domain = [_x * 100 for _x in x]
-        labels.append(f"{int(asset_weight[0] * 100)}%-{int(asset_weight[1] * 100)}%")
+        labels.append(
+            f"{int(asset_weight[0] * 100)}%-{int(asset_weight[1] * 100)}%"
+        )
 
         plt.plot(domain, y, linewidth=(4 - i), color=colors[i])
 
@@ -178,7 +183,9 @@ def plot_3d_divergence_loss_2_assets(
 
     fig = plt.figure()
     ax = fig.gca(projection="3d")
-    surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm_r, linewidth=0, antialiased=False)
+    surf = ax.plot_surface(
+        X, Y, Z, cmap=cm.coolwarm_r, linewidth=0, antialiased=False
+    )
 
     ax.zaxis.set_major_locator(LinearLocator(10))
     ax.zaxis.set_major_formatter(FormatStrFormatter("%.02f"))
@@ -209,4 +216,3 @@ if __name__ == "__main__":
 
     pct_changes = [[0, i] for i in np.arange(-0.9999, 5.0001, 0.0001)]
     _ = plot_divergence_loss([0.5, 0.5], pct_changes)
-

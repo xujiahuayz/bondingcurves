@@ -21,8 +21,9 @@ def plot_constant_product():
     Z = v / (X * Y)
 
     # Plot the surface.
-    surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
-                           linewidth=0, antialiased=False)
+    surf = ax.plot_surface(
+        X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False
+    )
 
     # Customize the z axis.
     ax.set_zlim(222, 1_000)

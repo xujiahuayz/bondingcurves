@@ -44,19 +44,33 @@ class Analysis:
 
         for x in domain:
             uniswap.append(self.uniswap._compute_trade_qty_out(x, 0, 1))
-            balancer_95_5.append(self.balancer_95_5._compute_trade_qty_out(x, 0, 1))
-            balancer_50_50.append(self.balancer_50_50._compute_trade_qty_out(x, 0, 1))
-            balancer_5_95.append(self.balancer_5_95._compute_trade_qty_out(x, 0, 1))
+            balancer_95_5.append(
+                self.balancer_95_5._compute_trade_qty_out(x, 0, 1)
+            )
+            balancer_50_50.append(
+                self.balancer_50_50._compute_trade_qty_out(x, 0, 1)
+            )
+            balancer_5_95.append(
+                self.balancer_5_95._compute_trade_qty_out(x, 0, 1)
+            )
             curve_A_0.append(self.curve_A_0._compute_trade_qty_out(x, 0, 1))
             curve_A_5.append(self.curve_A_5._compute_trade_qty_out(x, 0, 1))
-            curve_A_10000.append(self.curve_A_10000._compute_trade_qty_out(x, 0, 1))
+            curve_A_10000.append(
+                self.curve_A_10000._compute_trade_qty_out(x, 0, 1)
+            )
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
-        ax.plot([x[0] for x in curve_A_0], [x[1] for x in curve_A_0], linewidth=2)
-        ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
         ax.plot(
-            [x[0] for x in curve_A_10000], [x[1] for x in curve_A_10000], linewidth=2
+            [x[0] for x in curve_A_0], [x[1] for x in curve_A_0], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in curve_A_10000],
+            [x[1] for x in curve_A_10000],
+            linewidth=2,
         )
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
@@ -77,13 +91,19 @@ class Analysis:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.plot(
-            [x[0] for x in balancer_50_50], [x[1] for x in balancer_50_50], linewidth=2
+            [x[0] for x in balancer_50_50],
+            [x[1] for x in balancer_50_50],
+            linewidth=2,
         )
         ax.plot(
-            [x[0] for x in balancer_95_5], [x[1] for x in balancer_95_5], linewidth=2
+            [x[0] for x in balancer_95_5],
+            [x[1] for x in balancer_95_5],
+            linewidth=2,
         )
         ax.plot(
-            [x[0] for x in balancer_5_95], [x[1] for x in balancer_5_95], linewidth=2
+            [x[0] for x in balancer_5_95],
+            [x[1] for x in balancer_5_95],
+            linewidth=2,
         )
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
@@ -96,7 +116,9 @@ class Analysis:
         ax.set_xlim([0, 100])
         ax.legend([r"$.50/.50$", r".95/.05", r"$.05/.95$"], title=r"$w_1/w_2$")
         fig.savefig(
-            os.path.join(FIGS_DIR, "conservation", "conservation_balancer.pdf"),
+            os.path.join(
+                FIGS_DIR, "conservation", "conservation_balancer.pdf"
+            ),
             format="pdf",
             bbox_inches="tight",
         )
@@ -143,11 +165,15 @@ class Analysis:
             slippage_balancer_5_95_0in_1out.append(
                 self.balancer_5_95.slippage(qty_in, 0, 1)
             )
-            slippage_balancer_50_50.append(self.balancer_50_50.slippage(qty_in, 0, 1))
+            slippage_balancer_50_50.append(
+                self.balancer_50_50.slippage(qty_in, 0, 1)
+            )
             slippage_uniswap.append(self.uniswap.slippage(qty_in, 0, 1))
             slippage_curve_A_0.append(self.curve_A_0.slippage(qty_in, 0, 1))
             slippage_curve_A_5.append(self.curve_A_5.slippage(qty_in, 0, 1))
-            slippage_curve_A_10000.append(self.curve_A_10000.slippage(qty_in, 0, 1))
+            slippage_curve_A_10000.append(
+                self.curve_A_10000.slippage(qty_in, 0, 1)
+            )
 
         fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -253,9 +279,15 @@ class Analysis:
             curve_A_10000.append(self.curve_A_10000.divergence_loss(qty, 0, 1))
 
         for pct_change in _domain:
-            balancer_50_50.append(self.balancer_50_50.divergence_loss(pct_change, 0, 1))
-            balancer_95_5.append(self.balancer_95_5.divergence_loss(pct_change, 0, 1))
-            balancer_5_95.append(self.balancer_5_95.divergence_loss(pct_change, 0, 1))
+            balancer_50_50.append(
+                self.balancer_50_50.divergence_loss(pct_change, 0, 1)
+            )
+            balancer_95_5.append(
+                self.balancer_95_5.divergence_loss(pct_change, 0, 1)
+            )
+            balancer_5_95.append(
+                self.balancer_5_95.divergence_loss(pct_change, 0, 1)
+            )
             uniswap.append(self.uniswap.divergence_loss(pct_change, 0, 1))
 
         fig = plt.figure()
@@ -298,10 +330,16 @@ class Analysis:
         ax.set_ylim([-1.025, 0.025])
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
-        ax.plot([x[0] for x in curve_A_0], [x[1] for x in curve_A_0], linewidth=2)
-        ax.plot([x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2)
         ax.plot(
-            [x[0] for x in curve_A_10000], [x[1] for x in curve_A_10000], linewidth=2
+            [x[0] for x in curve_A_0], [x[1] for x in curve_A_0], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in curve_A_5], [x[1] for x in curve_A_5], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in curve_A_10000],
+            [x[1] for x in curve_A_10000],
+            linewidth=2,
         )
         ax.legend(["0", "5", "10000"], title=r"$\mathcal{A}$")
         fig.savefig(
