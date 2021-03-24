@@ -12,10 +12,10 @@ class Dodo:
     ):
         if self.reserves[asset_in_ix] >= self.reserves_regressed[asset_in_ix]:
             exchange_rate = oracle_price*(1+self.liq_param*(
-                (self.reserves_regressed[asset_out_ix]/ self.reserves[asset_out_ix])**2-1))
+                (self.reserves_regressed[asset_out_ix] / self.reserves[asset_out_ix])**2-1))
         else:
-            exchange_rate = oracle_price/(1+self.liq_param*
-                                          ((self.reserves_regressed[asset_in_ix]/ self.reserves[asset_in_ix])**2-1))
+            exchange_rate = oracle_price / (1+self.liq_param*
+                                          ((self.reserves_regressed[asset_in_ix] / self.reserves[asset_in_ix])**2-1))
         return exchange_rate
 
     def _compute_trade_qty_out(
