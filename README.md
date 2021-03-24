@@ -10,21 +10,21 @@ This is an exploration of the different automated market making algorithms in De
 
 ## Setup
 
-We recommend you use pyenv to manage your python versions.
+We recommend you use `pyenv` to manage your python versions.
 
-We have used python 3.9.1 in this repo.
+We have used **python 3.9.1** in this repo.
 
-On how to use pyenv, look [here](https://realpython.com/intro-to-pyenv/).
+On how to use `pyenv`, see [here](https://realpython.com/intro-to-pyenv/).
 
-We also advise you use venv module to manage the per project Python dependencies.
+We also advise you to use **venv** module to manage the per project python dependencies.
 
-For example, once you have installed the 3.9.1 python version with pyenv, execute this
+For example, once you have installed the **3.9.1** python version with `pyenv`, execute this
 
 ```bash
 python -m venv ~/.v/uclamm
 ```
 
-Ensure that python points to the newly installed Python. This command will create a uclamm python virutal environment. Now you are ready to install the dependencies required for this project.
+This command will create a `uclamm` python virutal environment. Now you are ready to install the dependencies required for this project.
 
 Activate the environment
 
@@ -32,7 +32,7 @@ Activate the environment
 source ~/.v/uclamm/bin/activate
 ```
 
-Simply execute
+Now, install the dependencies
 
 ```bash
 pip install -r requirements.txt
