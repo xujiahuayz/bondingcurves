@@ -6,6 +6,7 @@ This is an exploration of the different automated market making algorithms in De
 
 - [Table of Contents](#table-of-contents)
 - [Setup](#setup)
+- [Conservation function, slippage and divergence loss plots](#Conservation-function,-slippage-and-divergence-loss-plots)
 - [Contirbuting](#contributing)
 
 ## Setup
@@ -37,6 +38,16 @@ Now, install the dependencies
 ```bash
 pip install -r requirements.txt
 ```
+
+## Conservation function, slippage and divergence loss plots
+
+To plot all of these, run
+
+```bash
+python -m amms.analysis
+```
+
+from the root of this workspace. Note that it takes some time to plot all of these.
 
 ## Contributing
 

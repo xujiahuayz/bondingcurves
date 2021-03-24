@@ -445,4 +445,9 @@ class Analysis:
 
 if __name__ == "__main__":
     analysis = Analysis()
+
+    # ! note, this will take sometime due to the implicit determination of domain in the
+    # case of Curve and Dodo
+    analysis.plot_conservation_function()
+    analysis.plot_slippage()
     analysis.plot_divergence_loss()
