@@ -6,6 +6,7 @@ import os
 from amms.balancer.main import Balancer
 from amms.uniswap.main import Uniswap
 from amms.curve.main import Curve
+from amms.dodo.main import Dodo
 
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 FIGS_DIR = os.path.join(CURR_DIR, "figures")
@@ -16,6 +17,15 @@ X2 = 40
 LABELPAD = 20
 FONTSIZE = 14
 LABELSIZE = 12
+ORACLE_PRICE = 1
+
+
+def save_file(fig, path: str):
+    try:
+        fig.savefig(path, format="pdf", bbox_inches="tight")
+    except:
+        os.makedirs(os.path.dirname(path))
+        fig.savefig(path, format="pdf", bbox_inches="tight")
 
 
 class Analysis:
@@ -27,8 +37,11 @@ class Analysis:
         self.curve_A_0 = Curve([X1, X2], 0.0001)
         self.curve_A_5 = Curve([X1, X2], 5)
         self.curve_A_10000 = Curve([X1, X2], 10_000)
+        self.dodo_A_001 = Dodo([X1, X2], 0.01)
+        self.dodo_A_05 = Dodo([X1, X2], 0.5)
+        self.dodo_A_099 = Dodo([X1, X2], 0.99)
 
-    def plot_amm_curve(self):
+    def plot_conservation_function(self):
         balancer_50_50 = []
         balancer_5_95 = []
         balancer_95_5 = []
@@ -36,6 +49,9 @@ class Analysis:
         curve_A_0 = []
         curve_A_5 = []
         curve_A_10000 = []
+        dodo_A_001 = []
+        dodo_A_05 = []
+        dodo_A_099 = []
 
         # 0.99 and 0.1 make no sense, smart contracts use integer mathematics
         # we have this hack here, for continuity of the plots
@@ -57,6 +73,15 @@ class Analysis:
             curve_A_5.append(self.curve_A_5._compute_trade_qty_out(x, 0, 1))
             curve_A_10000.append(
                 self.curve_A_10000._compute_trade_qty_out(x, 0, 1)
+            )
+            dodo_A_001.append(
+                self.dodo_A_001._compute_trade_qty_out(x, 0, 1, ORACLE_PRICE)
+            )
+            dodo_A_05.append(
+                self.dodo_A_05._compute_trade_qty_out(x, 0, 1, ORACLE_PRICE)
+            )
+            dodo_A_099.append(
+                self.dodo_A_099._compute_trade_qty_out(x, 0, 1, ORACLE_PRICE)
             )
 
         fig = plt.figure()
@@ -82,10 +107,9 @@ class Analysis:
         ax.set_ylim([0, 100])
         ax.set_xlim([0, 100])
         ax.legend(["0", "5", "10000"], title=r"$\mathcal{A}$")
-        fig.savefig(
+        save_file(
+            fig,
             os.path.join(FIGS_DIR, "conservation", "conservation_curve.pdf"),
-            format="pdf",
-            bbox_inches="tight",
         )
 
         fig = plt.figure()
@@ -115,12 +139,11 @@ class Analysis:
         ax.set_ylim([0, 100])
         ax.set_xlim([0, 100])
         ax.legend([r"$.50/.50$", r".95/.05", r"$.05/.95$"], title=r"$w_1/w_2$")
-        fig.savefig(
+        save_file(
+            fig,
             os.path.join(
                 FIGS_DIR, "conservation", "conservation_balancer.pdf"
             ),
-            format="pdf",
-            bbox_inches="tight",
         )
 
         fig = plt.figure()
@@ -141,10 +164,35 @@ class Analysis:
         ax.set_ylim([0, 100])
         ax.set_xlim([0, 100])
         ax.legend(title="Uniswap")
-        fig.savefig(
+        save_file(
+            fig,
             os.path.join(FIGS_DIR, "conservation", "conservation_uniswap.pdf"),
-            format="pdf",
-            bbox_inches="tight",
+        )
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(
+            [x[0] for x in dodo_A_099], [x[1] for x in dodo_A_099], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in dodo_A_05], [x[1] for x in dodo_A_05], linewidth=2
+        )
+        ax.plot(
+            [x[0] for x in dodo_A_001], [x[1] for x in dodo_A_001], linewidth=2
+        )
+        ax.tick_params(axis="x", labelsize=LABELSIZE)
+        ax.tick_params(axis="y", labelsize=LABELSIZE)
+        ax.set_xlabel(
+            r"Pool's token 1 reserve, $r_1$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
+        )
+        ax.set_ylim([0, 100])
+        ax.set_xlim([0, 100])
+        ax.legend(["0.99", "0.5", "0.01"], title=r"$\mathcal{A}$")
+        save_file(
+            fig,
+            os.path.join(FIGS_DIR, "conservation", "conservation_dodo.pdf"),
         )
 
     def plot_slippage(self):
@@ -155,6 +203,9 @@ class Analysis:
         slippage_curve_A_0 = []
         slippage_curve_A_5 = []
         slippage_curve_A_10000 = []
+        dodo_A_001 = []
+        dodo_A_05 = []
+        dodo_A_099 = []
 
         slippage_domain = np.arange(-1 * X1, 2 * X1, 0.0001)
 
@@ -173,6 +224,15 @@ class Analysis:
             slippage_curve_A_5.append(self.curve_A_5.slippage(qty_in, 0, 1))
             slippage_curve_A_10000.append(
                 self.curve_A_10000.slippage(qty_in, 0, 1)
+            )
+            dodo_A_001.append(
+                self.dodo_A_001.slippage(qty_in, 0, 1, ORACLE_PRICE)
+            )
+            dodo_A_05.append(
+                self.dodo_A_05.slippage(qty_in, 0, 1, ORACLE_PRICE)
+            )
+            dodo_A_099.append(
+                self.dodo_A_099.slippage(qty_in, 0, 1, ORACLE_PRICE)
             )
 
         fig = plt.figure()
@@ -202,10 +262,8 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.legend([".50/.50", ".95/.05", ".05/.95"], title=r"$w_1/w_2$")
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "slippage_balancer.pdf"),
-            format="pdf",
-            bbox_inches="tight",
+        save_file(
+            fig, os.path.join(FIGS_DIR, "slippage", "slippage_balancer.pdf")
         )
 
         fig = plt.figure()
@@ -230,10 +288,8 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.legend(title="Uniswap")
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "slippage_uniswap.pdf"),
-            format="pdf",
-            bbox_inches="tight",
+        save_file(
+            fig, os.path.join(FIGS_DIR, "slippage", "slippage_uniswap.pdf")
         )
 
         fig = plt.figure()
@@ -251,11 +307,38 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.legend(["0", "5", "10000"], title=r"$\mathcal{A}$")
-        fig.savefig(
-            os.path.join(FIGS_DIR, "slippage", "slippage_curve.pdf"),
-            format="pdf",
-            bbox_inches="tight",
+        save_file(
+            fig, os.path.join(FIGS_DIR, "slippage", "slippage_curve.pdf")
         )
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(
+            [x / X1 for x in slippage_domain],
+            dodo_A_099,
+            linewidth=2,
+        )
+        ax.plot(
+            [x / X1 for x in slippage_domain],
+            dodo_A_05,
+            linewidth=2,
+        )
+        ax.plot(
+            [x / X1 for x in slippage_domain],
+            dodo_A_001,
+            linewidth=2,
+        )
+        ax.set_xlabel(
+            r"Trade size relative to the reserve, $x_1 / r_1$",
+            labelpad=LABELPAD,
+            size=FONTSIZE,
+        )
+        ax.set_ylim([-1.0, 1.01])
+        ax.set_xlim([-1.0, 1.01])
+        ax.tick_params(axis="x", labelsize=LABELSIZE)
+        ax.tick_params(axis="y", labelsize=LABELSIZE)
+        ax.legend(["0.99", "0.5", "0.01"], title=r"$\mathcal{A}$")
+        save_file(fig, os.path.join(FIGS_DIR, "slippage", "slippage_dodo.pdf"))
 
     def plot_divergence_loss(self):
         curve_A_0 = []
@@ -300,10 +383,9 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.legend(title="Uniswap")
-        fig.savefig(
+        save_file(
+            fig,
             os.path.join(FIGS_DIR, "divergence_loss", "divloss_uniswap.pdf"),
-            format="pdf",
-            bbox_inches="tight",
         )
 
         fig = plt.figure()
@@ -317,10 +399,9 @@ class Analysis:
         ax.tick_params(axis="x", labelsize=LABELSIZE)
         ax.tick_params(axis="y", labelsize=LABELSIZE)
         ax.legend([".50/.50", ".95/.05", ".05/.95"], title=r"$w_1/w_2$")
-        fig.savefig(
+        save_file(
+            fig,
             os.path.join(FIGS_DIR, "divergence_loss", "divloss_balancer.pdf"),
-            format="pdf",
-            bbox_inches="tight",
         )
 
         fig = plt.figure()
@@ -342,13 +423,26 @@ class Analysis:
             linewidth=2,
         )
         ax.legend(["0", "5", "10000"], title=r"$\mathcal{A}$")
-        fig.savefig(
-            os.path.join(FIGS_DIR, "divergence_loss", "divloss_curve.pdf"),
-            format="pdf",
-            bbox_inches="tight",
+        save_file(
+            fig, os.path.join(FIGS_DIR, "divergence_loss", "divloss_curve.pdf")
+        )
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
+        ax.set_xlim([-1.025, 5.025])
+        ax.set_ylim([-1.025, 0.025])
+        ax.axhline(y=0, linewidth=2)
+        ax.axhline(y=0, linewidth=2, c="orange")
+        ax.axhline(y=0, linewidth=2, c="g")
+        ax.tick_params(axis="x", labelsize=LABELSIZE)
+        ax.tick_params(axis="y", labelsize=LABELSIZE)
+        ax.legend(["0.99", "0.5", "0.01"], title=r"$\mathcal{A}$")
+        save_file(
+            fig, os.path.join(FIGS_DIR, "divergence_loss", "divloss_dodo.pdf")
         )
 
 
 if __name__ == "__main__":
     analysis = Analysis()
-    analysis.plot_slippage()
+    analysis.plot_divergence_loss()

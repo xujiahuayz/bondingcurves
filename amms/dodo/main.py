@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+from amms.main import Amm
 
 
-class Dodo:
+class Dodo(Amm):
     def __init__(self, reserves: list, liq_param: float):
         self.reserves = reserves
         self.reserves_regressed = reserves
