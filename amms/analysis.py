@@ -84,7 +84,7 @@ class Analysis:
                 self.dodo_A_099._compute_trade_qty_out(x, 0, 1, ORACLE_PRICE)
             )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x[0] for x in curve_A_0], [x[1] for x in curve_A_0], linewidth=2
@@ -112,7 +112,7 @@ class Analysis:
             os.path.join(FIGS_DIR, "conservation", "conservation_curve.pdf"),
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x[0] for x in balancer_50_50],
@@ -146,7 +146,7 @@ class Analysis:
             ),
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot([x[0] for x in uniswap], [x[1] for x in uniswap], linewidth=2)
         ax.tick_params(axis="x", labelsize=LABELSIZE)
@@ -169,7 +169,7 @@ class Analysis:
             os.path.join(FIGS_DIR, "conservation", "conservation_uniswap.pdf"),
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x[0] for x in dodo_A_099], [x[1] for x in dodo_A_099], linewidth=2
@@ -235,7 +235,7 @@ class Analysis:
                 self.dodo_A_099.slippage(qty_in, 0, 1, ORACLE_PRICE)
             )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x / X1 for x in slippage_domain],
@@ -253,7 +253,7 @@ class Analysis:
             linewidth=2,
         )
         ax.set_xlabel(
-            r"Trade size relative to the reserve, $x_1 / r_1$",
+            r"trade size relative to the reserve, $x_1 / r_1$",
             labelpad=LABELPAD,
             size=FONTSIZE,
         )
@@ -266,7 +266,7 @@ class Analysis:
             fig, os.path.join(FIGS_DIR, "slippage", "slippage_balancer.pdf")
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x / X1 for x in slippage_domain],
@@ -274,7 +274,7 @@ class Analysis:
             linewidth=2,
         )
         ax.set_xlabel(
-            r"Trade size relative to the reserve, $x_1 / r_1$",
+            r"trade size relative to the reserve, $x_1 / r_1$",
             labelpad=LABELPAD,
             size=FONTSIZE,
         )
@@ -292,7 +292,7 @@ class Analysis:
             fig, os.path.join(FIGS_DIR, "slippage", "slippage_uniswap.pdf")
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot([x / X1 for x in slippage_domain], slippage_curve_A_0)
         ax.plot([x / X1 for x in slippage_domain], slippage_curve_A_5)
@@ -311,7 +311,7 @@ class Analysis:
             fig, os.path.join(FIGS_DIR, "slippage", "slippage_curve.pdf")
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.plot(
             [x / X1 for x in slippage_domain],
@@ -329,7 +329,7 @@ class Analysis:
             linewidth=2,
         )
         ax.set_xlabel(
-            r"Trade size relative to the reserve, $x_1 / r_1$",
+            r"trade size relative to the reserve, $x_1 / r_1$",
             labelpad=LABELPAD,
             size=FONTSIZE,
         )
@@ -373,7 +373,7 @@ class Analysis:
             )
             uniswap.append(self.uniswap.divergence_loss(pct_change, 0, 1))
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_ylabel("divergence loss", labelpad=LABELPAD, size=FONTSIZE)
@@ -388,7 +388,7 @@ class Analysis:
             os.path.join(FIGS_DIR, "divergence_loss", "divloss_uniswap.pdf"),
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_xlim([-1.025, 5.025])
@@ -404,7 +404,7 @@ class Analysis:
             os.path.join(FIGS_DIR, "divergence_loss", "divloss_balancer.pdf"),
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_xlim([-1.025, 5.025])
@@ -427,7 +427,7 @@ class Analysis:
             fig, os.path.join(FIGS_DIR, "divergence_loss", "divloss_curve.pdf")
         )
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(5, 4.25))
         ax = fig.add_subplot(111)
         ax.set_xlabel("spot price change", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_xlim([-1.025, 5.025])
