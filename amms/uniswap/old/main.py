@@ -99,8 +99,9 @@ class Amm:
 
         self.prev_invariant = self.x_1 * self.x_2  # kLast
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)  # self.x_i += x_i
-        self._set(x_i.complement, self._get(
-            x_i.complement) + x_j)  # self.x_j += x_j
+        self._set(
+            x_i.complement, self._get(x_i.complement) + x_j
+        )  # self.x_j += x_j
         self.invariant = self.x_1 * self.x_2
 
         self.x1s.append(x_i.qty)
@@ -143,8 +144,11 @@ class Amm:
         l.log.info(self)
 
         # applies the 30 bps fee and accounts for the x_i in the updated reserves
-        x_j = get_amount_out(x_i, self._get(x_i.name),
-                             self._get(x_i.complement),)
+        x_j = get_amount_out(
+            x_i,
+            self._get(x_i.name),
+            self._get(x_i.complement),
+        )
         self._set(x_i.name, self._get(x_i.name) + x_i.qty)
         self._set(x_i.complement, self._get(x_i.complement) - x_j)
 

@@ -16,7 +16,11 @@ def get_D(xp: list[int], amplification: float):
         for x in xp:
             d_p = d_p * d / (x * n_coins)
         d_prev = d
-        d = (Ann * S + d_p * n_coins) * d / ((Ann - 1) * d + (n_coins + 1) * d_p)
+        d = (
+            (Ann * S + d_p * n_coins)
+            * d
+            / ((Ann - 1) * d + (n_coins + 1) * d_p)
+        )
         print("d", d)
         if abs(d_prev - d) <= 1:
             break

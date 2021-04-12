@@ -18,7 +18,7 @@ class curvefi:
         self.sum_inv = self.get_suminv()
 
         # product invariant
-        self.prod_inv = (self.sum_inv/self.n) ** self.n
+        self.prod_inv = (self.sum_inv / self.n) ** self.n
 
         # Initial pool share set the same as normalized total coin qty
         self.totalshares = self.sum_inv
@@ -42,19 +42,31 @@ class curvefi:
 
             # Special case with a=0 or 1, no need to calculate, although results are the same
             if a < 1e-10:
-                suminv = proall ** (1/n) * n
+                suminv = proall ** (1 / n) * n
 
             elif a == 1:
-                suminv = (proall*sumall)**(1/(n+1)) * n**(n/(n+1))
+                suminv = (proall * sumall) ** (1 / (n + 1)) * n ** (
+                    n / (n + 1)
+                )
 
             elif n == 2:
-                sqrtand = (proall*(9*a*sumall + sqrt(81*a**2 *
-                                                     sumall**2 + 48*proall*(a - 1)**3)))**(1/3)
-                suminv_complex = (-2*6**(2/3)*proall*(a - 1) +
-                                  6**(1/3)*sqrtand ** 2)/(3*sqrtand)
+                sqrtand = (
+                    proall
+                    * (
+                        9 * a * sumall
+                        + sqrt(
+                            81 * a ** 2 * sumall ** 2
+                            + 48 * proall * (a - 1) ** 3
+                        )
+                    )
+                ) ** (1 / 3)
+                suminv_complex = (
+                    -2 * 6 ** (2 / 3) * proall * (a - 1)
+                    + 6 ** (1 / 3) * sqrtand ** 2
+                ) / (3 * sqrtand)
                 suminv = suminv_complex.real
             else:
-                raise Exception('Cannot handle unequal asset pool with n>2')
+                raise Exception("Cannot handle unequal asset pool with n>2")
         return suminv
 
     def add_liquidity(self, addamount, addindex: int):
@@ -71,7 +83,7 @@ class curvefi:
         self.sum_inv = sum_inv_new
 
         # update product invariant
-        self.prod_inv = (sum_inv_new/self.n) ** self.n
+        self.prod_inv = (sum_inv_new / self.n) ** self.n
 
         return newshares
 
@@ -87,14 +99,17 @@ class curvefi:
         inres = self.reserve[inindex] + inamount
 
         # new pool product excluding output asset
-        prodexo = self.poolprod() / prod(
-            [self.reserve[i] for i in [inindex, outindex]]
-        ) * inres
+        prodexo = (
+            self.poolprod()
+            / prod([self.reserve[i] for i in [inindex, outindex]])
+            * inres
+        )
 
         outres = (
-            (1 - 1 / a) * D - sumexo + sqrt(
-                ((1 - 1 / a) * D - sumexo) ** 2 + 4 * D * X / a / prodexo
-            )) / 2
+            (1 - 1 / a) * D
+            - sumexo
+            + sqrt(((1 - 1 / a) * D - sumexo) ** 2 + 4 * D * X / a / prodexo)
+        ) / 2
 
         outamount = self.reserve[outindex] - outres
 
@@ -144,8 +159,8 @@ if __name__ == "__main__":
     for a in [1e-12, 1, 10, 1e20]:
         plotinout(qty1, qty2, a=a)
     plt.scatter(qty1, qty2, label="inital state")
-    plt.xlabel('$R_1$ quantity')
-    plt.ylabel('$R_2$ quantity')
+    plt.xlabel("$R_1$ quantity")
+    plt.ylabel("$R_2$ quantity")
     plt.legend()
     plt.show()
 

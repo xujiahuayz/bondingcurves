@@ -126,6 +126,8 @@ timestamp
 
 # "The `first` argument must be between 0 and 1000, but is 2000
 if __name__ == "__main__":
+    # TODO: do we need this commented out code here? can we remove it, perhaps?
+
     # data = graphdata(
     #     reserves_query,
     #     atoken_query,

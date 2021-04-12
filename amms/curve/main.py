@@ -21,17 +21,17 @@ class Curve(Amm):
 
     def _spot_price(self, updated_reserves_in: int, updated_reserves_out: int):
         """Used for implicit divergence loss computation only. This is a modified
-      version of spot_price, where we do not update the state of the instance.
+        version of spot_price, where we do not update the state of the instance.
 
-      Args:
-          updated_reserves_in (int): reserves of in asset with which to compute the
-          spot price
-          updated_reserves_out (int): reserves of out asset with which to compute the
-          spot price
+        Args:
+            updated_reserves_in (int): reserves of in asset with which to compute the
+            spot price
+            updated_reserves_out (int): reserves of out asset with which to compute the
+            spot price
 
-      Returns:
-          [float]: new spot price
-      """
+        Returns:
+            [float]: new spot price
+        """
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
         amplified_prod_inv = self.A * X
@@ -57,7 +57,9 @@ class Curve(Amm):
         )
         return float(numerator) / denominator
 
-    def _compute_trade_qty_out(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+    def _compute_trade_qty_out(
+        self, qty_in: int, asset_in_ix: int, asset_out_ix: int
+    ):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
 
@@ -82,9 +84,10 @@ class Curve(Amm):
         return updated_reserves_in_ix, updated_reserves_out_ix
 
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
-        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
-            qty_in, asset_in_ix, asset_out_ix
-        )
+        (
+            updated_reserves_in_ix,
+            updated_reserves_out_ix,
+        ) = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
 
         self.reserve[asset_in_ix] = updated_reserves_in_ix
         self.reserve[asset_out_ix] = updated_reserves_out_ix
@@ -97,12 +100,16 @@ class Curve(Amm):
         )
         x_2 = self.reserves[asset_out_ix] - updated_reserves_out_ix
         x_1 = qty_in
-        p = self._spot_price(self.reserves[asset_in_ix], self.reserves[asset_out_ix])
+        p = self._spot_price(
+            self.reserves[asset_in_ix], self.reserves[asset_out_ix]
+        )
         return (x_1 / x_2) / p - 1
 
     # ! notice that the signature here is different to the one in Amm
     # ! this one is missing pct_change. Rather it is computed implicitly.
-    def divergence_loss(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
+    def divergence_loss(
+        self, qty_in: int, asset_in_ix: int, asset_out_ix: int
+    ):
         # for different quantities of asset_in_ix, figure out what is the percentage change
         # then plot divergence loss versus this percentage change
 
@@ -116,9 +123,10 @@ class Curve(Amm):
         pre_trade_spot_price = self._spot_price(
             self.reserves[asset_in_ix], self.reserves[asset_out_ix]
         )
-        updated_reserves_in_ix, updated_reserves_out_ix = self._compute_trade_qty_out(
-            qty_in, asset_in_ix, asset_out_ix
-        )
+        (
+            updated_reserves_in_ix,
+            updated_reserves_out_ix,
+        ) = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
         post_trade_spot_price = self._spot_price(
             updated_reserves_in_ix, updated_reserves_out_ix
         )
@@ -126,12 +134,14 @@ class Curve(Amm):
 
         # now return divergence loss and pct_change
         value_pool = (
-            updated_reserves_in_ix + updated_reserves_out_ix * post_trade_spot_price
+            updated_reserves_in_ix
+            + updated_reserves_out_ix * post_trade_spot_price
         )
 
         return (
             pct_change,
-            value_pool / self.value_hold(pct_change, asset_in_ix, asset_out_ix) - 1,
+            value_pool / self.value_hold(pct_change, asset_in_ix, asset_out_ix)
+            - 1,
         )
 
     def _get_sum_invariant(self):

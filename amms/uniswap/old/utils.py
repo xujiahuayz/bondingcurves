@@ -46,11 +46,9 @@ class LogHelper:
 
     @staticmethod
     def liquidity_event(liquidity: float):
-      l.info(
-        f"\nLP TOKENS MINTED\n"
-        f"minted {liquidity:.4f}\n"
-        f"{DIVIDER}\n"
-      )
+        l.info(
+            f"\nLP TOKENS MINTED\n" f"minted {liquidity:.4f}\n" f"{DIVIDER}\n"
+        )
 
     @staticmethod
     def added_liquidity(x_i: Token, x_j: float, o: Any):
@@ -60,14 +58,14 @@ class LogHelper:
             f"x_1, x_2: {o.x_1:.4f}, {o.x_2:.4f}.\n"
             f"{DIVIDER}\n"
         )
-    
+
     @staticmethod
     def removed_liquidity(x_1: float, x_2: float, lp_tokens: float):
-      l.info(
-        f"\nREMOVED LIQUIDITY\n"
-        f"removed {x_1} x_1 and {x_2} x_2 for {lp_tokens} lp tokens\n"
-        f"{DIVIDER}\n"
-      )
+        l.info(
+            f"\nREMOVED LIQUIDITY\n"
+            f"removed {x_1} x_1 and {x_2} x_2 for {lp_tokens} lp tokens\n"
+            f"{DIVIDER}\n"
+        )
 
 
 # x_i_qty is the user sent delta
@@ -79,5 +77,7 @@ def quote(x_i_qty: float, x_i_reserve: float, x_j_reserve: float):
 
 def get_amount_out(x_i: Token, x_i_reserve: float, x_j_reserve: float):
     x_i_with_fee = x_i.qty * 997
-    x_j_out = (x_i_with_fee * x_j_reserve) / (x_i_with_fee + 1000 * x_i_reserve)
+    x_j_out = (x_i_with_fee * x_j_reserve) / (
+        x_i_with_fee + 1000 * x_i_reserve
+    )
     return x_j_out
