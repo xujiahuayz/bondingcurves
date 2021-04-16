@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-04-12T14:36:29.515Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="nkECumMpfdzwrzc7Btle" version="14.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-16T10:59:06.248Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36" etag="iuMyI6xR-ODyBHezKiSH" version="14.6.0" type="github">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Page-1">
-    <mxGraphModel dx="1422" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -16,7 +16,7 @@
         <mxCell id="o60pH_gIqdKsFOg4dMfI-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontFamily=Georgia;" parent="1" source="o60pH_gIqdKsFOg4dMfI-12" target="o60pH_gIqdKsFOg4dMfI-16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-12" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Liquidity pool creator&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=20;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-12" value="&lt;font style=&quot;font-size: 20px ; font-weight: normal&quot;&gt;Liquidity pool creator&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="40" y="320" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fontFamily=Georgia;" parent="1" source="o60pH_gIqdKsFOg4dMfI-13" target="o60pH_gIqdKsFOg4dMfI-16" edge="1">
@@ -38,13 +38,13 @@
         <mxCell id="o60pH_gIqdKsFOg4dMfI-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Georgia;" parent="1" source="o60pH_gIqdKsFOg4dMfI-13" target="o60pH_gIqdKsFOg4dMfI-18" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-13" value="&lt;font style=&quot;font-size: 20px&quot;&gt;Liquidity provider&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-13" value="&lt;font style=&quot;font-size: 20px ; font-weight: normal&quot;&gt;Liquidity provider&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="40" y="390" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Georgia;" parent="1" source="o60pH_gIqdKsFOg4dMfI-15" target="o60pH_gIqdKsFOg4dMfI-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-15" value="&lt;font style=&quot;font-size: 20px&quot;&gt;Exchange user&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-15" value="&lt;font style=&quot;font-size: 20px ; font-weight: normal&quot;&gt;Exchange user&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="40" y="460" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-39" value="+" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;fontFamily=Georgia;fontStyle=1;fontSize=20;verticalAlign=middle;labelBackgroundColor=none;" parent="1" edge="1">
@@ -57,10 +57,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-16" value="&lt;font style=&quot;font-size: 18px&quot;&gt;&lt;b&gt;Provide liquidity in all assets (mint LP shares)&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-16" value="&lt;font style=&quot;font-size: 20px&quot;&gt;Provide liquidity in all assets (mint LP shares)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;" parent="1" vertex="1">
           <mxGeometry x="270" y="230" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-17" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Provide liquidity in one asset (mint LP shares)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-17" value="&lt;font style=&quot;font-weight: normal ; font-size: 20px&quot;&gt;Provide liquidity in one asset (mint LP shares)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="270" y="330" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Georgia;fontSize=20;" parent="1" source="o60pH_gIqdKsFOg4dMfI-18" target="o60pH_gIqdKsFOg4dMfI-20" edge="1">
@@ -85,28 +85,28 @@
             <mxPoint x="-83.5" y="-30" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-18" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Withdraw liquidity (redeem LP shares)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-18" value="&lt;font style=&quot;font-weight: normal ; font-size: 20px&quot;&gt;Withdraw liquidity (redeem LP shares)&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=18;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="270" y="430" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-19" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Swap&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=20;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-19" value="&lt;font style=&quot;font-size: 20px ; font-weight: normal&quot;&gt;Swap&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontSize=20;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="270" y="530" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-20" value="&lt;font style=&quot;font-size: 22px&quot;&gt;Reserves&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;align=left;verticalAlign=top;dashed=1;dashPattern=1 4;" parent="1" vertex="1">
           <mxGeometry x="580" y="220" width="450" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-22" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Token A&lt;br style=&quot;font-size: 19px;&quot;&gt;$$r_1$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-22" value="&lt;font style=&quot;font-size: 19px ; font-weight: normal&quot;&gt;Token A&lt;br style=&quot;font-size: 19px&quot;&gt;$$r_1$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
           <mxGeometry x="610" y="260" width="130" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-23" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Token B&lt;br style=&quot;font-size: 19px;&quot;&gt;$$r_2$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-23" value="&lt;font style=&quot;font-size: 19px ; font-weight: normal&quot;&gt;Token B&lt;br style=&quot;font-size: 19px&quot;&gt;$$r_2$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
           <mxGeometry x="750" y="260" width="130" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-24" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Token C&lt;br style=&quot;font-size: 19px;&quot;&gt;$$r_3$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-24" value="&lt;font style=&quot;font-size: 19px ; font-weight: normal&quot;&gt;Token C&lt;br style=&quot;font-size: 19px&quot;&gt;$$r_3$$&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=19;" parent="1" vertex="1">
           <mxGeometry x="890" y="260" width="130" height="90" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-25" value="..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;glass=0;dashed=1;dashPattern=1 4;fontFamily=Georgia;" parent="1" vertex="1">
           <mxGeometry x="795" y="360" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="o60pH_gIqdKsFOg4dMfI-26" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;Liquidity shares&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=23;" parent="1" vertex="1">
+        <mxCell id="o60pH_gIqdKsFOg4dMfI-26" value="&lt;font style=&quot;font-size: 23px ; font-weight: normal&quot;&gt;Liquidity shares&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;glass=0;fontFamily=Georgia;fontStyle=1;fontSize=23;" parent="1" vertex="1">
           <mxGeometry x="580" y="460" width="450" height="110" as="geometry" />
         </mxCell>
         <mxCell id="o60pH_gIqdKsFOg4dMfI-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontFamily=Georgia;fontSize=20;" parent="1" source="o60pH_gIqdKsFOg4dMfI-17" target="o60pH_gIqdKsFOg4dMfI-22" edge="1">
