@@ -57,4 +57,4 @@ You must follow our code style if you want to make a pull request. We are using 
 pre-commit install
 ```
 
-in the root of this workspace. This will enable automatic linting and formatting on commits, so that you don't to worry about it.
+in the root of this workspace. This will enable automatic linting and formatting on commits, so that you don't need to worry about it.
