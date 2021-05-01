@@ -1,8 +1,5 @@
 from amms.main import Amm
 
-EPSILLON = 1
-
-
 class Balancer(Amm):
     def __init__(self, reserves: list[int], weights: list[float] = None):
         super().__init__(reserves, weights)
