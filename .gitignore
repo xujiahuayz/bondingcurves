@@ -150,3 +150,5 @@ tmp/
 
 figures
 *.pdf
+
+.DS_Store
