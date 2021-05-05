@@ -72,13 +72,18 @@ class Amm:
         self._validate_trade(qty_in, asset_in_ix, asset_out_ix)
         raise Exception("must be implemented")
 
-    def value_pool(
+    def _value_pool(
         self, pct_change: float, asset_in_ix: int, asset_out_ix: int
-    ):
+    ) -> float:
         self._validate_pct_change(pct_change)
         self._validate_asset_ix(asset_in_ix)
         self._validate_asset_ix(asset_out_ix)
-        raise Exception("must be implmeented")
+        return self.value_pool(pct_change, asset_in_ix, asset_out_ix)
+
+    def value_pool(
+        self, pct_change: float, asset_in_ix: int, asset_out_ix: int
+    ) -> float:
+        raise NotImplementedError("must be implmeented")
 
     def value_hold(
         self, pct_change: float, asset_in_ix: int, asset_out_ix: int
