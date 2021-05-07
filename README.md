@@ -2,6 +2,9 @@
 
 This is an exploration of the different automated market making algorithms in DeFi.
 
+Paper link:
+> Xu, J., Vavryk, N., Paruch, K., & Cousaert, S. (2021). [SoK: Decentralized Exchanges (DEX) with Automated Market Maker (AMM) protocols](https://arxiv.org/abs/2103.12732). arXiv e-prints, arXiv-2103.
+
 ## Table Of Contents
 
 - [Table of Contents](#table-of-contents)
