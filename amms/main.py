@@ -83,7 +83,7 @@ class Amm:
     def value_pool(
         self, pct_change: float, asset_in_ix: int, asset_out_ix: int
     ) -> float:
-        raise NotImplementedError("must be implmeented")
+        raise NotImplementedError("must be implemented")
 
     def value_hold(
         self, pct_change: float, asset_in_ix: int, asset_out_ix: int
