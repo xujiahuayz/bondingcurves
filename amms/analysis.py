@@ -503,7 +503,7 @@ class Analysis:
             fig, os.path.join(FIGS_DIR, "divergence_loss", "divloss_curve.pdf")
         )
 
-         fig = plt.figure(figsize=(5, 5.25))
+        fig = plt.figure(figsize=(5, 5.25))
         ax = fig.add_subplot(111)
         ax.set_xlabel(r"spot price change, $\rho$", labelpad=LABELPAD, size=FONTSIZE)
         ax.set_ylabel(r"divergence loss, $L$", labelpad=LABELPAD, size=FONTSIZE)
