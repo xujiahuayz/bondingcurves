@@ -61,7 +61,6 @@ funcprice = function(s, c0, s0, f){
 }
 
 
-
 cols = c('green', 'grey10', 'red', 'blue')
 c0s = c(5, 15, 25)
 s0s = c(90, 60, 30)
