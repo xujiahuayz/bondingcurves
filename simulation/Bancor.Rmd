@@ -60,7 +60,6 @@ funcprice = function(s, c0, s0, f){
   c0/(f*s)*((s/s0)^(1/f))
 }
 
-
 cols = c('green', 'grey10', 'red', 'blue')
 c0s = c(5, 15, 25)
 s0s = c(90, 60, 30)
@@ -94,7 +93,6 @@ for(s0 in s0s){
 }
 }
 legend('bottom', col = 'black', title = 'Pre-tx\noutstanding\ntoken\nsupply $s_0$', lty = 2, lwd = 4,  legend = NA, bty = 'n', xpd = T,  title.adj = 1)
-
 
 legend('bottomright', col = cols, title = 'Stablecoin\nresearve\nfraction $f$', lty = 1, legend = paste0('$', fs, '$'), bty = 'n', xpd = T, lwd = lwds, title.adj = 1)
 
