@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T16:44:37.589Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="X2mGjOc1vzHaHJmtQjFS" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-12T17:05:25.418Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="K1h6hnTFUBoZN0Gj7VJ-" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -310,11 +310,17 @@
       <root>
         <mxCell id="2uartM1_8DbLwZGfnhCD-0" />
         <mxCell id="2uartM1_8DbLwZGfnhCD-1" parent="2uartM1_8DbLwZGfnhCD-0" />
+        <mxCell id="JIuaePItAtqz8TFXkj8O-0" value="Decentralized Finance" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="60" y="70" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-1" value="Traditional Finance" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="330" y="70" width="210" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="GEQpAldpkpGD7Rz18Gax" name="security">
-    <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1060" dy="567" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="EXGlup8Ojjp6KNx8XwXa-0" />
         <mxCell id="EXGlup8Ojjp6KNx8XwXa-1" parent="EXGlup8Ojjp6KNx8XwXa-0" />
