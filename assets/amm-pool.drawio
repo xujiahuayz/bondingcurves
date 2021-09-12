@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T18:12:24.802Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="r6RDaRg3riY3W1G8tF93" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-12T18:12:40.924Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="EVB0DlGBZAE1fp0r9764" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -361,8 +361,13 @@
         <mxCell id="JIuaePItAtqz8TFXkj8O-38" value="Insurance protocols" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="45" y="610" width="120" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-41" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;h3 style=&quot;box-sizing: border-box; border: 0px; font-style: normal; font-weight: 600; font-stretch: inherit; line-height: 1.25; font-family: averta, sans-serif; font-size: 20px; margin: 1.5em 0px 16px; padding: 0px; vertical-align: baseline; color: rgb(36, 41, 46); letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: rgb(243, 242, 242);&quot;&gt;Gnosis Protocol&lt;/h3&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="780" y="455" width="180" height="90" as="geometry" />
+        <mxCell id="JIuaePItAtqz8TFXkj8O-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="2uartM1_8DbLwZGfnhCD-1" source="JIuaePItAtqz8TFXkj8O-42">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870.0000000000005" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-42" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;Gnosis Protocol&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="820" y="490" width="120" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
