@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T18:50:23.324Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="NT33cXflEHFgdoQvh3tx" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-12T18:51:08.096Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="Ljj8gr0IrO7lAvPEiq28" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -310,6 +310,9 @@
       <root>
         <mxCell id="2uartM1_8DbLwZGfnhCD-0" />
         <mxCell id="2uartM1_8DbLwZGfnhCD-1" parent="2uartM1_8DbLwZGfnhCD-0" />
+        <mxCell id="JIuaePItAtqz8TFXkj8O-61" value="&lt;b&gt;AMM&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="230" y="-312" width="300" height="272" as="geometry" />
+        </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-91" value="&lt;span style=&quot;font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant product&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;arcSize=32;verticalAlign=bottom;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="270" y="-169" width="120" height="89" as="geometry" />
         </mxCell>
@@ -323,13 +326,10 @@
           <mxGeometry x="220" y="-350" width="436" height="320" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-84" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="240" y="-270" width="180" height="190" as="geometry" />
-        </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-61" value="&lt;b&gt;AMM&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="230" y="-312" width="300" height="272" as="geometry" />
+          <mxGeometry x="240" y="-270" width="180" height="220" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-83" value="&lt;b&gt;LMSR&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="430" y="-270" width="90" height="190" as="geometry" />
+          <mxGeometry x="430" y="-270" width="90" height="220" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-9" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;Blockchain-based DeFi&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="235" y="150" width="140" height="30" as="geometry" />
@@ -404,7 +404,7 @@
           <mxGeometry x="110" y="-110" width="100" height="62" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-63" value="&lt;b&gt;Orderbook&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="545" y="-312" width="105" height="252" as="geometry" />
+          <mxGeometry x="545" y="-312" width="105" height="272" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-78" value="Constant function" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="285" y="-260" width="120" height="20" as="geometry" />
@@ -413,7 +413,7 @@
           <mxGeometry x="565" y="-260" width="95" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-87" value="&lt;p class=&quot;p1&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="460" y="-222.5" width="40" height="50" as="geometry" />
+          <mxGeometry x="455" y="-242.5" width="40" height="50" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-88" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 700 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;Constant sum&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;arcSize=32;verticalAlign=top;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="270" y="-220" width="120" height="80" as="geometry" />
