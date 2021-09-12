@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T23:03:02.502Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="ePjpoNMDIZDXNcATXo-i" version="15.1.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-09-12T23:03:19.334Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="IWpA3l5l1aYnXtvNx5NR" version="15.1.4" type="github" pages="5">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -461,7 +461,7 @@
           <mxGeometry x="10" y="-1250" width="770" height="600" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-3" value="&lt;b&gt;AMM&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;verticalAlign=top;fillOpacity=50;strokeColor=none;perimeter=none;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="189.41" y="-1040" width="560.59" height="320" as="geometry" />
+          <mxGeometry x="189.41" y="-1050" width="560.59" height="330" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-1" value="Prediction market" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontStyle=5;verticalAlign=top;strokeColor=#d6b656;fillOpacity=50;strokeWidth=5;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="540" y="-1090" width="226.83" height="180" as="geometry" />
