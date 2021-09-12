@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T17:48:15.560Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="ocucthmakQ2r_a4im6ET" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-12T18:12:24.802Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="r6RDaRg3riY3W1G8tF93" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -306,27 +306,15 @@
     </mxGraphModel>
   </diagram>
   <diagram id="J_Vn4R8fVz-9VrVz1cEO" name="taxonomy">
-    <mxGraphModel dx="1502" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1287" dy="689" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="2uartM1_8DbLwZGfnhCD-0" />
         <mxCell id="2uartM1_8DbLwZGfnhCD-1" parent="2uartM1_8DbLwZGfnhCD-0" />
         <mxCell id="JIuaePItAtqz8TFXkj8O-9" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;Blockchain-based DeFi&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="165" y="320" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="970" y="400" as="targetPoint" />
-            <mxPoint x="970" y="300" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-10" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: rgb(248, 249, 250); display: inline; float: none;&quot;&gt;Traditional Finance&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="820" y="250" width="130" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-19" value="Decentralized Exchanges" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="345" y="390" width="150" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-20" value="Centralized Exchanges" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="940" y="430" width="140" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-21" value="Uniswap" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="325" y="565" width="60" height="20" as="geometry" />
@@ -350,7 +338,7 @@
           <mxGeometry x="350" y="610" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-30" value="logarithmic market scoring rules (LMSR)" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="575" y="485" width="230" height="30" as="geometry" />
+          <mxGeometry x="510" y="480" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-31" value="&lt;p class=&quot;p1&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="575" y="525" width="60" height="50" as="geometry" />
@@ -362,7 +350,19 @@
           <mxGeometry x="295" y="460" width="40" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-34" value="Orderbook" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="740" y="450" width="70" height="20" as="geometry" />
+          <mxGeometry x="810" y="450" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-36" value="Yield aggregator" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="55" y="495" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-37" value="PLF" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="85" y="545" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-38" value="Insurance protocols" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="45" y="610" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="JIuaePItAtqz8TFXkj8O-41" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;h3 style=&quot;box-sizing: border-box; border: 0px; font-style: normal; font-weight: 600; font-stretch: inherit; line-height: 1.25; font-family: averta, sans-serif; font-size: 20px; margin: 1.5em 0px 16px; padding: 0px; vertical-align: baseline; color: rgb(36, 41, 46); letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: rgb(243, 242, 242);&quot;&gt;Gnosis Protocol&lt;/h3&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
+          <mxGeometry x="780" y="455" width="180" height="90" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
