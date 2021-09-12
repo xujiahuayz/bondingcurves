@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T23:10:10.346Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="3v4ERVsg2mkuy1dmUqnA" version="15.1.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-09-12T23:11:42.037Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="hmBAFPc3wczu9K59QY8y" version="15.1.4" type="github" pages="5">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -461,13 +461,13 @@
           <mxGeometry x="10" y="-1220" width="850" height="570" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-3" value="&lt;b&gt;AMM&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;verticalAlign=top;fillOpacity=50;strokeColor=none;perimeter=none;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="189.41" y="-1050" width="560.59" height="330" as="geometry" />
+          <mxGeometry x="189.41" y="-1050" width="510.59" height="330" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-1" value="Prediction market" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontStyle=5;verticalAlign=top;strokeColor=#d6b656;fillOpacity=50;strokeWidth=5;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="540" y="-1090" width="226.83" height="180" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-8" value="&lt;b&gt;LMSR&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="567.73" y="-1032.5" width="172.27" height="82.5" as="geometry" />
+          <mxGeometry x="567.73" y="-1032.5" width="112.27" height="82.5" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-6" value="DEX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontStyle=5;verticalAlign=top;strokeColor=#82b366;strokeOpacity=100;fillOpacity=50;strokeWidth=5;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="174.98" y="-1170" width="265.02" height="390" as="geometry" />
@@ -515,7 +515,7 @@
           <mxGeometry x="540" y="-760" width="226.83" height="90" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-14" value="&lt;p class=&quot;p1&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="632.87" y="-1016.25" width="41.08" height="50" as="geometry" />
+          <mxGeometry x="610" y="-1016.25" width="41.08" height="50" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-9" value="Gyroscope" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="618.87" y="-750" width="70" height="20" as="geometry" />
@@ -528,6 +528,12 @@
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-15" value="Pod finance" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="281.01" y="-750" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yfy_TuskieBGScGomKW7-16" value="NFT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;fontStyle=5;verticalAlign=middle;strokeColor=#36393d;fillOpacity=50;strokeWidth=5;align=right;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+          <mxGeometry x="539.99" y="-892.5" width="226.83" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="yfy_TuskieBGScGomKW7-17" value="&lt;p class=&quot;p1&quot;&gt;EulerBeats&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+          <mxGeometry x="590" y="-872.5" width="41.08" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
