@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T23:05:09.053Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="215_G-Os7ohq9sMW79FD" version="15.1.4" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-09-12T23:05:41.346Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="wwChUCvrFHoZw_wJEBqS" version="15.1.4" type="github" pages="5">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -472,11 +472,11 @@
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-6" value="DEX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontStyle=5;verticalAlign=top;strokeColor=#82b366;strokeOpacity=100;fillOpacity=50;strokeWidth=5;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="174.98" y="-1200" width="265.02" height="530" as="geometry" />
         </mxCell>
-        <mxCell id="8NLefJ6BLpWgVJT6n-Gh-4" value="&lt;span style=&quot;font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant product&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;arcSize=32;verticalAlign=bottom;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="238.89830508474574" y="-901.5" width="148.47457627118644" height="89" as="geometry" />
-        </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-7" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant function&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="204.03" y="-1005" width="218.22" height="220" as="geometry" />
+          <mxGeometry x="204.03" y="-1005" width="218.22" height="265" as="geometry" />
+        </mxCell>
+        <mxCell id="8NLefJ6BLpWgVJT6n-Gh-4" value="&lt;span style=&quot;font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant product&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;arcSize=32;verticalAlign=bottom;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+          <mxGeometry x="238.9" y="-901.5" width="148.47" height="141.5" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-9" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;PLF&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;fontStyle=5;verticalAlign=top;strokeColor=#6c8ebf;fillOpacity=50;strokeWidth=5;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="40.932203389830505" y="-842.5" width="123.72881355932202" height="62" as="geometry" />
@@ -519,6 +519,9 @@
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-9" value="Gyroscope" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="618.87" y="-750" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yfy_TuskieBGScGomKW7-12" value="Bancor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+          <mxGeometry x="281.01338983050846" y="-820" width="50" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
