@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-12T17:47:12.768Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="l5wwcmx3atVvS81D4YMG" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-12T17:47:25.950Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" etag="VcN85OHIpL6EHYm8yznU" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="901" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -331,9 +331,6 @@
         <mxCell id="JIuaePItAtqz8TFXkj8O-10" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: helvetica; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: rgb(248, 249, 250); display: inline; float: none;&quot;&gt;Traditional Finance&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="580" y="260" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="JIuaePItAtqz8TFXkj8O-17" value="Exchanges" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="235" y="390" width="70" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-19" value="Decentralized Exchanges" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="100" y="420" width="150" height="20" as="geometry" />
         </mxCell>
@@ -344,7 +341,7 @@
           <mxGeometry x="80" y="595" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-22" value="Constant function" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="90" y="520" width="110" height="20" as="geometry" />
+          <mxGeometry x="60" y="520" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-23" value="Constant sum" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="15" y="555" width="90" height="20" as="geometry" />
@@ -362,7 +359,7 @@
           <mxGeometry x="105" y="640" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-30" value="logarithmic market scoring rules (LMSR)" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
-          <mxGeometry x="245" y="520" width="230" height="30" as="geometry" />
+          <mxGeometry x="270" y="520" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JIuaePItAtqz8TFXkj8O-31" value="&lt;p class=&quot;p1&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2uartM1_8DbLwZGfnhCD-1">
           <mxGeometry x="330" y="555" width="60" height="50" as="geometry" />
