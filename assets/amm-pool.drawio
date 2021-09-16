@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-16T07:56:55.509Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="5hTXyTjtUIswcAiIp-XS" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-16T11:08:01.126Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="rLD3WXN1KNIu30M9zRM0" version="15.1.4" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="946" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -320,13 +320,13 @@
           <mxGeometry x="540" y="-1090" width="226.83" height="180" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-8" value="&lt;b&gt;LMSR&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontColor=#AE4132;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="567.73" y="-1032.5" width="112.27" height="82.5" as="geometry" />
+          <mxGeometry x="490" y="-1020" width="190" height="82.5" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-6" value="DEX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;fontStyle=5;verticalAlign=top;strokeColor=#82b366;strokeOpacity=100;fillOpacity=50;strokeWidth=5;fontFamily=Lucida Console;fontSize=15;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="160" y="-1170" width="270" height="390" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-7" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant function&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontColor=#AE4132;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="204.03" y="-1032.5" width="205.97" height="242.5" as="geometry" />
+          <mxGeometry x="204.03" y="-1020" width="265.97" height="250" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-4" value="&lt;span style=&quot;font-size: 12px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Constant product&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;arcSize=44;verticalAlign=bottom;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="220" y="-942" width="180" height="142" as="geometry" />
@@ -362,7 +362,7 @@
           <mxGeometry x="540" y="-760" width="226.83" height="90" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-14" value="&lt;p class=&quot;p1&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="610" y="-1016.25" width="41.08" height="50" as="geometry" />
+          <mxGeometry x="564.46" y="-1003.75" width="41.08" height="50" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-9" value="Gyroscope" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="618.87" y="-750" width="70" height="20" as="geometry" />
@@ -373,8 +373,8 @@
         <mxCell id="yfy_TuskieBGScGomKW7-14" value="Derivatives" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;fontStyle=5;verticalAlign=bottom;strokeColor=#23445d;fillOpacity=50;strokeWidth=5;fontFamily=Lucida Console;fontSize=15;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="213.17000000000002" y="-760" width="226.83" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="yfy_TuskieBGScGomKW7-15" value="Pod finance" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="286.01" y="-750" width="70" height="20" as="geometry" />
+        <mxCell id="yfy_TuskieBGScGomKW7-15" value="Pods finance" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
+          <mxGeometry x="281.01" y="-750" width="80" height="20" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-16" value="NFT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;fontStyle=5;verticalAlign=middle;fillOpacity=50;strokeWidth=5;align=right;strokeColor=#999900;fontFamily=Lucida Console;fontSize=15;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="539.99" y="-892.5" width="226.83" height="90" as="geometry" />
