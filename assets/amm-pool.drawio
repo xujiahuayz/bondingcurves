@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-09-16T11:12:56.850Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="9VRJdhUlP-NtBz0ML7z6" version="15.1.4" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-19T15:14:34.060Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="sRbFjH3KNVUB5ZwhGiBy" version="15.2.7" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
-    <mxGraphModel dx="946" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
+    <mxGraphModel dx="946" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -306,14 +306,14 @@
     </mxGraphModel>
   </diagram>
   <diagram id="V3thxfnV-d8ceJq-v-Ow" name="taxonomy">
-    <mxGraphModel dx="946" dy="2956" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1577" dy="3171" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-0" />
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-1" parent="8NLefJ6BLpWgVJT6n-Gh-0" />
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-5" value="&lt;meta charset=&quot;utf-8&quot; style=&quot;font-size: 20px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 20px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Blockchain-based DeFi&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=20;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="10" y="-1220" width="850" height="570" as="geometry" />
         </mxCell>
-        <mxCell id="7Dg9tTagB5A5kfkCeSt4-0" value="&lt;span&gt;AMM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;opacity=50;verticalAlign=top;strokeColor=#ae4132;fontColor=#AE4132;fontStyle=5;fontFamily=Lucida Console;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+        <mxCell id="7Dg9tTagB5A5kfkCeSt4-0" value="&lt;span&gt;AMM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;opacity=50;verticalAlign=top;strokeColor=#ae4132;fontColor=#AE4132;fontStyle=5;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="178.9" y="-1046.75" width="551.1" height="328.5" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-1" value="Prediction market" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;fontStyle=5;verticalAlign=top;strokeColor=#d6b656;fillOpacity=50;strokeWidth=5;fontFamily=Lucida Console;fontSize=15;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
@@ -382,11 +382,14 @@
         <mxCell id="yfy_TuskieBGScGomKW7-17" value="&lt;p class=&quot;p1&quot;&gt;EulerBeats&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="590" y="-872.5" width="41.08" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7Dg9tTagB5A5kfkCeSt4-1" value="&lt;span&gt;Orderbook&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;opacity=50;verticalAlign=top;strokeColor=#0e8088;fontColor=#0E8088;fontFamily=Lucida Console;fontStyle=5" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+        <mxCell id="7Dg9tTagB5A5kfkCeSt4-1" value="&lt;span&gt;Orderbook&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;opacity=50;verticalAlign=top;strokeColor=#0e8088;fontColor=#0E8088;fontFamily=Lucida Console;fontStyle=5" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="190" y="-1137.37" width="210" height="84.75" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-13" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;&lt;i&gt;Gnosis&lt;/i&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="263.79" y="-1100" width="62.42" height="30" as="geometry" />
+          <mxGeometry x="218.59000000000003" y="-1100" width="62.42" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2ZV9WGzVLGw2hKH8Ku8l-0" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-size: 12px ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none&quot;&gt;&lt;i&gt;dYdX&lt;/i&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Lucida Console;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
+          <mxGeometry x="313.14000000000004" y="-1100" width="62.42" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
