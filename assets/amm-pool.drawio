@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-19T16:29:17.806Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="VfWVhSe05LmPS45fu5NG" version="15.2.7" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-19T16:30:22.899Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="S42ARp1VL1Zq3vZS8Rn-" version="15.2.7" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="946" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -310,7 +310,7 @@
       <root>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-0" />
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-1" parent="8NLefJ6BLpWgVJT6n-Gh-0" />
-        <mxCell id="8NLefJ6BLpWgVJT6n-Gh-5" value="&lt;meta charset=&quot;utf-8&quot; style=&quot;font-size: 27px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 27px; font-style: normal; font-weight: 700; letter-spacing: normal; text-align: center; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;Blockchain-based DeFi&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=27;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
+        <mxCell id="8NLefJ6BLpWgVJT6n-Gh-5" value="&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-size: 27px ; font-style: normal ; font-weight: 700 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; display: inline ; float: none&quot;&gt;DeFi on Blockchain&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;fontSize=27;fontFamily=Lucida Console;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="10" y="-1220" width="850" height="570" as="geometry" />
         </mxCell>
         <mxCell id="7Dg9tTagB5A5kfkCeSt4-0" value="&lt;span style=&quot;font-size: 25px;&quot;&gt;AMM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad9d5;opacity=50;verticalAlign=top;strokeColor=#ae4132;fontColor=#AE4132;fontStyle=5;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
@@ -344,7 +344,7 @@
           <mxGeometry x="294.44694915254235" y="-964.25" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-17" value="DODO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="238.90338983050844" y="-862.5" width="90" height="40" as="geometry" />
+          <mxGeometry x="228.89338983050845" y="-862.5" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-18" value="Balancer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="319.99559322033895" y="-900" width="110" height="40" as="geometry" />
@@ -362,13 +362,13 @@
           <mxGeometry x="578" y="-760" width="226.83" height="90" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-14" value="&lt;p class=&quot;p1&quot; style=&quot;font-size: 25px;&quot;&gt;Augur&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2;fontFamily=Lucida Console;fontSize=25;verticalAlign=middle;align=center;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="600" y="-996.25" width="65.54" height="46.25" as="geometry" />
+          <mxGeometry x="592.23" y="-996.25" width="65.54" height="46.25" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-9" value="Gyroscope" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="593.87" y="-760" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-12" value="Bancor" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=2;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="340.00338983050847" y="-862.5" width="90" height="40" as="geometry" />
+          <mxGeometry x="329.9933898305085" y="-862.5" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="yfy_TuskieBGScGomKW7-14" value="Derivatives" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;fontStyle=5;verticalAlign=bottom;strokeColor=#23445d;fillOpacity=50;strokeWidth=5;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="213.17000000000002" y="-760" width="226.83" height="90" as="geometry" />
@@ -379,17 +379,17 @@
         <mxCell id="yfy_TuskieBGScGomKW7-16" value="NFT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;fontStyle=5;verticalAlign=middle;fillOpacity=50;strokeWidth=5;align=right;strokeColor=#999900;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="577.99" y="-892.5" width="226.83" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="yfy_TuskieBGScGomKW7-17" value="&lt;p class=&quot;p1&quot; style=&quot;font-size: 25px;&quot;&gt;EulerBeats&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="590" y="-872.5" width="41.08" height="50" as="geometry" />
+        <mxCell id="yfy_TuskieBGScGomKW7-17" value="&lt;p class=&quot;p1&quot; style=&quot;font-size: 25px;&quot;&gt;EulerBeats&lt;/p&gt;" style="text;whiteSpace=wrap;html=1;fontStyle=2;fontFamily=Lucida Console;fontSize=25;align=center;verticalAlign=middle;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
+          <mxGeometry x="650" y="-872.5" width="41.08" height="50" as="geometry" />
         </mxCell>
         <mxCell id="7Dg9tTagB5A5kfkCeSt4-1" value="&lt;span style=&quot;font-size: 25px;&quot;&gt;Orderbook&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;opacity=50;verticalAlign=top;strokeColor=#0e8088;fontColor=#0E8088;fontFamily=Lucida Console;fontStyle=5;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
           <mxGeometry x="190" y="-1134" width="210" height="70" as="geometry" />
         </mxCell>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-13" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 25px; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;&lt;i style=&quot;font-size: 25px;&quot;&gt;Gnosis&lt;/i&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Lucida Console;fontSize=25;" parent="8NLefJ6BLpWgVJT6n-Gh-1" vertex="1">
-          <mxGeometry x="218.59000000000003" y="-1091" width="62.42" height="30" as="geometry" />
+          <mxGeometry x="218.90000000000003" y="-1098" width="62.42" height="30" as="geometry" />
         </mxCell>
         <mxCell id="2ZV9WGzVLGw2hKH8Ku8l-0" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 25px; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; word-spacing: 0px; display: inline; float: none;&quot;&gt;&lt;i style=&quot;font-size: 25px;&quot;&gt;dYdX&lt;/i&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Lucida Console;fontSize=25;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
-          <mxGeometry x="313.14000000000004" y="-1091" width="62.42" height="30" as="geometry" />
+          <mxGeometry x="313.14000000000004" y="-1098" width="62.42" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
