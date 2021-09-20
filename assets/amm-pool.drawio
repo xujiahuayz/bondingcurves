@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-20T12:33:48.181Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="XFqj5AzmWh6q-TCnJiBf" version="15.2.9" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-20T12:34:59.807Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="04jjlVLrH7Jh6A2K1RNm" version="15.2.9" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="946" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -500,21 +500,13 @@
         <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-5" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=3;fontFamily=Helvetica;fontSize=16;fontColor=#FFFFFF;spacing=5;fontStyle=1;" edge="1" parent="EXGlup8Ojjp6KNx8XwXa-1" source="mFuL-gZ3IuL4Wt8d_JvN-7" target="mFuL-gZ3IuL4Wt8d_JvN-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-6" value="" style="edgeStyle=none;rounded=1;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;jettySize=auto;orthogonalLoop=1;strokeWidth=3;fontFamily=Helvetica;fontSize=16;fontColor=#FFFFFF;spacing=5;fontStyle=1;" edge="1" parent="EXGlup8Ojjp6KNx8XwXa-1" source="mFuL-gZ3IuL4Wt8d_JvN-7">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="240" y="588" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-7" value="Implicit economic risks" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=1;arcSize=7;perimeterSpacing=2;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
+        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-7" value="Implicit economic costs" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=1;arcSize=7;perimeterSpacing=2;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
           <mxGeometry x="270" y="481" width="150" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-8" value="Market &amp;amp; Oracle Manipulation" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
-          <mxGeometry x="90" y="590" width="150" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-9" value="Miner Extractable Value" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
+        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-9" value="Divergence loss" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
           <mxGeometry x="90" y="520" width="150" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-10" value="Rug Pulls" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
+        <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-10" value="Slippage" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=3;fontFamily=Helvetica;fontSize=16;align=center;spacing=5;fontStyle=0;arcSize=7;perimeterSpacing=2;" vertex="1" parent="EXGlup8Ojjp6KNx8XwXa-1">
           <mxGeometry x="90" y="450" width="150" height="60" as="geometry" />
         </mxCell>
         <mxCell id="mFuL-gZ3IuL4Wt8d_JvN-11" value="" style="edgeStyle=none;rounded=0;jumpStyle=none;html=1;shadow=0;labelBackgroundColor=none;startArrow=none;startFill=0;endArrow=classic;endFill=1;jettySize=auto;orthogonalLoop=1;strokeWidth=3;fontFamily=Helvetica;fontSize=16;fontColor=#FFFFFF;spacing=5;" edge="1" parent="EXGlup8Ojjp6KNx8XwXa-1" source="mFuL-gZ3IuL4Wt8d_JvN-14" target="mFuL-gZ3IuL4Wt8d_JvN-17">
