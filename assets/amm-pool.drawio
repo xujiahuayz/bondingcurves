@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-20T07:16:15.688Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="6ybkNekRje2i1MIr79Ja" version="15.2.9" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2021-09-20T07:16:30.343Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="D2ObJHf2fZRqXPcp9Wkj" version="15.2.9" type="github" pages="4">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="946" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -164,7 +164,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="simplified scheme" id="d_9agxrW86omBDYF9K5D">
+  <diagram name="SimplifiedScheme" id="d_9agxrW86omBDYF9K5D">
     <mxGraphModel dx="2365" dy="1545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
         <mxCell id="f8-Kdo4v5M6tRJ11duCn-0" />
