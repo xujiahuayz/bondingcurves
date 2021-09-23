@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-23T05:15:27.285Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="JgJc9th_dmOg6Ry7PbwH" version="15.3.0" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-09-23T05:18:27.100Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="_RhUkBn3byrN97NYhTc3" version="15.3.0" type="github" pages="5">
   <diagram id="Gz0Cfk2Hy_LupTIM6uKj" name="Initial scheme">
     <mxGraphModel dx="946" dy="496" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="1" shadow="0">
       <root>
@@ -303,7 +303,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="V3thxfnV-d8ceJq-v-Ow" name="taxonomy">
-    <mxGraphModel dx="1892" dy="3330" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="220" dy="2453" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-0" />
         <mxCell id="8NLefJ6BLpWgVJT6n-Gh-1" parent="8NLefJ6BLpWgVJT6n-Gh-0" />
@@ -408,9 +408,6 @@
         </mxCell>
         <mxCell id="c7gvhUzmTRlmYSLFG80D-2" value="Application" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=22;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="95" y="-582.5" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="c7gvhUzmTRlmYSLFG80D-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;verticalAlign=middle;" edge="1" parent="8NLefJ6BLpWgVJT6n-Gh-1" source="c7gvhUzmTRlmYSLFG80D-0" target="c7gvhUzmTRlmYSLFG80D-0">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="c7gvhUzmTRlmYSLFG80D-4" value="" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;labelBackgroundColor=none;fillColor=none;arcSize=40;" vertex="1" parent="8NLefJ6BLpWgVJT6n-Gh-1">
           <mxGeometry x="325" y="-580" width="50" height="25" as="geometry" />
