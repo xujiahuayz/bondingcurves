@@ -1,14 +1,20 @@
-<mxfile host="app.diagrams.net" modified="2021-10-01T21:32:33.000Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36" etag="tJQ-egxYEkpNrkKKKZ9F" version="15.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-01T21:51:51.170Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36" etag="hQzItsBorGK29jNt3-uj" version="15.4.1" type="github">
   <diagram id="aYbwqATf93FluCWuQREW" name="Page-1">
-    <mxGraphModel dx="1426" dy="889" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="713" dy="445" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="IElQf6iTneREs4BxYmEP-6" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;strokeColor=none;fillColor=#E6E6E6;" parent="1" vertex="1">
+          <mxGeometry x="198" y="324" width="388" height="88" as="geometry" />
+        </mxCell>
         <mxCell id="IElQf6iTneREs4BxYmEP-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;strokeColor=none;fillColor=#E6E6E6;" parent="1" vertex="1">
-          <mxGeometry x="197" y="247" width="393" height="74" as="geometry" />
+          <mxGeometry x="198" y="249" width="388" height="71" as="geometry" />
         </mxCell>
         <mxCell id="IElQf6iTneREs4BxYmEP-2" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;strokeColor=none;fillColor=#E6E6E6;" parent="1" vertex="1">
-          <mxGeometry x="197" y="155" width="393" height="89" as="geometry" />
+          <mxGeometry x="197" y="156" width="389" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="IYS84OP7h0knL5UXp7ER-22" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=9;strokeWidth=1;fillColor=none;align=center;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
+          <mxGeometry x="438" y="137" width="142" height="268" as="geometry" />
         </mxCell>
         <mxCell id="IElQf6iTneREs4BxYmEP-3" value="" style="shape=flexArrow;endArrow=classic;html=1;strokeWidth=2;fillColor=#999999;strokeColor=none;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -27,9 +33,6 @@
               <mxPoint x="338.26" y="240" />
             </Array>
           </mxGeometry>
-        </mxCell>
-        <mxCell id="IElQf6iTneREs4BxYmEP-6" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;strokeColor=none;fillColor=#E6E6E6;" parent="1" vertex="1">
-          <mxGeometry x="197" y="324" width="393" height="88" as="geometry" />
         </mxCell>
         <mxCell id="IElQf6iTneREs4BxYmEP-9" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" edge="1" target="IElQf6iTneREs4BxYmEP-7">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -55,10 +58,10 @@
         <mxCell id="IElQf6iTneREs4BxYmEP-16" value="Reentrancy attack&lt;br&gt;Others" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="434" y="270.5" width="150" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="IElQf6iTneREs4BxYmEP-17" value="&lt;div style=&quot;font-size: 13px&quot;&gt;&lt;span&gt;Block TS Manipulation&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;Trans Seq Manipulation&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 13px&quot;&gt;Others&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="IElQf6iTneREs4BxYmEP-17" value="&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Block TS Manipulation&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Trans Seq Manipulation&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Others&lt;/font&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="402" y="357.75" width="214" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="IElQf6iTneREs4BxYmEP-18" value="&lt;font style=&quot;font-size: 12px&quot;&gt;Oracle Attack&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Vampire Attack&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Sandwich Attack&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Rug Pool&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Frontrunning&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Backrunning&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="IElQf6iTneREs4BxYmEP-18" value="&lt;font style=&quot;font-size: 12px&quot;&gt;Oracle Attack&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Vampire Attack&lt;br&gt;Rug Pool&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Sandwich Attack&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Frontrunning&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Backrunning&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="416.5" y="167" width="185" height="65" as="geometry" />
         </mxCell>
         <mxCell id="IElQf6iTneREs4BxYmEP-25" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" edge="1" target="IYS84OP7h0knL5UXp7ER-5">
@@ -93,9 +96,6 @@
             <mxPoint x="110.1066017177859" y="64.3933982822141" as="sourcePoint" />
             <mxPoint x="118.8933982822141" y="35.60660171778591" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="IElQf6iTneREs4BxYmEP-43" value="taxonomy" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="10" y="10" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="IYS84OP7h0knL5UXp7ER-5" value="Smart&lt;br&gt;Contract&lt;br&gt;3" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="313" y="262" width="51" height="53" as="geometry" />
@@ -160,8 +160,8 @@
         <mxCell id="IYS84OP7h0knL5UXp7ER-20" value="" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=none;fontSize=9;strokeWidth=3;fillColor=default;" connectable="0" vertex="1" parent="IYS84OP7h0knL5UXp7ER-19">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IYS84OP7h0knL5UXp7ER-22" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=9;strokeWidth=1;fillColor=none;align=center;dashed=1;dashPattern=1 1;" vertex="1" parent="1">
-          <mxGeometry x="438" y="140" width="142" height="260" as="geometry" />
+        <mxCell id="IYS84OP7h0knL5UXp7ER-23" value="&lt;b&gt;Attack&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="484" y="136" width="50" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
