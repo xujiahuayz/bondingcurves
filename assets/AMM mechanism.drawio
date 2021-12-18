@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-18T07:35:29.944Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="L8Ob09hQxXD8w_k9Szil" version="16.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-18T08:43:20.599Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="wJpbViPSy1bG9KtrqVpx" version="16.0.0" type="github">
   <diagram id="NDha9XyJWKI6wTgdjnXo" name="Page-1">
     <mxGraphModel dx="1018" dy="658" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -8,19 +8,22 @@
           <mxGeometry x="140" y="80" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-2" value="Asset Pool" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.bank;fillColor=#000000;gradientColor=none;" vertex="1" parent="1">
-          <mxGeometry x="280" y="80.25" width="59.75" height="59.75" as="geometry" />
+          <mxGeometry x="330" y="80" width="59.75" height="59.75" as="geometry" />
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-3" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=2;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="154.5" y="370" as="sourcePoint" />
+            <mxPoint x="155" y="410" as="sourcePoint" />
             <mxPoint x="154.5" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-4" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=2;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="309.38" y="370" as="sourcePoint" />
-            <mxPoint x="309.38" y="170" as="targetPoint" />
+            <mxPoint x="359" y="410" as="sourcePoint" />
+            <mxPoint x="359.38" y="169.75" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-6" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-75-128.png;strokeWidth=4;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="440" y="200" width="128" height="128" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
