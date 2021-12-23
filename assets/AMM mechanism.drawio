@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-23T16:05:02.119Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="AlhnGbG2sZZFfeB5tGRL" version="16.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-23T16:05:45.929Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="jFXIOUdd47xEq1hl3zVT" version="16.0.0" type="github">
   <diagram id="NDha9XyJWKI6wTgdjnXo" name="Page-1">
     <mxGraphModel dx="1131" dy="668" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -54,6 +54,9 @@
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-41" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.azure.user;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="223" y="310" width="47" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-42" value="Reference:&lt;br&gt;https://wiki.acala.network/karura/defi-hub/swap/protocol-overview&lt;br&gt;https://docs.uniswap.org/protocol/V2/concepts/core-concepts/pools" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="170" y="510" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
