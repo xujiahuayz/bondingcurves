@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-26T13:35:58.359Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="ialjYHs3Mu77gDrv-HTN" version="16.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-26T13:40:13.449Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="-tmSxovRn2loUd88jpib" version="16.0.0" type="github">
   <diagram id="NDha9XyJWKI6wTgdjnXo" name="Page-1">
     <mxGraphModel dx="1131" dy="668" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -40,16 +40,16 @@
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-46" value="&lt;div&gt;&lt;b&gt;Pool of AMM-based DEX&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=4;fillColor=none;gradientColor=none;align=center;" vertex="1" parent="1">
           <mxGeometry x="335.64" y="60" width="330" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="OX3iMa-Q4UsDjBHExUNI-48" value="&lt;div&gt;&lt;b&gt;DEPOSIT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Input: 10 Token A + 1 Token B&lt;/span&gt;&lt;br style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Output: 4 LP Shares&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-48" value="&lt;div&gt;&lt;b&gt;DEPOSIT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Input: &lt;font color=&quot;#ff8000&quot;&gt;10 Token A&lt;/font&gt;&lt;font color=&quot;#cc6600&quot;&gt; &lt;/font&gt;+ &lt;font color=&quot;#ff00ff&quot;&gt;1 Token B&lt;/font&gt;&lt;/span&gt;&lt;br style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Output: &lt;font color=&quot;#009900&quot;&gt;4 LP Shares&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="34.33" y="190" width="250.87" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="OX3iMa-Q4UsDjBHExUNI-49" value="&lt;div&gt;&lt;b&gt;SWAP&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Input: 10 Token A + 0.03 % Fee&lt;/span&gt;&lt;br style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Output: 1 Token B&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-49" value="&lt;div&gt;&lt;b&gt;SWAP&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Input: &lt;font color=&quot;#ff8000&quot;&gt;10 Token A&lt;/font&gt; + 0.03 % Fee&lt;/span&gt;&lt;br style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;text-align: left&quot;&gt;&amp;nbsp;Output: &lt;font color=&quot;#ff00ff&quot;&gt;1 Token B&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="730.36" y="190" width="258.81" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="OX3iMa-Q4UsDjBHExUNI-50" value="&lt;b&gt;Reserves&lt;/b&gt;&lt;br&gt;100 Token A&lt;br&gt;10 Token B" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-50" value="&lt;b&gt;Reserves&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#ff8000&quot;&gt;100 Token A&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#ff00ff&quot;&gt;10 Token B&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="386.64" y="130" width="218" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="OX3iMa-Q4UsDjBHExUNI-51" value="&lt;b&gt;Liquidity Shares&lt;/b&gt;&lt;br&gt;12 Pool Tokens" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-51" value="&lt;b&gt;Liquidity Shares&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#009900&quot;&gt;12 Pool Tokens&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="386.64" y="200" width="218" height="60" as="geometry" />
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-52" value="" style="endArrow=classic;html=1;rounded=0;fontSize=16;strokeWidth=2;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.321;exitY=-0.002;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="OX3iMa-Q4UsDjBHExUNI-49" target="OX3iMa-Q4UsDjBHExUNI-44">
@@ -115,6 +115,9 @@
               <mxPoint x="325.64" y="265" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-60" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;1. 把add provision和claim LP shares分开来？&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;2. 加入bonding curve?&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="180" y="340" width="340" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
