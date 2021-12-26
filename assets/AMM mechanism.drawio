@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-23T16:06:48.583Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="CP-LGIBTQuQMphbk1d9u" version="16.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-26T13:17:50.149Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="qIOrgqDuW-gsznLk0EpL" version="16.0.0" type="github">
   <diagram id="NDha9XyJWKI6wTgdjnXo" name="Page-1">
     <mxGraphModel dx="1131" dy="668" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -42,6 +42,12 @@
         </mxCell>
         <mxCell id="OX3iMa-Q4UsDjBHExUNI-42" value="Reference:&lt;br&gt;https://wiki.acala.network/karura/defi-hub/swap/protocol-overview&lt;br&gt;https://docs.uniswap.org/protocol/V2/concepts/core-concepts/pools" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="130" y="651" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-43" value="Liquidity Provider" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="491.75" y="80" width="188.25" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OX3iMa-Q4UsDjBHExUNI-44" value="Trader" style="rounded=1;whiteSpace=wrap;html=1;shadow=0;fontSize=16;strokeWidth=2;fillColor=none;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="501.75" y="260" width="188.25" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
