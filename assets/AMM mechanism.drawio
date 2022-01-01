@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-01-01T00:13:42.204Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="Vm4tDwdpM8ogvdm_8Ajc" version="16.1.0" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-01-01T00:13:49.590Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="ThXsarK784S_98j92_cx" version="16.1.0" type="github" pages="2">
   <diagram id="NDha9XyJWKI6wTgdjnXo" name="Page-1">
     <mxGraphModel dx="3178" dy="1737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -128,7 +128,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="n-mC-YxK03xASDTg-YdO" name="Page-2">
-    <mxGraphModel dx="961" dy="525" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1968" dy="1075" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="NF0Np_t6BkGrypGyfuFB-0" />
         <mxCell id="NF0Np_t6BkGrypGyfuFB-1" parent="NF0Np_t6BkGrypGyfuFB-0" />
@@ -257,9 +257,6 @@
         </mxCell>
         <mxCell id="9s0jYGuW6LMjN6YKZ2_i-21" value="buy myToken / sell ETH" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="NF0Np_t6BkGrypGyfuFB-1" vertex="1">
           <mxGeometry x="1480.63" y="540" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="FciFHrLaRQf3QhfO1faf-0" value="" style="whiteSpace=wrap;html=1;aspect=fixed;rounded=1;fontColor=#FF00FF;" parent="NF0Np_t6BkGrypGyfuFB-1" vertex="1">
-          <mxGeometry x="783.5" y="900" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="FciFHrLaRQf3QhfO1faf-4" value="" style="curved=1;endArrow=none;html=1;rounded=0;fontColor=#FF00FF;startArrow=none;startFill=0;endFill=0;strokeWidth=3;" parent="NF0Np_t6BkGrypGyfuFB-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
