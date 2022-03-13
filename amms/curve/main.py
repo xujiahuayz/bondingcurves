@@ -63,12 +63,12 @@ class Curve(Amm):
         C = self._get_sum_invariant()
         X = (C / self.n) ** self.n
 
-        updated_reserves_in_ix = self.reserves[asset_in_ix] + qty_in
+        updated_reserves_in = self.reserves[asset_in_ix] + qty_in
         # new pool product excluding output asset
         prod_exo = (
             math.prod(self.reserves)
             / (self.reserves[asset_in_ix] * self.reserves[asset_out_ix])
-            * updated_reserves_in_ix
+            * updated_reserves_in
         )
 
         # new pool sum excluding output asset
@@ -77,22 +77,23 @@ class Curve(Amm):
         # + EPSILLON everywhere here to avoid division by zero
         A = max(self.A, EPSILLON)
         B = (1 - 1 / A) * C - sum_exo
-        updated_reserves_out_ix = (
+        updated_reserves_out = (
             B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo))
         ) / 2
 
-        return updated_reserves_in_ix, updated_reserves_out_ix
+        return updated_reserves_in, int(updated_reserves_out)
 
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         (
-            updated_reserves_in_ix,
-            updated_reserves_out_ix,
+            updated_reserves_in,
+            updated_reserves_out,
         ) = self._compute_trade_qty_out(qty_in, asset_in_ix, asset_out_ix)
 
-        self.reserve[asset_in_ix] = updated_reserves_in_ix
-        self.reserve[asset_out_ix] = updated_reserves_out_ix
+        prev_reserves_out = self.reserves[asset_out_ix]
+        self.reserves[asset_in_ix] = updated_reserves_in
+        self.reserves[asset_out_ix] = updated_reserves_out
 
-        return self.reserve[asset_out_ix] - updated_reserves_out_ix
+        return prev_reserves_out - updated_reserves_out
 
     def slippage(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         _, updated_reserves_out_ix = self._compute_trade_qty_out(
