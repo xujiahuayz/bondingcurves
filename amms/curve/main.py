@@ -81,7 +81,7 @@ class Curve(Amm):
             B + math.sqrt((B ** 2 + 4 * C * X / A / prod_exo))
         ) / 2
 
-        return updated_reserves_in, int(updated_reserves_out)
+        return updated_reserves_in, updated_reserves_out
 
     def trade(self, qty_in: int, asset_in_ix: int, asset_out_ix: int):
         (
