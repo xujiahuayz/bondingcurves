@@ -1,7 +1,7 @@
 from amms.main import Amm
 
 class Balancer(Amm):
-    def __init__(self, reserves: list[int], weights: list[float] = None):
+    def __init__(self, reserves: list[int], weights: list[float]):
         super().__init__(reserves, weights)
 
     def conservation_function(self):
